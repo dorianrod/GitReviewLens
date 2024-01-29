@@ -1,0 +1,3948 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 5,
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": false,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Details",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 54,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "minimize",
+        "favorites": false,
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "repository"
+      },
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 55,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "minimize",
+        "favorites": false,
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "type"
+      },
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 5,
+        "x": 8,
+        "y": 0
+      },
+      "id": 56,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "minimize",
+        "favorites": false,
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "target_branch"
+      },
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 57,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "button",
+        "favorites": false,
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "date_ref"
+      },
+      "title": "Date reference",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 4
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["first"],
+          "fields": "/^nb_pull_requests$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n*\nFROM get_summary_statistics(\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}'\n)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "# Pull requests",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "nb_comments_by_pr": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-purple",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 4,
+        "y": 4
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["first"],
+          "fields": "/^nb_comments_by_pr$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 6,
+          "refId": "A"
+        }
+      ],
+      "title": "# Comments / Pull requests",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "nb_comments_by_pr": false,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-green",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 8,
+        "y": 4
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["first"],
+          "fields": "/^comments_length_by_pr$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 6,
+          "refId": "A"
+        }
+      ],
+      "title": "Comments length / Pull requests",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "count_changed_lines": true,
+              "count_delta_changed_lines": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "Time between PR creation and merge (median)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 120
+              },
+              {
+                "color": "red",
+                "value": 240
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 12,
+        "y": 4
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["firstNotNull"],
+          "fields": "/^merge_time$/",
+          "values": true
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 6,
+          "refId": "A"
+        }
+      ],
+      "title": "Approval speed",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_delta_changed_lines": true,
+              "first_comment_delay": true,
+              "merge_time": false,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "Time between PR creation and first comment (median)",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#a2a2a2",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 120
+              },
+              {
+                "color": "red",
+                "value": 240
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 16,
+        "y": 4
+      },
+      "id": 45,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["firstNotNull"],
+          "fields": "/^first_comment_delay$/",
+          "values": true
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 6,
+          "refId": "A"
+        }
+      ],
+      "title": "First comment speed",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_delta_changed_lines": true,
+              "first_comment_delay": false,
+              "merge_time": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
+          "displayName": "insertions + deletions",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "count_delta_changed_lines"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-yellow",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "insertions - deletions"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 20,
+        "y": 4
+      },
+      "id": 53,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": ["first"],
+          "fields": "/.*/",
+          "values": true
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 6,
+          "refId": "A"
+        }
+      ],
+      "title": "Changes / Pull Request",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "In minutes",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 0,
+        "y": 7
+      },
+      "id": 13,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.69,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "week_day",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n*\nFROM get_summary_statistics_by_week_day(\n    '${date_ref:raw}',\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}'\n)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_deleted_lines": true,
+              "count_delta_changed_lines": true,
+              "count_inserted_lines": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "nb_comments_by_pr": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-purple",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 4,
+        "y": 7
+      },
+      "id": 26,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.7,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "week_day",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 13,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_deleted_lines": true,
+              "count_delta_changed_lines": true,
+              "count_inserted_lines": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-green",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 8,
+        "y": 7
+      },
+      "id": 27,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.7,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "week_day",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 13,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "count_changed_lines": true,
+              "count_deleted_lines": true,
+              "count_delta_changed_lines": true,
+              "count_inserted_lines": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 7
+      },
+      "id": 29,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.7,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "week_day",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 13,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_deleted_lines": true,
+              "count_delta_changed_lines": true,
+              "count_inserted_lines": true,
+              "first_comment_delay": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 16,
+        "y": 7
+      },
+      "id": 46,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.7,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "week_day",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 13,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_deleted_lines": true,
+              "count_delta_changed_lines": true,
+              "count_inserted_lines": true,
+              "first_comment_delay": false,
+              "merge_time": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "count_delta_changed_lines"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 20,
+        "y": 7
+      },
+      "id": 52,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.7,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "orientation": "auto",
+        "showValue": "never",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xField": "week_day",
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 13,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_inserted_lines": false,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "\"percentiles\" are calculated over \"aggregation period\"",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 0,
+        "y": 12
+      },
+      "id": 49,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "button",
+        "favorites": true,
+        "filter": true,
+        "groupSelection": false,
+        "header": false,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "aggregation_period"
+      },
+      "title": "Aggregation period",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "\"percentiles\" are calculated over \"aggregation period\"",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 16,
+        "x": 8,
+        "y": 12
+      },
+      "id": 58,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "button",
+        "favorites": true,
+        "filter": true,
+        "groupSelection": false,
+        "header": false,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "percentile"
+      },
+      "title": "Percentile",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "In minutes",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 0,
+        "y": 14
+      },
+      "id": 38,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "select * from get_summary_statistics_by_day(\n    '${aggregation_period:raw}',\n    ${percentile},\n    '${date_ref:raw}',\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}'\n)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_delta_changed_lines": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "merge_time_delay": true,
+              "nb_comments_by_pr": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "prepareTimeSeries",
+          "options": {
+            "format": "wide"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "In minutes",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-purple",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-purple",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": ""
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 4,
+        "y": 14
+      },
+      "id": 39,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 38,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_delta_changed_lines": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "merge_time_delay": true,
+              "nb_comments_by_pr": false,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "In minutes",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-green",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-purple",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": ""
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 8,
+        "y": 14
+      },
+      "id": 40,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 38,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": false,
+              "count_changed_lines": true,
+              "count_delta_changed_lines": true,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "merge_time_delay": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "In minutes",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-purple",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": ""
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 12,
+        "y": 14
+      },
+      "id": 41,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 38,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_delta_changed_lines": true,
+              "first_comment_delay": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "In minutes",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-purple",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": ""
+              }
+            ]
+          },
+          "unit": "m"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 16,
+        "y": 14
+      },
+      "id": 47,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 38,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": true,
+              "count_delta_changed_lines": true,
+              "first_comment_delay": false,
+              "merge_time": true,
+              "merge_time_delay": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "In minutes",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "yellow",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "scheme",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-purple",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "count_delta_changed_lines"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 20,
+        "y": 14
+      },
+      "id": 50,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 38,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comments_length_by_pr": true,
+              "count_changed_lines": false,
+              "count_delta_changed_lines": false,
+              "first_comment_delay": true,
+              "merge_time": true,
+              "merge_time_delay": true,
+              "nb_comments_by_pr": true,
+              "nb_pull_requests": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 33,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "",
+        "mode": "markdown"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 9,
+      "panels": [],
+      "title": "Quality",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 8,
+        "x": 0,
+        "y": 22
+      },
+      "id": 63,
+      "options": {
+        "autoScroll": true,
+        "displayMode": "minimize",
+        "favorites": true,
+        "filter": true,
+        "groupSelection": false,
+        "header": false,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "commented_by"
+      },
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 16,
+        "x": 8,
+        "y": 22
+      },
+      "id": 64,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "",
+        "mode": "markdown"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 8,
+        "x": 0,
+        "y": 23
+      },
+      "id": 65,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "minimize",
+        "favorites": true,
+        "filter": true,
+        "groupSelection": false,
+        "header": false,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "created_by"
+      },
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 24
+      },
+      "id": 62,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 600
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const title = \"# comments / pull requests\"\nconst names = {\n  \"category\": {\n    \"field\": \"range\",\n    \"name\": \"nb_of_comments\"\n  },\n  \"values\": {\n    \"field\": \"nb\",\n    \"name\": \"count\"\n  },\n}\n\nconst serie = data.series[0]\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right'\n  },\n  series: [\n    {\n      name: title,\n      radius: \"80%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "height": 400,
+          "name": "default"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT *\nFROM get_number_of_comments_by_pull_requests(\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}'\n)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Avg # of comments / pull request",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "min_count_comments": true,
+              "nb": false,
+              "range": false
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 24
+      },
+      "id": 5,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 600
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const title = \"# comments\"\nconst names = {\n  \"category\": {\n    \"field\": \"name\",\n    \"name\": \"name\"\n  },\n  \"values\": {\n    \"field\": \"nb_comments\",\n    \"name\": \"nb_comments\"\n  },\n}\n\nconst serie = data.series[0]\n\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nechartsInstance.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  locationService.partial(newValues);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll',\n    right: 50\n  },\n  series: [\n    {\n      name: title,\n      radius: \"80%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "height": 400,
+          "name": "default"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT *\nFROM get_comments_stats_by_commenters(\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}'\n)",
+          "refId": "comments",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "# Comments",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comment_length_avg": true,
+              "comment_length_sum": true,
+              "name": false,
+              "nb_comments": false,
+              "nb_pr": true,
+              "nb_pr_not_commented": true,
+              "total_comment_length_avg": true,
+              "total_comment_length_sum": true,
+              "total_nb_comments": true,
+              "total_nb_pr": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "comment_length_sum": "",
+              "name": ""
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "nb_comments"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 0.5
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "nb_pr"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "# commented PR"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "nb_pr_not_commented"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "# not commented PR"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#111217",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 24
+      },
+      "id": 21,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.82,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "orientation": "horizontal",
+        "showValue": "never",
+        "stacking": "percent",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "asc"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 5,
+          "refId": "A"
+        }
+      ],
+      "title": "% of commented PR",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comment_length_avg": true,
+              "comment_length_sum": true,
+              "nb_comments": true,
+              "nb_pr": false,
+              "part_nb_comments": true,
+              "part_nb_pr": false,
+              "total_comment_length_avg": true,
+              "total_comment_length_sum": true,
+              "total_nb_comments": true,
+              "total_nb_pr": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "nb_pr"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 32
+      },
+      "id": 2,
+      "links": [],
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 600
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const title = \"# approvals\"\nconst names = {\n  \"category\": {\n    \"field\": \"approver_name\",\n    \"name\": \"approver_name\"\n  },\n  \"values\": {\n    \"field\": \"nb_pull_requests\",\n    \"name\": \"nb_pull_requests\"\n  },\n}\n\nconst serie = data.series[0]\nif (!serie?.fields.length) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nechartsInstance.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-reviewed_by\"\n\n  const newValues = {}\n  const currentValues = (replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  locationService.partial(newValues, true);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll',\n    right: 50\n  },\n  series: [\n    {\n      name: title,\n      radius: \"70%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "height": 400,
+          "name": "default"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT *\nFROM get_comments_stats_by_approvers(\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}'\n)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "# Approvals",
+      "transformations": [
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "nb_pull_requests"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 32
+      },
+      "id": 4,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 600
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const title = \"# comments length\"\nconst names = {\n  \"category\": {\n    \"field\": \"name\",\n    \"name\": \"name\"\n  },\n  \"values\": {\n    \"field\": \"comment_length_sum\",\n    \"name\": \"comment_length_sum\"\n  },\n}\n\nconst serie = data.series[0]\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nechartsInstance.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  locationService.partial(newValues, true);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll'\n  },\n  series: [\n    {\n      name: title,\n      radius: \"70%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "height": 400,
+          "name": "default"
+        }
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 5,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "title": "Comments length (total)",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comment_length_avg": true,
+              "comment_length_sum": false,
+              "nb_comments": true,
+              "nb_pr": true,
+              "nb_pr_not_commented": true,
+              "total_comment_length_avg": true,
+              "total_comment_length_sum": true,
+              "total_nb_comments": true,
+              "total_nb_pr": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "comment_length_sum"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-BlYlRd"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisShow": false,
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": ["comment_length_avg"],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 32
+      },
+      "id": 19,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.66,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 5,
+          "refId": "A"
+        }
+      ],
+      "title": "Comments length (avg)",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "comment_length_sum": true,
+              "nb_comments": true,
+              "nb_pr": true,
+              "nb_pr_not_commented": true,
+              "total_comment_length_avg": true,
+              "total_comment_length_sum": true,
+              "total_nb_comments": true,
+              "total_nb_pr": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "comment_length_avg"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 41
+      },
+      "id": 37,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "",
+        "mode": "markdown"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 8,
+        "x": 0,
+        "y": 42
+      },
+      "id": 60,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "minimize",
+        "favorites": true,
+        "filter": true,
+        "groupSelection": false,
+        "header": false,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "created_by"
+      },
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 6,
+        "x": 8,
+        "y": 42
+      },
+      "id": 36,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "button",
+        "favorites": false,
+        "filter": false,
+        "groupSelection": false,
+        "header": true,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "reviewer_sankey_field"
+      },
+      "title": "Distribute flow by :",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 8,
+        "x": 0,
+        "y": 43
+      },
+      "id": 61,
+      "options": {
+        "autoScroll": true,
+        "displayMode": "minimize",
+        "favorites": true,
+        "filter": true,
+        "groupSelection": false,
+        "header": false,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "commented_by"
+      },
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "Includes only commented pull requests",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 0,
+        "y": 44
+      },
+      "id": 35,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 1125
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "const indicatorField = replaceVariables(\"$reviewer_sankey_field\")\n\nconst fields = data?.series[0]?.fields ?? []\nif(fields.length == 0) return {}\n\nconst commenter = [...fields.find(({ name }) => name == \"commenter_name\").values]\nconst creator = [...fields.find(({ name }) => name == \"created_by_name\").values].map((name) => name + \" \")\nconst indicator = [...fields.find(({ name }) => name == indicatorField).values]\n\nconst developers = [...new Set([...commenter, ...creator])].filter((v) => !!v).map((name) => ({ name }))\n\nconst links = indicator.map((value, index) => {\n  return {\n    source: commenter[index],\n    target: creator[index],\n    value: value\n  }\n})\n\nechartsInstance.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = name.endsWith(\" \") ? \"var-created_by\" : \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  locationService.partial(newValues, true);\n  console.log(currentValues, newValues)\n});\n\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    triggerOn: 'mousemove',\n    formatter: ({ data }) => {\n      let { source, name, target, value } = data\n      if (value == undefined) {\n        value = links.reduce((total, { value, source }) => {\n          return total + (source == name ? value : 0)\n        }, 0)\n      }\n      return indicatorField == \"number_pr\" ? `Reviewed ${value} pull requests to` : `Wrote ${value} comments to`\n    }\n  },\n  animation: false,\n  series: {\n    type: 'sankey',\n    draggable: false,\n    emphasis: {\n      focus: 'adjacency'\n    },\n    data: developers,\n    links: links\n  }\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "height": 400,
+          "name": "default"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT *\nFROM get_sankey_reviewers(\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}'\n) AS pr_data\n",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Who reviews who ?",
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "description": "",
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 44
+      },
+      "id": 59,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 1125
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "function generateTimeRanges(startHour, endHour) {\n  const timeRanges = [];\n  const startTime = new Date(`01/01/2022 ${startHour}:00`);\n  const endTime = new Date(`01/01/2022 ${endHour}:00`);\n\n  while (startTime < endTime) {\n    const formattedTime = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });\n    timeRanges.push(formattedTime);\n    startTime.setMinutes(startTime.getMinutes() + 30);\n  }\n\n  return timeRanges;\n}\n\nconst startHour = \"07:00\";\nconst endHour = \"20:00\";\nconst hours = generateTimeRanges(startHour, endHour);\n\nconst fields = data?.series[0]?.fields ?? []\nif (fields.length == 0) return {}\n\nconst serieIndicator = data.series.find(({ refId }) => refId == \"values\")\nconst serieDays = data.series.find(({ refId }) => refId == \"days\")\nconst serieTimeRanges = data.series.find(({ refId }) => refId == \"timeranges\")\n\nconst days = [...serieDays.fields[0].values]\nconst timeranges = [...serieTimeRanges.fields[0].values]\n\nconst ind_count_comments = [...serieIndicator.fields.find(({ name }) => name == \"count_comments\").values]\nconst ind_timeranges = [...serieIndicator.fields.find(({ name }) => name == \"time_range\").values]\nconst ind_days = [...serieIndicator.fields.find(({ name }) => name == \"week_day\").values]\n\nconst max_value = Math.max(...ind_count_comments)\n\nconst title = [];\nconst singleAxis = [];\nconst series = [];\nconst dataset = []\n\ndays.forEach(function (day, idx) {\n  title.push({\n    textStyle: {\n      fontSize: 13,\n      fontWeight: 400,\n    },\n    textBaseline: 'middle',\n    top: ((idx + 0.5) * 100) / days.length + '%',\n    text: day\n  });\n\n  singleAxis.push({\n    left: 100,\n    type: 'category',\n    boundaryGap: false,\n    data: timeranges,\n    top: (idx * 100) / days.length + 5 + '%',\n    height: 100 / days.length - 12 + '%',\n    axisLabel: {\n      interval: 'auto'\n    }\n  });\n\n  series.push({\n    singleAxisIndex: idx,\n    coordinateSystem: 'singleAxis',\n    datasetIndex: idx,\n    type: 'scatter',\n    symbolSize: function (dataItem) {\n      return dataItem[1] * 35 / max_value;\n    }\n  });\n\n  const source = []\n  ind_count_comments.forEach((value, idx) => {\n    if (ind_days[idx] == day) {\n      source.push([ind_timeranges[idx], value])\n    }\n  })\n\n  dataset.push({\n    dimensions: [\"timerange\", \"value\"],\n    source,\n  })\n});\n\nreturn {\n  dataset,\n  singleAxis: singleAxis,\n  title,\n  tooltip: {\n  },\n  series\n};",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "height": 400,
+          "name": "default"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT *\nFROM get_review_by_time_ranges(\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}'\n)",
+          "refId": "values",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select day_of_week_str as day from get_dates('2023-01-01', '2023-01-07')\nwhere day_of_week_str <= '6'\norder by day",
+          "refId": "days",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        },
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "hide": false,
+          "rawQuery": true,
+          "rawSql": "select time_range from get_timeranges('07:00', '20:00', 30) order by time_range",
+          "refId": "timeranges",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "When do we review?",
+      "transformations": [],
+      "type": "volkovlabs-echarts-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 55
+      },
+      "id": 34,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "",
+        "mode": "markdown"
+      },
+      "pluginVersion": "10.2.0-133119",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 56
+      },
+      "id": 10,
+      "panels": [],
+      "title": "Approval speed",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 57
+      },
+      "id": 15,
+      "options": {
+        "autoScroll": false,
+        "displayMode": "button",
+        "favorites": false,
+        "filter": false,
+        "groupSelection": false,
+        "groups": [],
+        "header": true,
+        "padding": 0,
+        "showName": false,
+        "statusSort": false,
+        "sticky": false,
+        "variable": "merge_time_interval"
+      },
+      "title": "Merge time",
+      "transparent": true,
+      "type": "volkovlabs-variable-panel"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 59
+      },
+      "id": 43,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto",
+          "height": 736
+        },
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "try {\n\n  function formatNumberWithSuffix(number) {\n    if (number >= 1e9) {\n      return (number / 1e9).toFixed(1) + 'B';\n    } else if (number >= 1e6) {\n      return (number / 1e6).toFixed(1) + 'M';\n    } else if (number >= 1e3) {\n      return (number / 1e3).toFixed(1) + 'k';\n    } else {\n      return number.toFixed(0).toString();\n    }\n  }\n\n  function formatDuration(value) {\n    let hours = parseFloat(value / 60);\n    if (hours >= 24) {\n      return (hours / 24).toFixed(1) + 'd';\n    } else {\n      return hours.toFixed(1) + 'h';\n    }\n  }\n\n  const series = data.series.map((serie, index) => {\n    const merge_time = [...data.series[index].fields.find(({ name }) => name == \"merge_time\").values]\n    const count_changes = [...data.series[index].fields.find(({ name }) => name == \"count_changes\").values]\n\n    const values = merge_time.reduce((values, _, index) => {\n      if (count_changes[index] > 10000 || count_changes[index] > 10000) {\n        return values\n      }\n\n      return [\n        ...values,\n        [count_changes[index], merge_time[index]]\n      ]\n    }, [])\n\n    return {\n      type: 'scatter',\n      emphasis: {\n        scale: 2,\n        focus: 'series',\n      },\n      symbolSize: 3,\n      name: serie.fields[0].labels.created_by_name,\n      data: values\n    }\n  })\n\n  return {\n    legend: {\n      type: 'scroll',\n      orient: 'vertical',\n      left: 10,\n      top: 20,\n      bottom: 20\n    },\n    grid: {\n      top: 30,\n      left: 250,\n      right: 70,\n    },\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'cross'\n      }\n    },\n    dataZoom: [\n      {\n        type: 'slider',\n        xAxisIndex: 0,\n        filterMode: 'none',\n        end: 30\n      },\n      {\n        type: 'slider',\n        yAxisIndex: 0,\n        filterMode: 'none',\n        end: 30\n      },\n      {\n        type: 'inside',\n        xAxisIndex: 0,\n        filterMode: 'none'\n      },\n      {\n        type: 'inside',\n        yAxisIndex: 0,\n        filterMode: 'none'\n      }\n    ],\n    xAxis: [\n      {\n        scale: true,\n        type: 'value',\n        axisLabel: {\n          formatter: (value) => {\n            return formatNumberWithSuffix(value)\n          }\n        }\n      }\n    ],\n    yAxis: [\n      {\n        scale: true,\n        type: 'value',\n        axisLabel: {\n          formatter: (value) => {\n            return formatDuration(value)\n          }\n        }\n      }\n    ],\n    series\n  };\n} catch (e) {\n  return {}\n}\n",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": "none",
+        "renderer": "canvas",
+        "themeEditor": {
+          "config": "{}",
+          "height": 400,
+          "name": "default"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \n*\nFROM get_merge_time_by_complexity(\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repository:raw}',\n    '${merge_time_interval}'\n)",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Merge time by # changes in code",
+      "transformations": [
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": ["created_by_name"]
+          }
+        }
+      ],
+      "type": "volkovlabs-echarts-panel"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "creators",
+        "multi": true,
+        "name": "created_by",
+        "options": [],
+        "query": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": " ",
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select '-' as __value, ' Not commented' as __text\nUNION\nselect name as __value, name as __text \nfrom get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "commenters",
+        "multi": true,
+        "name": "commented_by",
+        "options": [],
+        "query": "select '-' as __value, ' Not commented' as __text\nUNION\nselect name as __value, name as __text \nfrom get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "approvers",
+        "multi": true,
+        "name": "reviewed_by",
+        "options": [],
+        "query": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "100d",
+          "value": "100d"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Approval delay",
+        "multi": false,
+        "name": "merge_time_interval",
+        "options": [
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "2h",
+            "value": "2h"
+          },
+          {
+            "selected": false,
+            "text": "5h",
+            "value": "5h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "2d",
+            "value": "2d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": true,
+            "text": "100d",
+            "value": "100d"
+          }
+        ],
+        "query": "1h,2h,5h,1d,2d,7d,100d",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "# comments",
+          "value": "number_comments"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Type",
+        "multi": false,
+        "name": "reviewer_sankey_field",
+        "options": [
+          {
+            "selected": true,
+            "text": "# comments",
+            "value": "number_comments"
+          },
+          {
+            "selected": false,
+            "text": "# pull requests",
+            "value": "number_pr"
+          }
+        ],
+        "query": "# comments : number_comments, # pull requests : number_pr",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select distinct target_branch from pull_requests\norder by target_branch",
+        "hide": 2,
+        "includeAll": true,
+        "label": "target",
+        "multi": true,
+        "name": "target_branch",
+        "options": [],
+        "query": "select distinct target_branch from pull_requests\norder by target_branch",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Completion date",
+          "value": "completion"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "label": "Date reference",
+        "multi": false,
+        "name": "date_ref",
+        "options": [
+          {
+            "selected": true,
+            "text": "Completion date",
+            "value": "completion"
+          },
+          {
+            "selected": false,
+            "text": "Creation date",
+            "value": "creation"
+          }
+        ],
+        "query": "Completion date : completion, Creation date : creation",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "SELECT distinct type\nFROM pull_requests\nWHERE \n$__timeFilter(completion_date)\nORDER BY type ASC",
+        "hide": 2,
+        "includeAll": true,
+        "label": "type",
+        "multi": true,
+        "name": "type",
+        "options": [],
+        "query": "SELECT distinct type\nFROM pull_requests\nWHERE \n$__timeFilter(completion_date)\nORDER BY type ASC",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "1 month",
+          "value": "1 month"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "aggregation_period",
+        "options": [
+          {
+            "selected": false,
+            "text": "no aggregation",
+            "value": "0 day"
+          },
+          {
+            "selected": false,
+            "text": "1 week",
+            "value": "1 week"
+          },
+          {
+            "selected": false,
+            "text": "2 weeks",
+            "value": "2 weeks"
+          },
+          {
+            "selected": true,
+            "text": "1 month",
+            "value": "1 month"
+          },
+          {
+            "selected": false,
+            "text": "3 months",
+            "value": "3 months"
+          }
+        ],
+        "query": "no aggregation : 0 day,1 week,2 weeks,1 month,3 months",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select distinct repository\nfrom pull_requests\norder by repository",
+        "hide": 2,
+        "includeAll": true,
+        "multi": true,
+        "name": "repository",
+        "options": [],
+        "query": "select distinct repository\nfrom pull_requests\norder by repository",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "median",
+          "value": "0.5"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "percentile",
+        "options": [
+          {
+            "selected": false,
+            "text": "10%",
+            "value": "0.1"
+          },
+          {
+            "selected": false,
+            "text": "25%",
+            "value": "0.25"
+          },
+          {
+            "selected": true,
+            "text": "median",
+            "value": "0.5"
+          },
+          {
+            "selected": false,
+            "text": "75%",
+            "value": "0.75"
+          },
+          {
+            "selected": false,
+            "text": "90%",
+            "value": "0.9"
+          }
+        ],
+        "query": "10% : 0.1, 25% : 0.25, median : 0.5, 75% : 0.75 , 90% : 0.9",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2y",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Metrics",
+  "uid": "metrics",
+  "version": 1,
+  "weekStart": ""
+}

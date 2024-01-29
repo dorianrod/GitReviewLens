@@ -1,0 +1,14 @@
+.venv
+.env
+.pytest_cache
+*old*
+__pycache__
+**/__pycache__
+/git/.ssh
+/git/repositories
+postgres/data/**/*.json
+postgres/transco/transcoders.json
+temp/**/*
+temp
+*copy*
+src/app/controllers/extract_transform_load/tests/fixture/git/**

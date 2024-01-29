@@ -1,0 +1,3692 @@
+[
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "85a1f9b08d5f1b48fd4bf9dd8764a0972224273c",
+        "date": "2022-01-04T10:21:04Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 15,
+        "count_inserted_lines": 101,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "b2f81da9d4f143e7f0d24628e8c3a43fc3e4fdac",
+        "date": "2022-01-04T17:26:30Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 116,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 14,
+        "dmm_unit_complexity": 0.8333333333333334,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "ef2bedef83ccfafc3f8dc607ed2e331b634566ca",
+        "date": "2022-01-05T09:01:51Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 14,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 99,
+        "count_inserted_lines": 104,
+        "dmm_unit_complexity": 0.8235294117647058,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "33bff670ea37f48bbf6497a71f6b3dc4b29277d9",
+        "date": "2022-01-05T17:47:32Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 203,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 24,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "937df71ec3691071db04e7095056598c05b432b4",
+        "date": "2022-01-07T10:11:42Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 28,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 104,
+        "count_inserted_lines": 99,
+        "dmm_unit_complexity": 0.17647058823529413,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "b5c6c65af501c382059f971f6fe1b8aa2fa90d9d",
+        "date": "2022-01-07T11:16:53Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 203,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "360716b318ac340dfe3a26494599ba02b0025ca5",
+        "date": "2022-01-07T10:27:41Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 12,
+        "count_inserted_lines": 12,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "67dc250a0e9fd6e47b0f16a2254f178540a3478e",
+        "date": "2022-01-07T16:20:57Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 24,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 15,
+        "count_inserted_lines": 101,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "36a94562894430ebd168ea618cce49fa703d9c9f",
+        "date": "2022-01-10T16:01:21Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 116,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 14,
+        "dmm_unit_complexity": 0.8333333333333334,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "4d79ea43d0766a8cd0169edbec9858f851eba86a",
+        "date": "2022-01-10T16:01:21Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 14,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 99,
+        "count_inserted_lines": 104,
+        "dmm_unit_complexity": 0.8235294117647058,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "415a64c087fc8b8a4cb8d5a1f7bf38f2a15c8af1",
+        "date": "2022-01-10T16:01:21Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 203,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 24,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "b891d31fe809a44e4ca36994f81c34013188b3b1",
+        "date": "2022-01-10T16:01:21Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 28,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 104,
+        "count_inserted_lines": 99,
+        "dmm_unit_complexity": 0.17647058823529413,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "a2819dae7f071a8198cb3598d180f7182d8af9a9",
+        "date": "2022-01-10T16:01:21Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 203,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 160,
+        "count_inserted_lines": 119,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Erica Bruce",
+            "email": "deborahmay@example.com",
+            "id": "deborahmay@example.com"
+        },
+        "commit": "d1f1053b7d8362b63893dfd70e412c1327f25cc1",
+        "date": "2022-01-10T16:03:18Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 279,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Erica Bruce",
+            "email": "deborahmay@example.com",
+            "id": "deborahmay@example.com"
+        },
+        "commit": "9b9a2624f04d1cb82a7b2695b61a488bf3a047ba",
+        "date": "2022-01-10T16:03:18Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Erica Bruce",
+            "email": "deborahmay@example.com",
+            "id": "deborahmay@example.com"
+        },
+        "commit": "a1a9a6fd68c801f551302102caf3040ec6b14f2b",
+        "date": "2022-01-10T16:03:18Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 12,
+        "count_inserted_lines": 12,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "5aa591535048933655596bcca0314dbc688ff189",
+        "date": "2022-01-10T16:03:18Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 24,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Erica Bruce",
+            "email": "deborahmay@example.com",
+            "id": "deborahmay@example.com"
+        },
+        "commit": "8edf41088917018f6f9ce254b450eca61ce32e6f",
+        "date": "2022-01-10T16:03:18Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "e078658e6755ecff169ddd9ae63854dc478c5861",
+        "date": "2022-01-10T15:21:59Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 9,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Erica Bruce",
+            "email": "deborahmay@example.com",
+            "id": "deborahmay@example.com"
+        },
+        "commit": "78fa5d2747bb0f3bae602b9b1a48d7e3c22ca310",
+        "date": "2022-01-10T18:20:25Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 10,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "0305b749d80df1fbecbbe75682b146e4c507177a",
+        "date": "2022-01-10T17:31:28Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "c8d96498b41759e26532a6ed0901f33ae0b9a13a",
+        "date": "2022-01-11T09:19:51Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 110,
+        "count_inserted_lines": 29,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "7a2081ac97666b92c5f9e79c70bbc77d200b3941",
+        "date": "2022-01-11T10:35:32Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 139,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Timothy Gallegos",
+            "email": "mlong@example.org",
+            "id": "mlong@example.org"
+        },
+        "commit": "217dacb5c1a4071913188f5852456dd76740aca7",
+        "date": "2022-01-31T13:46:30Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 252,
+        "count_inserted_lines": 227,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "22093899bd9649fe18dc0223c28014bf2df3d4ed",
+        "date": "2022-01-12T11:43:51Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 479,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 7,
+        "count_inserted_lines": 7,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "6711b0a636a629b260c03a25d3a73d4d9e8c17c1",
+        "date": "2022-01-12T16:01:34Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 14,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 7,
+        "count_inserted_lines": 14,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "dc1eba926607c66394b7516a49826eea54a10d8f",
+        "date": "2022-01-12T16:36:52Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 21,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 19,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "72df10adcab5b27314fcd3c3857d3ca0237d6bd8",
+        "date": "2022-01-12T17:23:12Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 20,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 21,
+        "count_inserted_lines": 370,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "155cc9da18b3f5dabb0f111bd4b32da40afd4257",
+        "date": "2022-01-12T17:31:25Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 391,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 68,
+        "count_inserted_lines": 73,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "f4a7b3c111127db939a1f695260784c8a1e7aaac",
+        "date": "2022-01-14T12:59:59Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 141,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 19,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Calvin Garcia",
+            "email": "michael73@example.net",
+            "id": "michael73@example.net"
+        },
+        "commit": "d589ba120995e5d8dd51cb188720eb0673ae4391",
+        "date": "2022-01-14T16:21:42Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 20,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 15,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Calvin Garcia",
+            "email": "michael73@example.net",
+            "id": "michael73@example.net"
+        },
+        "commit": "859bf0363160fbfd6e852a7bd53ec74b4264c261",
+        "date": "2022-01-14T17:59:32Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 15,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 20,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "624ec69211b930be5043337357311be2edb065f5",
+        "date": "2022-01-18T08:29:18Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 20,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 10,
+        "count_inserted_lines": 17,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "39de9b279f4e1a1627968eec707c3c58c6c070fc",
+        "date": "2022-01-18T08:56:15Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 27,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Calvin Garcia",
+            "email": "michael73@example.net",
+            "id": "michael73@example.net"
+        },
+        "commit": "c00562bf94f42e841243fd8a3ab4aef7b8c1aa56",
+        "date": "2022-01-18T11:27:26Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 5,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Calvin Garcia",
+            "email": "michael73@example.net",
+            "id": "michael73@example.net"
+        },
+        "commit": "c6e527e5056004af5ede5802eb475875d92ac3d8",
+        "date": "2022-01-18T13:29:22Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 5,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Calvin Garcia",
+            "email": "michael73@example.net",
+            "id": "michael73@example.net"
+        },
+        "commit": "3693170b7807f1fac917a01dfed055a28b6b6893",
+        "date": "2022-01-18T13:29:47Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 16,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Donna Berry",
+            "email": "imooney@example.com",
+            "id": "imooney@example.com"
+        },
+        "commit": "72375a20d9a62dfabb925e64638b274eee81277b",
+        "date": "2022-05-19T18:39:12Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 17,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 108,
+        "count_inserted_lines": 330,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "4f1f2831eb34134976b1f2a00d3b37f5e937dda8",
+        "date": "2022-01-20T16:26:58Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 438,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Samantha Butler",
+            "email": "bowmanvictor@example.com",
+            "id": "bowmanvictor@example.com"
+        },
+        "commit": "bc956d7bfee562cd0c2f176e1d0543b10ca2ea8b",
+        "date": "2022-01-21T09:42:33Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 13,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Samantha Butler",
+            "email": "bowmanvictor@example.com",
+            "id": "bowmanvictor@example.com"
+        },
+        "commit": "be31348848a12c9e1bb2c4fdba25733635933672",
+        "date": "2022-01-21T09:44:03Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 14,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 365,
+        "count_inserted_lines": 29,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 0.07407407407407407,
+        "dmm_unit_size": 0.6666666666666666,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "ea54180c3abf6b51ab86b0c500a66339b2626f89",
+        "date": "2022-01-21T13:30:48Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 394,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "1874a62429a48cac5ee360de243b2833377b1aa5",
+        "date": "2022-01-24T09:58:30Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 5,
+        "count_inserted_lines": 35,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Samantha Butler",
+            "email": "bowmanvictor@example.com",
+            "id": "bowmanvictor@example.com"
+        },
+        "commit": "486c6c3d50de6cb00ffdabb0ed3f2e1307d6335e",
+        "date": "2022-01-25T09:52:52Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 40,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 34,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "3f2a133e4d9b2d12b773d1e21310dfb0c77d4315",
+        "date": "2022-01-25T09:25:37Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 38,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 150,
+        "count_inserted_lines": 283,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "9c184a604d4378803480ff03f87836ec35c1ab7b",
+        "date": "2022-01-25T17:41:33Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 433,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 30,
+        "count_inserted_lines": 150,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "f5ace154674e0e8906877bde671ece931969b998",
+        "date": "2022-01-26T14:37:08Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 180,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 44,
+        "count_inserted_lines": 87,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "ab6ed565510ec34aec2edd403f658db426c81aae",
+        "date": "2022-01-27T13:25:44Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 131,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 41,
+        "count_inserted_lines": 49,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "e135214eb399a92bd0fbdeb0c30af31a9354be7a",
+        "date": "2022-01-27T13:43:56Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 90,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Cruz",
+            "email": "denisegarcia@example.org",
+            "id": "denisegarcia@example.org"
+        },
+        "commit": "cd2debe020dd6bda33baaffc612eae864551c584",
+        "date": "2022-01-27T16:41:36Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Cruz",
+            "email": "denisegarcia@example.org",
+            "id": "denisegarcia@example.org"
+        },
+        "commit": "a4a8499815f15779c2948fa98a321b125024c7c3",
+        "date": "2022-01-27T16:43:36Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 10,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Cruz",
+            "email": "denisegarcia@example.org",
+            "id": "denisegarcia@example.org"
+        },
+        "commit": "f4e3ec6d469e4b3fc38e571a2d7197db974ea28a",
+        "date": "2022-01-27T16:43:46Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 11,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 150,
+        "count_inserted_lines": 30,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Cruz",
+            "email": "denisegarcia@example.org",
+            "id": "denisegarcia@example.org"
+        },
+        "commit": "86c568ae6e1bcd253b657848879e4f9c7ff8d5c3",
+        "date": "2022-01-27T16:59:21Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 180,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Cruz",
+            "email": "denisegarcia@example.org",
+            "id": "denisegarcia@example.org"
+        },
+        "commit": "78a1ec35fb4a170a358b2179a7c3f7ebe3580a0d",
+        "date": "2022-01-27T16:59:38Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Cruz",
+            "email": "denisegarcia@example.org",
+            "id": "denisegarcia@example.org"
+        },
+        "commit": "e9baf35b929f893b4ad8e105df9cf8c3f66b5a9f",
+        "date": "2022-01-27T17:12:17Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Cruz",
+            "email": "denisegarcia@example.org",
+            "id": "denisegarcia@example.org"
+        },
+        "commit": "48069fd8970943c2d19f216aba58bd80924ec857",
+        "date": "2022-01-27T17:12:24Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Timothy Gallegos",
+            "email": "mlong@example.org",
+            "id": "mlong@example.org"
+        },
+        "commit": "3c5b77b152a3fb3a670d6f8df34e4c4078a4d48f",
+        "date": "2022-01-31T09:45:50Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 3,
+        "count_inserted_lines": 32,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Luis Calderon",
+            "email": "katie14@example.net",
+            "id": "katie14@example.net"
+        },
+        "commit": "d6570a8daedcf8fdccd528c61866684151142327",
+        "date": "2022-01-31T17:37:27Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 35,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Julia Diaz",
+            "email": "kmontes@example.org",
+            "id": "kmontes@example.org"
+        },
+        "commit": "3edd67e8697e1908ab646d39e788dd3bcf82d2f4",
+        "date": "2022-01-31T17:45:05Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 244,
+        "count_inserted_lines": 756,
+        "dmm_unit_complexity": 0.025,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "b315db8442390772ab73b697c613888c5b9ca739",
+        "date": "2022-02-02T17:17:44Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1000,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Erica Bruce",
+            "email": "deborahmay@example.com",
+            "id": "deborahmay@example.com"
+        },
+        "commit": "db99db95dc5584072ea04a44705a82615c5c91f3",
+        "date": "2022-02-03T17:56:51Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "8e20258524a0ea53348376fcd655b8c07ce93546",
+        "date": "2022-02-07T14:29:07Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "be39a6cb44cf05119ae4d93a878e27249259f468",
+        "date": "2022-02-07T15:16:28Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "3deba4b67dc896821e234831d86745a04ee883e1",
+        "date": "2022-02-07T15:57:52Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 7,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "2811fb90a82d48b351d825b04956ca3bed64c82f",
+        "date": "2022-02-07T18:14:54Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 3,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 3,
+        "count_inserted_lines": 430,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "a72ec748c2163c8224ff782c1346e3400a737537",
+        "date": "2022-02-08T10:52:13Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 433,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "bc25313151fb4dafa8bc522d13c82babc4b47111",
+        "date": "2022-02-08T11:27:31Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 5,
+        "count_inserted_lines": 6,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "e2dfa0b958b933cacf0b0301f7ce5ecbf8336133",
+        "date": "2022-02-08T15:00:10Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 11,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 4,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "581d72169641a750689dbb9d7b93b404dcfc3f79",
+        "date": "2022-02-08T15:53:37Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "be47c102126740a743748154f14e479482b22f06",
+        "date": "2022-02-09T10:51:47Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 16,
+        "count_inserted_lines": 69,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "d22df82b09a59abb31eb939c63790a0846d226fe",
+        "date": "2022-02-09T15:31:48Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 85,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 215,
+        "count_inserted_lines": 229,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Robert Rosario",
+            "email": "cabrerakelly@example.org",
+            "id": "cabrerakelly@example.org"
+        },
+        "commit": "d6264c53066f204a1a230f41417b30236e397559",
+        "date": "2022-02-10T14:49:31Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 444,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Donna Berry",
+            "email": "imooney@example.com",
+            "id": "imooney@example.com"
+        },
+        "commit": "cfe9e226b072bbea8d21da3cdaa9204764b12f66",
+        "date": "2022-02-10T18:16:00Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "f1537135fede579c2cb1e9f2cff73f66142c6b07",
+        "date": "2022-02-14T10:03:39Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "6f2d61b45d3a8e6ef940ffca6a960743ab4e1132",
+        "date": "2022-02-14T10:46:35Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 21,
+        "count_inserted_lines": 36,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "94a23d4ad71653c383ef30b2ceaf39b2057a4ac0",
+        "date": "2022-02-15T09:47:15Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 57,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 92,
+        "count_inserted_lines": 392,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "24f50fc5d2acdf481e16bab0cf4d83b86822cf46",
+        "date": "2022-02-15T14:55:51Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 484,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 9,
+        "count_inserted_lines": 23,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Joshua Moore",
+            "email": "ashleymarsh@example.net",
+            "id": "ashleymarsh@example.net"
+        },
+        "commit": "65391e38f713882fbd59bc77b753ed2bc0b6a398",
+        "date": "2022-02-15T18:38:36Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 32,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 19,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Joshua Moore",
+            "email": "ashleymarsh@example.net",
+            "id": "ashleymarsh@example.net"
+        },
+        "commit": "aa99fc69815b637efc544691d040237923453f4a",
+        "date": "2022-02-15T18:38:39Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 19,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "3642adb1dee4496d197b16021e2c2e1b11dbf12f",
+        "date": "2022-02-16T10:46:00Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "e6f0f28db9e626632158905c0a8138b642d285cb",
+        "date": "2022-02-16T13:15:58Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 9,
+        "count_inserted_lines": 42,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "579b0be2ee371cdd90c800d4570842b51c989a96",
+        "date": "2022-02-17T18:12:45Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 51,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 3,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Ryan Mclaughlin",
+            "email": "qclark@example.net",
+            "id": "qclark@example.net"
+        },
+        "commit": "e9aecde30f2bd256b7d8d774f1cfa311b3f9fbb0",
+        "date": "2022-02-17T18:13:28Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 25,
+        "count_inserted_lines": 47,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "e8dddbf01efc9d814b8fa1be4c0b091474e7587e",
+        "date": "2022-02-18T11:38:43Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 72,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 47,
+        "count_inserted_lines": 25,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "b4438f3162f46c081e4de9bf18f18e4b559625ea",
+        "date": "2022-02-18T15:15:53Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 72,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 71,
+        "count_inserted_lines": 93,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "3cc0651c196625b8516658fc5a2534a8307e51b3",
+        "date": "2022-02-18T16:00:13Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 164,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "da63192848c4c118c9775733b589f0f5e1f4cbb9",
+        "date": "2022-02-21T10:48:13Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 93,
+        "count_inserted_lines": 71,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "ed95a0c2e6c99d1e67db3ba47ab3fadffa6453ed",
+        "date": "2022-02-21T13:36:39Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 164,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 35,
+        "count_inserted_lines": 801,
+        "dmm_unit_complexity": 0.9851485148514851,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "673f51745be5014409f54d4aba9d54e514f2942a",
+        "date": "2022-02-24T11:06:45Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 836,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 11,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "ecf500b132ed34edc994f339dcb18fbe483abe17",
+        "date": "2022-02-24T12:34:28Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 15,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 168,
+        "count_inserted_lines": 88,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Daniel Newton",
+            "email": "davismichael@example.org",
+            "id": "davismichael@example.org"
+        },
+        "commit": "ec103c00b085ac543c8c271ba53b37c4076e8128",
+        "date": "2022-03-16T17:53:11Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 256,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 6,
+        "count_inserted_lines": 20,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "08f8064d48a12c3c63e4d60e5d3b5c4709be3e32",
+        "date": "2022-03-17T10:26:47Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 26,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "8cd7ae4583425261b973cad50f524df60d087fc4",
+        "date": "2022-05-23T09:11:34Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 35,
+        "count_inserted_lines": 801,
+        "dmm_unit_complexity": 0.9851485148514851,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "fa38356bdc0b09b1c9883153809d5bb9428c34e3",
+        "date": "2022-02-24T14:11:23Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 836,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 11,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "95319930e56ff0a9cd92078bac5db1c99bdc9d5d",
+        "date": "2022-02-24T14:11:35Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 15,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Donna Berry",
+            "email": "imooney@example.com",
+            "id": "imooney@example.com"
+        },
+        "commit": "56372795929425339e4086210f2e5451b967ea52",
+        "date": "2022-02-24T14:17:57Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "482051aaa7da1e62d623ddb3ae42109364de9993",
+        "date": "2022-02-24T13:57:13Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "66615e33bc107a86f2340e6433314b9bbd1cbfa8",
+        "date": "2022-02-24T15:39:00Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 2109,
+        "count_inserted_lines": 29,
+        "dmm_unit_complexity": 0.022085889570552148,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.4736196319018405,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "b1ba8bfeeb6c66f425e97b45798546b92dd3c0ef",
+        "date": "2022-02-25T09:19:01Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2138,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Samantha Butler",
+            "email": "bowmanvictor@example.com",
+            "id": "bowmanvictor@example.com"
+        },
+        "commit": "a435fc419bd075504c6339374dada209305bcd32",
+        "date": "2022-03-02T17:30:44Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 268,
+        "count_inserted_lines": 218,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.2926829268292683,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "1694a1a091b623146a8a47d9e0a826aed2da5636",
+        "date": "2022-03-02T17:13:08Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 486,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 71,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Linda Cruz",
+            "email": "rodriguezhunter@example.com",
+            "id": "rodriguezhunter@example.com"
+        },
+        "commit": "5a5fc090a8d6323e6bc9a4e9a749d400f02d3cf7",
+        "date": "2022-03-03T16:16:46Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 71,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Linda Cruz",
+            "email": "rodriguezhunter@example.com",
+            "id": "rodriguezhunter@example.com"
+        },
+        "commit": "3a8344a2e109df58a3d06c14104519906cfc04ab",
+        "date": "2022-03-03T16:16:46Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Linda Cruz",
+            "email": "rodriguezhunter@example.com",
+            "id": "rodriguezhunter@example.com"
+        },
+        "commit": "470045bb405348903d4496f08d219f2ee52a6eb8",
+        "date": "2022-03-03T16:16:46Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 5,
+        "count_inserted_lines": 12,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Linda Cruz",
+            "email": "rodriguezhunter@example.com",
+            "id": "rodriguezhunter@example.com"
+        },
+        "commit": "f21e1ff8a9c42f15aca52dc859d6d5af76d4d776",
+        "date": "2022-03-03T16:16:46Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 17,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Linda Cruz",
+            "email": "rodriguezhunter@example.com",
+            "id": "rodriguezhunter@example.com"
+        },
+        "commit": "f81d12e9eb4d533dd4c607baedeea7ea1950c47b",
+        "date": "2022-03-03T16:16:46Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "James Stone",
+            "email": "jacobhouston@example.com",
+            "id": "jacobhouston@example.com"
+        },
+        "commit": "7c2f2365b0270d07faeb000aec65cd431d631279",
+        "date": "2022-03-03T15:18:01Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "db2be6743587fb438f49f0944492637a08d49400",
+        "date": "2022-03-07T10:16:19Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "6c6b50ad02cadda2ac0032b3544a1babface52f8",
+        "date": "2022-03-07T11:36:42Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 2068,
+        "count_inserted_lines": 1117,
+        "dmm_unit_complexity": 0.3488372093023256,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.6627906976744186,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "041563c0f8d693882ada820069a48d10c88982a5",
+        "date": "2022-03-07T16:25:37Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 3185,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 3,
+        "count_inserted_lines": 3586,
+        "dmm_unit_complexity": 0.9081920903954802,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.3827683615819209,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "07ba1b7aed7b890cd8760a10d071dd9575aedb35",
+        "date": "2022-03-08T16:32:39Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 3589,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 93,
+        "count_inserted_lines": 34,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "fbecfe8a1e5c9be99e7a21b6818869e8cb09783f",
+        "date": "2022-03-10T08:57:29Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 127,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 13,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Ryan Mclaughlin",
+            "email": "qclark@example.net",
+            "id": "qclark@example.net"
+        },
+        "commit": "89d0b3a7bfe9722424ddf8435acd2aed5427a2de",
+        "date": "2022-03-10T18:13:20Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 14,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "d3b48cb9e24ea62d77abae91333b77a57a6652e1",
+        "date": "2022-03-14T10:38:34Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 5,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Joshua Moore",
+            "email": "ashleymarsh@example.net",
+            "id": "ashleymarsh@example.net"
+        },
+        "commit": "f66f3f3bc04a4b51eb26e011f60f98656737d89b",
+        "date": "2022-03-15T11:59:50Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 2,
+        "count_inserted_lines": 4,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "d15fbcdd93985f56ca4b88a6a479109f4320e43a",
+        "date": "2022-03-15T11:11:26Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 6,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "9821e31d9ffa6e4841a9d921891ca26d97829d35",
+        "date": "2022-03-15T11:36:26Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 6,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "332832ec5607c6fff1c4f0eb13928dc72750525e",
+        "date": "2022-03-15T11:49:45Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 10,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1261,
+        "count_inserted_lines": 1498,
+        "dmm_unit_complexity": 0.2,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.2,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "7614076f1639032eaffe12b3b2092e5101ae00e5",
+        "date": "2022-03-15T15:24:38Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2759,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 2,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "bdbe931e04714719c3c310cfaedee246daa41e0e",
+        "date": "2022-03-15T16:41:47Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 3,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 63,
+        "count_inserted_lines": 71,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "237e3efbeca5956dcd9f0d731f7c8418bbb3a296",
+        "date": "2022-03-15T17:53:36Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 134,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 31,
+        "count_inserted_lines": 329,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.15853658536585366,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "c49d3177f4285cc9c93a71cc9d78c38f638caa77",
+        "date": "2022-03-16T13:43:27Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 360,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "fca17e8c2ab57c5862134c42764f20f74a2a1ff6",
+        "date": "2022-03-16T17:08:17Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "b9934b12a88530d10eb9cb50ea2d7a99a35c3853",
+        "date": "2022-04-19T09:42:46Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 137,
+        "count_inserted_lines": 120,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Daniel Newton",
+            "email": "davismichael@example.org",
+            "id": "davismichael@example.org"
+        },
+        "commit": "9faae1a4924f18ea347410a85701e7c13393b896",
+        "date": "2022-03-17T15:10:01Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 257,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 7,
+        "count_inserted_lines": 30,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Daniel Newton",
+            "email": "davismichael@example.org",
+            "id": "davismichael@example.org"
+        },
+        "commit": "2f36b2f0fcfe74265abd9f59761c9ca856487cf0",
+        "date": "2022-03-17T18:07:49Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 37,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 135,
+        "count_inserted_lines": 170,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "94417cf56dae9bd51105b99cf45e9c11357dd723",
+        "date": "2022-03-18T14:08:09Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 305,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 16,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Samantha Butler",
+            "email": "bowmanvictor@example.com",
+            "id": "bowmanvictor@example.com"
+        },
+        "commit": "1af97adb6624c914e4b4b000310a996b1b204b5e",
+        "date": "2022-03-18T15:14:41Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 17,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 184,
+        "count_inserted_lines": 2108,
+        "dmm_unit_complexity": 0.8058252427184466,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "ffb139699c49a03b524954bdcc55cb50abc3f10e",
+        "date": "2022-03-21T15:59:33Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2292,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 7,
+        "count_inserted_lines": 5,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "889f85a45c03c0f60faf29c1ac1beb24782ca157",
+        "date": "2022-03-22T09:41:44Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 12,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 5806,
+        "count_inserted_lines": 9,
+        "dmm_unit_complexity": 0.11056511056511056,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.5368550368550369,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "4613ab9d7294fbff4d1c3728b48a6bb50e2c5e62",
+        "date": "2022-03-23T14:56:44Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 5815,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Nicole Hill",
+            "email": "phillipsjames@example.com",
+            "id": "phillipsjames@example.com"
+        },
+        "commit": "50e381b19d509fe6b9a500298bb8a6d52a0da830",
+        "date": "2022-03-24T11:27:12Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 10,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Nicole Hill",
+            "email": "phillipsjames@example.com",
+            "id": "phillipsjames@example.com"
+        },
+        "commit": "2de27773f6f4e95cf87c8b9bf39105cac9d06b52",
+        "date": "2022-03-24T11:27:30Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 11,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 619,
+        "count_inserted_lines": 137,
+        "dmm_unit_complexity": 0.11764705882352941,
+        "dmm_unit_interfacing": 0.22058823529411764,
+        "dmm_unit_size": 0.8970588235294118,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Daniel Newton",
+            "email": "davismichael@example.org",
+            "id": "davismichael@example.org"
+        },
+        "commit": "86836908c4986fa64ec21888b642027babc87aa6",
+        "date": "2022-03-25T14:05:47Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 756,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "ffc15ada44c041cec6df1b839597035ca911baee",
+        "date": "2022-03-28T09:02:43Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "7fb451eba1cac71d5e31ba129f95b87e7b77c4a8",
+        "date": "2022-03-28T15:24:54Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 4,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "b4a9b1baabc7379b0c36e1f67987333dfa0714b4",
+        "date": "2022-03-30T15:02:05Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Jason Wright",
+            "email": "williamspedro@example.org",
+            "id": "williamspedro@example.org"
+        },
+        "commit": "92bbe38fd5963d0f1a27a82cac123283b4ad91ef",
+        "date": "2022-04-20T08:33:27Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 45,
+        "count_inserted_lines": 203,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "633704cc5eacab68faaebf6492e05f3b7a35952c",
+        "date": "2022-03-30T15:34:11Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 248,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 3,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Daniel Newton",
+            "email": "davismichael@example.org",
+            "id": "davismichael@example.org"
+        },
+        "commit": "4dabf74bb1c33fcab6a77ae970fc13d0e16f32ae",
+        "date": "2022-03-31T09:09:39Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 3,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 147,
+        "count_inserted_lines": 926,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.29411764705882354,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Daniel Newton",
+            "email": "davismichael@example.org",
+            "id": "davismichael@example.org"
+        },
+        "commit": "ef186643232c8c4bca1c569293e8637a952ef8f8",
+        "date": "2022-03-31T10:14:22Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1073,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "752ad31a4cf94c1237c8428dec2c07bd710637a3",
+        "date": "2022-04-04T12:18:58Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 40,
+        "count_inserted_lines": 132,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "e503683696e66a01153bae13508f40f6efda133d",
+        "date": "2022-04-05T15:07:11Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 172,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 189,
+        "count_inserted_lines": 163,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Jason Wright",
+            "email": "williamspedro@example.org",
+            "id": "williamspedro@example.org"
+        },
+        "commit": "edbc6eb059d087c35503eace5ae80c3187a7cad5",
+        "date": "2022-04-06T08:58:44Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 352,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 891,
+        "count_inserted_lines": 380,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "cfbba10205460230ada10d187f128d2e4a851d1f",
+        "date": "2022-04-06T13:46:09Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1271,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 84,
+        "count_inserted_lines": 144,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "01e9655943135312d0bbc6673d4938e9f721d4c9",
+        "date": "2022-04-20T09:20:39Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 228,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "88d2676cf646f63a5912625303c8f9214d3e6e04",
+        "date": "2022-05-23T15:27:20Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1447,
+        "count_inserted_lines": 452,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.8493150684931506,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Daniel Newton",
+            "email": "davismichael@example.org",
+            "id": "davismichael@example.org"
+        },
+        "commit": "a223dcf141dec0122e49fe41595232c0075e1ad9",
+        "date": "2022-04-07T15:30:12Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1899,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 115,
+        "count_inserted_lines": 69,
+        "dmm_unit_complexity": 0.18072289156626506,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "4efa697488691b0be20ff0f9841c287e74e34d5b",
+        "date": "2022-04-07T16:48:00Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 184,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Ryan Mclaughlin",
+            "email": "qclark@example.net",
+            "id": "qclark@example.net"
+        },
+        "commit": "46f9c72a54c9ffc1573792b3ff5e2498f20bb363",
+        "date": "2022-04-08T10:48:59Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 17,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Ryan Mclaughlin",
+            "email": "qclark@example.net",
+            "id": "qclark@example.net"
+        },
+        "commit": "1a946914fc331f408567796b6c4294cc1fa3a7ed",
+        "date": "2022-04-08T10:49:30Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 18,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "39a30f1c7383647d78d57bde2ffae20bf656efbb",
+        "date": "2022-04-11T08:59:46Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "d9f02e437668260e0a1ecc56c2b0d5e9c00f6777",
+        "date": "2022-04-11T11:36:48Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Ryan Mclaughlin",
+            "email": "qclark@example.net",
+            "id": "qclark@example.net"
+        },
+        "commit": "b1da8e4c22f7cbe8219ede67b38a54c93824f8ed",
+        "date": "2022-04-11T11:36:57Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "c17478d78ccdd30342d2cbfe6bf3f78f6b378100",
+        "date": "2022-04-11T09:54:18Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "a449b831bfd9fc10f5e74fd80060bf6f1cc799ac",
+        "date": "2022-04-11T12:42:51Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 272,
+        "count_inserted_lines": 651,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Jason Wright",
+            "email": "williamspedro@example.org",
+            "id": "williamspedro@example.org"
+        },
+        "commit": "10a9a67616dea16c4baf9f4daaf51e3a034f2f83",
+        "date": "2022-04-14T09:05:25Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 923,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Samantha Butler",
+            "email": "bowmanvictor@example.com",
+            "id": "bowmanvictor@example.com"
+        },
+        "commit": "a05ce389bd933eeeae11f7d37d61f232c82e1439",
+        "date": "2022-04-14T16:44:00Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 148,
+        "count_inserted_lines": 116,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Jason Wright",
+            "email": "williamspedro@example.org",
+            "id": "williamspedro@example.org"
+        },
+        "commit": "ae3d0e90bf996ae5855e41b94de9070b0e624c41",
+        "date": "2022-04-14T14:56:34Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 264,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 182,
+        "count_inserted_lines": 223,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "ef9c05c375321e57ee3d6cd7c31fc346a3ff19e2",
+        "date": "2022-04-15T09:00:59Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 405,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "638482c491052a827ff9733c8ff9a39d5d563b16",
+        "date": "2022-04-19T09:07:57Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 132,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "3e0aa19cd12aa703c003de68121da7bb920335ed",
+        "date": "2022-04-20T13:45:07Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 133,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "4cd42fcd99dc3f6f16598075f8204a1c85d49232",
+        "date": "2022-04-20T15:28:01Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 2,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "6a25063b7bdea95ca10425b4e93c8c3b6b70ad3e",
+        "date": "2022-04-20T15:45:14Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 20,
+        "count_inserted_lines": 20,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "7249ec051fb609789a2506b6e8d2887700661654",
+        "date": "2022-04-21T11:49:03Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 40,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 2,
+        "count_inserted_lines": 4,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Jason Wright",
+            "email": "williamspedro@example.org",
+            "id": "williamspedro@example.org"
+        },
+        "commit": "07dc11d7f1d15a6baef3398c6e160cb75dc38559",
+        "date": "2022-04-21T15:02:29Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 6,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 8,
+        "count_inserted_lines": 1,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "9eaf27b2d73ce7f08eeea02d6894014b5039af59",
+        "date": "2022-04-21T15:36:21Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Nicole Hill",
+            "email": "phillipsjames@example.com",
+            "id": "phillipsjames@example.com"
+        },
+        "commit": "323a4326b16e1a186ed6f3f7b66f54b81a96bd9b",
+        "date": "2022-04-21T17:52:34Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 12,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Nicole Hill",
+            "email": "phillipsjames@example.com",
+            "id": "phillipsjames@example.com"
+        },
+        "commit": "2d888a9e2ce08c54b3e617bd45641605c4fd7aa9",
+        "date": "2022-04-21T17:53:05Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 13,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "346b8bc36faf827adfc75899534e1bc2aabb5575",
+        "date": "2022-04-25T09:01:58Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "6f2eece182652823ffa42b246ffed9b5809985fc",
+        "date": "2022-04-25T16:06:24Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 3,
+        "count_inserted_lines": 62,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "e4ae9990682df4615f841867a5a88c0468c40bfb",
+        "date": "2022-04-27T08:49:06Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 65,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 24,
+        "count_inserted_lines": 25,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "810c9108161c4fba1741b20fddbe300ece2cfd64",
+        "date": "2022-04-27T13:51:12Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 49,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 9,
+        "count_inserted_lines": 5,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "e50af4fbb32ab0692b4d132f303a7191cd613ab3",
+        "date": "2022-04-28T12:55:56Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 14,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 84,
+        "count_inserted_lines": 374,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 0.68,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "58d8d2e3ad3391b6ed7a8024c0d99a787a72c70a",
+        "date": "2022-04-28T16:32:19Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 458,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 57,
+        "count_inserted_lines": 76,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "53e058c097affba0dc7b839adf6611132ae90036",
+        "date": "2022-04-29T08:31:56Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 133,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Nicole Hill",
+            "email": "phillipsjames@example.com",
+            "id": "phillipsjames@example.com"
+        },
+        "commit": "0120cb09a1cb90b680c867e79b09866378c4abd8",
+        "date": "2022-04-29T10:34:39Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 15,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Nicole Hill",
+            "email": "phillipsjames@example.com",
+            "id": "phillipsjames@example.com"
+        },
+        "commit": "4ccf9f6667b48453ca86305e1f1a2679bc8232e9",
+        "date": "2022-04-29T10:35:04Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 16,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 135,
+        "count_inserted_lines": 179,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Eric Conway",
+            "email": "calvinmitchell@example.org",
+            "id": "calvinmitchell@example.org"
+        },
+        "commit": "c89d05610ff04d125a793ca60d4658f047329725",
+        "date": "2022-04-29T08:57:25Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 314,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 2,
+        "count_inserted_lines": 23,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "2b83315c0af3334c7a2bb34b9bb73bf623c873e1",
+        "date": "2022-04-29T10:35:15Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 25,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 2,
+        "count_inserted_lines": 23,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "54f2898ed134fa66ca4c2df8dd21b0e519d7e750",
+        "date": "2022-04-29T14:40:14Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 25,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Nicole Hill",
+            "email": "phillipsjames@example.com",
+            "id": "phillipsjames@example.com"
+        },
+        "commit": "8d272769555f9f63ee6f3d1187c53ee1c245e02e",
+        "date": "2022-04-29T14:40:51Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "6e30edd32b58010bac7c788e8e47f2cc23a69df7",
+        "date": "2022-05-02T08:52:55Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "46db2474f586c40b584779b8e8c7b9cada845a90",
+        "date": "2022-05-02T15:44:37Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 10,
+        "count_inserted_lines": 12,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "2dd6baaffd1cf9ad6c554223bf7b88a56a725de5",
+        "date": "2022-05-03T14:30:38Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 22,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 10,
+        "count_inserted_lines": 9,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Raymond Kennedy",
+            "email": "cameronthomas@example.com",
+            "id": "cameronthomas@example.com"
+        },
+        "commit": "900282420d9a80a0929d10584c162634cc79e93e",
+        "date": "2022-05-03T15:37:47Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 19,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 24,
+        "count_inserted_lines": 11,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "5306ff7623b3a38c38528f398f5df8cb3d66e242",
+        "date": "2022-05-05T14:40:30Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 35,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 10,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Samantha Butler",
+            "email": "bowmanvictor@example.com",
+            "id": "bowmanvictor@example.com"
+        },
+        "commit": "4fa6885f2034c4998e9d66651748f91bd0193126",
+        "date": "2022-05-05T18:04:05Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 11,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "e09fa9fff8ea262383554bae0c023f550c00fcd4",
+        "date": "2022-05-09T09:05:01Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Andrea Griffith",
+            "email": "joe28@example.org",
+            "id": "joe28@example.org"
+        },
+        "commit": "ce9a2072f58b036a9199d2e80fa22ef38e6659a7",
+        "date": "2022-05-09T09:22:17Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 594,
+        "count_inserted_lines": 517,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "18aaae17146995f37c40ed3142554574d56ed977",
+        "date": "2022-05-13T12:05:18Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1111,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 101,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "e6bfb4399185e0eebca43b2b38f2878b18496c61",
+        "date": "2022-05-13T14:51:30Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 101,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 101,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "6610c01c97a99935626655015441ac5b07afe6f8",
+        "date": "2022-05-13T16:59:52Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 101,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Nicole Hill",
+            "email": "phillipsjames@example.com",
+            "id": "phillipsjames@example.com"
+        },
+        "commit": "9d5e5c5b74455513060e9f974a5c87f6541ba7fd",
+        "date": "2022-05-13T17:00:33Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 9,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "bbfd2114706b8b33ca9a7e61209c43f20a995e32",
+        "date": "2022-05-13T15:25:07Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Brittany Adams",
+            "email": "hernandezjames@example.org",
+            "id": "hernandezjames@example.org"
+        },
+        "commit": "657e1f3d9ff8f9cfd24399f5507615542c8e1ff7",
+        "date": "2022-05-13T15:47:53Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 587,
+        "count_inserted_lines": 430,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "83cb63ddc95035a01208a1cd22a5b76905892d37",
+        "date": "2022-05-17T14:58:20Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1017,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 50,
+        "count_inserted_lines": 29,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "78dbf80f0b6c304c17e9f3548f91a32411d43a49",
+        "date": "2022-05-18T19:44:24Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 79,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 4,
+        "count_inserted_lines": 9,
+        "dmm_unit_complexity": 1.0,
+        "dmm_unit_interfacing": 1.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "47a1d1b4738c3e2078d0b0fe004f99bfe545d2be",
+        "date": "2022-05-19T08:55:47Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 13,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1441,
+        "count_inserted_lines": 227,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 1.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "dd0c2813d46f52289c9409f8c7f042940f46bfe4",
+        "date": "2022-05-24T12:17:56Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 1668,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 92,
+        "count_inserted_lines": 118,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "7f4d35842bcbd69fcee38cf7f4990d3786d6a53e",
+        "date": "2022-05-24T13:22:11Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 210,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 1,
+        "count_inserted_lines": 2,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "41c253f2fd3153f6f00ff7df348bd9fea2e34de8",
+        "date": "2022-05-27T07:45:59Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 3,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 5,
+        "count_inserted_lines": 8,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "Linda Cruz",
+            "email": "rodriguezhunter@example.com",
+            "id": "rodriguezhunter@example.com"
+        },
+        "commit": "52e3cb3175cab4e2e4d935c20817a7db04b9de6b",
+        "date": "2022-05-30T16:06:57Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 13,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 0,
+        "count_inserted_lines": 0,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "James Stone",
+            "email": "jacobhouston@example.com",
+            "id": "jacobhouston@example.com"
+        },
+        "commit": "614bebfeb415dfe148de2b7ae9f0e3735d707b38",
+        "date": "2022-05-30T15:06:00Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 0,
+        "count_modified_files": 0
+    },
+    {
+        "count_deleted_lines": 2,
+        "count_inserted_lines": 2,
+        "dmm_unit_complexity": 0.0,
+        "dmm_unit_interfacing": 0.0,
+        "dmm_unit_size": 0.0,
+        "modified_files": [],
+        "developer": {
+            "full_name": "John Singh",
+            "email": "andradematthew@example.org",
+            "id": "andradematthew@example.org"
+        },
+        "commit": "27352fffb54b498a90bc46cecbd3f2326323efdd",
+        "date": "2022-05-31T15:19:10Z",
+        "git_repository": "demo/git/project_2",
+        "count_modified_lines": 4,
+        "count_modified_files": 0
+    }
+]

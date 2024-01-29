@@ -1,0 +1,373 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "pgsql"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "approvers_names"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 403
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "commenters_names"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 204
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "pr_id"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 99
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "commenter"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 199
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "length"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 87
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "date"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 166
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 22,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": ["comment_length"],
+          "reducer": ["mean"],
+          "show": true
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "pr_id"
+          }
+        ]
+      },
+      "pluginVersion": "10.2.0-133119",
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "pgsql"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT \npr_id,\ncomment_date as date,\ncommenter_name as commenter,\ncomment_length as length,\ncomment_content as content\nFROM get_comments_or_pull_requests(\n    '${commented_by:raw}',\n    '${created_by:raw}',\n    '${reviewed_by:raw}',\n    '${target_branch:raw}',\n    '${type:raw}',\n    '${__from:date}',\n    '${__to:date}',\n    '${repositories:raw}'\n)\nwhere commenter_name is not null\nand pr_id in (${pr_id:sqlstring})\ngroup by \npr_id,\ncomment_date,\ncommenter_name,\ncomment_length,\ncomment_content",
+          "refId": "A",
+          "sql": {
+            "columns": [
+              {
+                "parameters": [],
+                "type": "function"
+              }
+            ],
+            "groupBy": [
+              {
+                "property": {
+                  "type": "string"
+                },
+                "type": "groupBy"
+              }
+            ],
+            "limit": 50
+          }
+        }
+      ],
+      "title": "Comments",
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "created by",
+        "multi": true,
+        "name": "created_by",
+        "options": [],
+        "query": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "commenters",
+        "multi": true,
+        "name": "commented_by",
+        "options": [],
+        "query": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "approvers",
+        "multi": true,
+        "name": "reviewed_by",
+        "options": [],
+        "query": "select * from get_developers(\n    '${__from:date}',\n    '${__to:date}'\n)",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select distinct id from pull_requests\norder by id",
+        "hide": 2,
+        "includeAll": true,
+        "label": "pull request",
+        "multi": true,
+        "name": "pr_id",
+        "options": [],
+        "query": "select distinct id from pull_requests\norder by id",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "SELECT distinct type\nFROM pull_requests\nWHERE \n$__timeFilter(completion_date)\nORDER BY type ASC",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "type",
+        "options": [],
+        "query": "SELECT distinct type\nFROM pull_requests\nWHERE \n$__timeFilter(completion_date)\nORDER BY type ASC",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select distinct target_branch from pull_requests\norder by target_branch",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "target_branch",
+        "options": [],
+        "query": "select distinct target_branch from pull_requests\norder by target_branch",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": ["All"],
+          "value": ["$__all"]
+        },
+        "datasource": {
+          "type": "postgres",
+          "uid": "pgsql"
+        },
+        "definition": "select distinct repository\nfrom pull_requests\norder by repository",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "repositories",
+        "options": [],
+        "query": "select distinct repository\nfrom pull_requests\norder by repository",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2y",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Details: Comments",
+  "uid": "e1af86ef-0235-408a-9476-385c46",
+  "version": 1,
+  "weekStart": ""
+}

@@ -1,0 +1,4 @@
+[flake8]
+max-line-length = 1000
+extend-ignore = E203, E501, E704, W503
+exclude = .git,__pycache__,.venv,tests,src/app/controllers/extract_transform_load/tests/fixture/git/repos/myrepo/__init..py

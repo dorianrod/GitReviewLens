@@ -1,0 +1,76 @@
+version: "3.4"
+
+services:
+  gitreviewlens_server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: gitreviewlens_server
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://gitreviewlens_server:5000"]
+      interval: 1s
+    volumes:
+      - ./src/:/src
+      - ./postgres/data/:/data
+      - ./postgres/demo/:/demo
+      - ./postgres/transco/:/transco
+      - ./git/repositories:/repos
+      - ./git/.ssh:/root/.ssh
+      - ./.env.example:/.env.example
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+      - "5678:5678" # Debugger
+    networks:
+      gitreviewlens:
+        ipv4_address: 172.19.0.2
+
+  postgresql:
+    image: postgres:latest
+    container_name: gitreviewlens_postgresql
+    ports:
+      - "${DATABASE_PORT}:5432"
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_USER_PASSWORD}
+    volumes:
+      - ./postgres/indicators.sql:/indicators.sql
+    networks:
+      gitreviewlens:
+        ipv4_address: ${DATABASE_HOST}
+
+  dashboards:
+    image: grafana/grafana:latest
+    container_name: gitreviewlens_dashboards
+    build:
+      context: ./dashboards
+      args:
+        grafana_image: ${GRAFANA_IMAGE:-grafana-enterprise}
+        grafana_version: ${GRAFANA_VERSION:-10.0.3}
+    ports:
+      - 3000:3000/tcp
+    volumes:
+      - ./dashboards/provisioning:/etc/grafana/provisioning
+    environment:
+      - TERM=linux
+      - GF_DEFAULT_APP_MODE=development
+      - GF_LOG_LEVEL=debug
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/etc/grafana/provisioning/dashboards/metrics.json
+      - GF_DATAPROXY_LOGGING=true
+      # disable alerting because it vomits logs
+      - GF_ALERTING_ENABLED=false
+      - GF_UNIFIED_ALERTING_ENABLED=false
+    networks:
+      gitreviewlens:
+        ipv4_address: 172.19.0.3
+
+networks:
+  gitreviewlens:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/24

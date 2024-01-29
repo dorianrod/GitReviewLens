@@ -1,0 +1,46 @@
+{
+  "pull_requests_type": [
+    {
+      "source": "refs/heads/feat",
+      "target": "feat"
+    },
+    {
+      "source": "refs/heads/fix",
+      "target": "fix"
+    },
+    {
+      "source": "refs/heads/hotfix",
+      "target": "hotfix"
+    },
+    {
+      "source": "refs/heads/release",
+      "target": "release"
+    },
+    {
+      "source": "refs/heads/revert",
+      "target": "revert"
+    },
+    {
+      "source": "",
+      "target": "feat"
+    }
+  ],
+  "developers_names_by_email": [
+    {
+      "source": "paul.dupont@email.com",
+      "target": "Paul DUPONT"
+    },
+    {
+      "source": "p.dupont@gmail.com",
+      "target": "Paul DUPONT"
+    },
+    {
+      "source": "jane.doe@company.com",
+      "target": "Jane DOE"
+    },
+    {
+      "source": "",
+      "target": "Others"
+    }
+  ]
+}

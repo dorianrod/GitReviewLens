@@ -1,0 +1,27 @@
+apiVersion: 1
+
+datasources:
+  - name: JSON API
+    editable: true
+    type: marcusolsson-json-datasource
+    uid: json
+    access: proxy
+    url: http://172.19.0.2:5000
+    isDefault: false
+
+  - name: PostgreSQL
+    isDefault: true
+    uid: pgsql
+    type: postgres
+    url: "172.19.0.12:5432"
+    user: root
+    jsonData:
+      connMaxLifetime: 14400
+      database: data
+      maxIdleConns: 100
+      maxIdleConnsAuto: true
+      maxOpenConns: 100
+      postgresVersion: 1600
+      sslmode: "disable"
+    secureJsonData:
+      password: root
