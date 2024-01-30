@@ -137,7 +137,7 @@ Run `make create_demo_dataset` to dump and anonymize the database. Reimport late
 
 # How does it work?
 
-## Data recollection process (ETL)
+## Data collection process (ETL)
 
 ```mermaid
 sequenceDiagram
@@ -170,7 +170,7 @@ Dashboards, built with Grafana, provide operational indicators and data explorat
 The project follows domain-driven design principles:
 
 - Collected data is modeled into entities (cf. `domain/entities`)
-- Various repositories (in the meaning of DDD) load and/or upload entities from/to different sources (Azure, GitHub, JSON, Git, Database).
+- Various repositories (in the meaning of DDD) load and/or upload entities from/to different sources (Azure, GitHub, JSON, Git, Database)
 - Domain base use cases are defined in `domain/use_cases` and more complex uses cases are defined in `app/controllers`
 - APIs routes or commands in the presentation layer define how to manipulate use cases
 
