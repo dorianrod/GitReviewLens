@@ -1,7 +1,7 @@
 include .env
 
 start:
-	docker-compose up --build
+	docker compose up
 
 # Checking .env settings are OK
 check_settings:

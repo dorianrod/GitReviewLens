@@ -11,7 +11,7 @@ CMD ["/Dockerfile.sh"]
 
 
 CMD if [ "$DEBUG" = "1" ]; then \
-        python -m debugpy --wait-for-client --listen 0.0.0.0:5678 -m server run --host=0.0.0.0; \
+        python -m debugpy --wait-for-client --listen 0.0.0.0:5678 -m src.server run --host=0.0.0.0; \
     else \
         python /src/server.py; \
     fi
