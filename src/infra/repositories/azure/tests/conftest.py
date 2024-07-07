@@ -14,6 +14,7 @@ def mock_active_pull_request_in_azure():
         "creationDate": "2023-10-16T17:14:08.5301728Z",
         "title": "feat: top feature",
         "reviewers": [],
+        "sourceRefName": "feat/add-button",
     }
 
 

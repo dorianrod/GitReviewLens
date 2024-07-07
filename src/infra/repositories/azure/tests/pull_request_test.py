@@ -1,5 +1,5 @@
 import pytest
-import requests_mock
+from aioresponses import aioresponses
 
 from src.infra.repositories.azure.pull_requests import PullRequestsAzureRepository
 
@@ -7,6 +7,20 @@ from src.infra.repositories.azure.pull_requests import PullRequestsAzureReposito
 @pytest.fixture
 def repository(mock_logger):
     return PullRequestsAzureRepository(
+        pagination={"max_concurrency": 1},
+        logger=mock_logger,
+        git_repository={
+            "project": "testproject",
+            "name": "myrepo",
+            "organisation": "orga",
+        },
+    )
+
+
+@pytest.fixture
+def repository_concurrency(mock_logger):
+    return PullRequestsAzureRepository(
+        pagination={"max_concurrency": 1, "items_per_page": 1},
         logger=mock_logger,
         git_repository={
             "project": "testproject",
@@ -21,10 +35,10 @@ async def test_does_not_create_active_pull_requests(
     repository,
     mock_active_pull_request_in_azure,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1000&$skip=0",
-            json={"value": [mock_active_pull_request_in_azure]},
+            payload={"value": [mock_active_pull_request_in_azure]},
         )
 
         pull_requests = await repository.find_all()
@@ -37,10 +51,10 @@ async def test_does_create_completed_pull_requests(
     repository,
     mock_completed_pull_request_in_azure,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1000&$skip=0",
-            json={"value": [mock_completed_pull_request_in_azure]},
+            payload={"value": [mock_completed_pull_request_in_azure]},
         )
 
         pull_requests = await repository.find_all()
@@ -79,24 +93,23 @@ async def test_does_use_pagination(
     mocker,
     mock_completed_pull_request_in_azure,
     mock_completed_pull_request_2_in_azure,
-    repository,
+    repository_concurrency,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1&$skip=0",
-            json={"value": [mock_completed_pull_request_in_azure]},
+            payload={"value": [mock_completed_pull_request_in_azure]},
         )
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1&$skip=1",
-            json={"value": [mock_completed_pull_request_2_in_azure]},
+            payload={"value": [mock_completed_pull_request_2_in_azure]},
         )
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1&$skip=2",
-            json={"value": []},
+            payload={"value": []},
         )
 
-        repository.max_results = 1
-        pull_requests = await repository.find_all()
+        pull_requests = await repository_concurrency.find_all()
 
         assert len(pull_requests) == 2
 
@@ -104,16 +117,15 @@ async def test_does_use_pagination(
 async def test_stops_using_pagination_with_dates(
     mocker,
     mock_completed_pull_request_in_azure,
-    repository,
+    repository_concurrency,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1&$skip=0",
-            json={"value": [mock_completed_pull_request_in_azure]},
+            payload={"value": [mock_completed_pull_request_in_azure]},
         )
 
-        repository.max_results = 1
-        pull_requests = await repository.find_all(
+        pull_requests = await repository_concurrency.find_all(
             {
                 "end_date": "2023-10-15",
             }
@@ -127,10 +139,10 @@ async def test_filters_out_pull_requests_with_date_before_start_date(
     mock_completed_pull_request_in_azure,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1000&$skip=0",
-            json={"value": [mock_completed_pull_request_in_azure]},
+            payload={"value": [mock_completed_pull_request_in_azure]},
         )
 
         pull_requests = await repository.find_all(
@@ -147,10 +159,10 @@ async def test_filters_out_pull_requests_with_date_after_end_date(
     mock_completed_pull_request_in_azure,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1000&$skip=0",
-            json={"value": [mock_completed_pull_request_in_azure]},
+            payload={"value": [mock_completed_pull_request_in_azure]},
         )
 
         pull_requests = await repository.find_all(
@@ -167,10 +179,10 @@ async def test_filters_in_pull_requests_with_startdate_and_enddate(
     mock_completed_pull_request_in_azure,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1000&$skip=0",
-            json={"value": [mock_completed_pull_request_in_azure]},
+            payload={"value": [mock_completed_pull_request_in_azure]},
         )
 
         pull_requests = await repository.find_all(
@@ -188,10 +200,10 @@ async def test_filters_out_pull_requests_with_exclude_filter(
     mock_completed_pull_request_in_azure,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top=1000&$skip=0",
-            json={"value": [mock_completed_pull_request_in_azure]},
+            payload={"value": [mock_completed_pull_request_in_azure]},
         )
 
         pull_requests = await repository.find_all(

@@ -14,6 +14,8 @@ mongomock
 python-dotenv
 requests_mock
 asyncio
+aiohttp
+aioresponses
 psycopg2
 pydriller
 sqlalchemy-utils
