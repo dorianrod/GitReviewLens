@@ -37,18 +37,18 @@ def clean_temp_files():
     clean_path(transco_path)
 
 
-def test_transcode_pull_requests(mock_logger, fixture_pull_request_dict):
+async def test_transcode_pull_requests(mock_logger, fixture_pull_request_dict):
     db_repo = PullRequestsDatabaseRepository(
         logger=mock_logger, git_repository="orga/project/Backend"
     )
-    db_repo.upsert(
+    await db_repo.upsert(
         PullRequest.from_dict(
             {**fixture_pull_request_dict, "git_repository": "orga/project/Backend"}
         )
     )
 
     transco_repo = TranscodersJsonRepository(logger=mock_logger, path=transco_path)
-    transco_repo.upsert(
+    await transco_repo.upsert(
         Transcoder.from_dict(
             {
                 "name": "pull_requests_type",
@@ -57,11 +57,11 @@ def test_transcode_pull_requests(mock_logger, fixture_pull_request_dict):
         )
     )
 
-    TranscodePullRequestsInDatabaseController(
+    await TranscodePullRequestsInDatabaseController(
         logger=mock_logger, path=transco_path
     ).execute()
 
-    pull_requests = db_repo.find_all()
+    pull_requests = await db_repo.find_all()
 
     assert pull_requests == [
         PullRequest.from_dict(
@@ -74,15 +74,15 @@ def test_transcode_pull_requests(mock_logger, fixture_pull_request_dict):
     ]
 
 
-def test_does_not_transcode_pull_requests(mock_logger, fixture_pull_request_dict):
+async def test_does_not_transcode_pull_requests(mock_logger, fixture_pull_request_dict):
     db_repo_2 = PullRequestsDatabaseRepository(
         logger=mock_logger,
         git_repository="orga/myrepo",
     )
-    db_repo_2.upsert(PullRequest.from_dict(fixture_pull_request_dict))
+    await db_repo_2.upsert(PullRequest.from_dict(fixture_pull_request_dict))
 
     transco_repo = TranscodersJsonRepository(logger=mock_logger, path=transco_path)
-    transco_repo.upsert(
+    await transco_repo.upsert(
         Transcoder.from_dict(
             {
                 "name": "pull_requests_type",
@@ -91,10 +91,10 @@ def test_does_not_transcode_pull_requests(mock_logger, fixture_pull_request_dict
         )
     )
 
-    TranscodePullRequestsInDatabaseController(
+    await TranscodePullRequestsInDatabaseController(
         logger=mock_logger, path=transco_path
     ).execute()
 
-    pull_requests = db_repo_2.find_all()
+    pull_requests = await db_repo_2.find_all()
 
     assert pull_requests == [PullRequest.from_dict(fixture_pull_request_dict)]

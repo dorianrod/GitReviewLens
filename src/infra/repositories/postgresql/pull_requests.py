@@ -14,10 +14,10 @@ from src.infra.repositories.postgresql.utils import (
 
 
 class PullRequestsDatabaseRepository(PullRequestsRepository):
-    def upsert(self, entity: PullRequest, options=None):
+    async def upsert(self, entity: PullRequest, options=None):
         options = options or {}
 
-        super().upsert(entity, options)
+        await super().upsert(entity, options)
 
         upsert_developers = options.get("upsert_developers", True)
         upsert_comments = options.get("upsert_comments", True)
@@ -26,7 +26,7 @@ class PullRequestsDatabaseRepository(PullRequestsRepository):
             developer_repository = DeveloperDatabaseRepository(logger=self.logger)
             developers = entity.get_developers()
             for developer in developers:
-                developer_repository.upsert(developer)
+                await developer_repository.upsert(developer)
 
         session = get_db_session()
         pull_request = (
@@ -70,11 +70,11 @@ class PullRequestsDatabaseRepository(PullRequestsRepository):
                 logger=self.logger, git_repository=self.git_repository
             )
             for comment in entity.comments:
-                comment_repository.upsert(
+                await comment_repository.upsert(
                     comment, {"pull_request": entity, "upsert_pull_request": False}
                 )
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         filters = filters or {}
         session = get_db_session()
 

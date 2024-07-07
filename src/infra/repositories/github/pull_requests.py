@@ -15,7 +15,7 @@ class PullRequestsGithubRepository(PullRequestsRepository):
         self.max_results = kwargs.pop("max_results") if "max_results" in kwargs else 100
         super().__init__(*args, **kwargs)
 
-    def _get_all_pull_requests(self, start_date, end_date, page=1):
+    async def _get_all_pull_requests(self, start_date, end_date, page=1):
         MAX_RESULTS = self.max_results
 
         results = []
@@ -39,11 +39,13 @@ class PullRequestsGithubRepository(PullRequestsRepository):
             if (not end_date or last_date <= end_date) and (
                 not start_date or last_date >= start_date
             ):
-                results += self._get_all_pull_requests(start_date, end_date, page + 1)
+                results += await self._get_all_pull_requests(
+                    start_date, end_date, page + 1
+                )
 
         return results
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         filters = filters or {}
         start_date = parse_date(filters.get("start_date"))
         end_date = parse_date(filters.get("end_date"))
@@ -57,7 +59,9 @@ class PullRequestsGithubRepository(PullRequestsRepository):
             git_repository=self.git_repository, logger=self.logger
         )
 
-        pull_requests_from_github = self._get_all_pull_requests(start_date, end_date)
+        pull_requests_from_github = await self._get_all_pull_requests(
+            start_date, end_date
+        )
 
         pull_requests: list[PullRequest] = []
         for pr in pull_requests_from_github:
@@ -98,7 +102,7 @@ class PullRequestsGithubRepository(PullRequestsRepository):
                     }
                 )
 
-                approvers = approvers_repository.find_all(
+                approvers = await approvers_repository.find_all(
                     {"pull_request": pull_request}
                 )
                 pull_request.approvers = approvers

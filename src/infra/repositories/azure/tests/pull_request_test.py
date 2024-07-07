@@ -16,7 +16,7 @@ def repository(mock_logger):
     )
 
 
-def test_does_not_create_active_pull_requests(
+async def test_does_not_create_active_pull_requests(
     mocker,
     repository,
     mock_active_pull_request_in_azure,
@@ -27,12 +27,12 @@ def test_does_not_create_active_pull_requests(
             json={"value": [mock_active_pull_request_in_azure]},
         )
 
-        pull_requests = repository.find_all()
+        pull_requests = await repository.find_all()
 
         assert len(pull_requests) == 0
 
 
-def test_does_create_completed_pull_requests(
+async def test_does_create_completed_pull_requests(
     mocker,
     repository,
     mock_completed_pull_request_in_azure,
@@ -43,7 +43,7 @@ def test_does_create_completed_pull_requests(
             json={"value": [mock_completed_pull_request_in_azure]},
         )
 
-        pull_requests = repository.find_all()
+        pull_requests = await repository.find_all()
 
         assert len(pull_requests) == 1
         assert pull_requests[0].to_dict() == {
@@ -75,7 +75,7 @@ def test_does_create_completed_pull_requests(
         }
 
 
-def test_does_use_pagination(
+async def test_does_use_pagination(
     mocker,
     mock_completed_pull_request_in_azure,
     mock_completed_pull_request_2_in_azure,
@@ -96,12 +96,12 @@ def test_does_use_pagination(
         )
 
         repository.max_results = 1
-        pull_requests = repository.find_all()
+        pull_requests = await repository.find_all()
 
         assert len(pull_requests) == 2
 
 
-def test_stops_using_pagination_with_dates(
+async def test_stops_using_pagination_with_dates(
     mocker,
     mock_completed_pull_request_in_azure,
     repository,
@@ -113,7 +113,7 @@ def test_stops_using_pagination_with_dates(
         )
 
         repository.max_results = 1
-        pull_requests = repository.find_all(
+        pull_requests = await repository.find_all(
             {
                 "end_date": "2023-10-15",
             }
@@ -122,7 +122,7 @@ def test_stops_using_pagination_with_dates(
         assert len(pull_requests) == 0
 
 
-def test_filters_out_pull_requests_with_date_before_start_date(
+async def test_filters_out_pull_requests_with_date_before_start_date(
     mocker,
     mock_completed_pull_request_in_azure,
     repository,
@@ -133,7 +133,7 @@ def test_filters_out_pull_requests_with_date_before_start_date(
             json={"value": [mock_completed_pull_request_in_azure]},
         )
 
-        pull_requests = repository.find_all(
+        pull_requests = await repository.find_all(
             {
                 "start_date": "2024-10-15",
             }
@@ -142,7 +142,7 @@ def test_filters_out_pull_requests_with_date_before_start_date(
         assert len(pull_requests) == 0
 
 
-def test_filters_out_pull_requests_with_date_after_end_date(
+async def test_filters_out_pull_requests_with_date_after_end_date(
     mocker,
     mock_completed_pull_request_in_azure,
     repository,
@@ -153,7 +153,7 @@ def test_filters_out_pull_requests_with_date_after_end_date(
             json={"value": [mock_completed_pull_request_in_azure]},
         )
 
-        pull_requests = repository.find_all(
+        pull_requests = await repository.find_all(
             {
                 "end_date": "2020-10-15",
             }
@@ -162,7 +162,7 @@ def test_filters_out_pull_requests_with_date_after_end_date(
         assert len(pull_requests) == 0
 
 
-def test_filters_in_pull_requests_with_startdate_and_enddate(
+async def test_filters_in_pull_requests_with_startdate_and_enddate(
     mocker,
     mock_completed_pull_request_in_azure,
     repository,
@@ -173,7 +173,7 @@ def test_filters_in_pull_requests_with_startdate_and_enddate(
             json={"value": [mock_completed_pull_request_in_azure]},
         )
 
-        pull_requests = repository.find_all(
+        pull_requests = await repository.find_all(
             {
                 "start_date": "2020-10-15",
                 "end_date": "2025-10-15",
@@ -183,7 +183,7 @@ def test_filters_in_pull_requests_with_startdate_and_enddate(
         assert len(pull_requests) == 1
 
 
-def test_filters_out_pull_requests_with_exclude_filter(
+async def test_filters_out_pull_requests_with_exclude_filter(
     mocker,
     mock_completed_pull_request_in_azure,
     repository,
@@ -194,7 +194,7 @@ def test_filters_out_pull_requests_with_exclude_filter(
             json={"value": [mock_completed_pull_request_in_azure]},
         )
 
-        pull_requests = repository.find_all(
+        pull_requests = await repository.find_all(
             {
                 "exclude_ids": [mock_completed_pull_request_in_azure["pullRequestId"]],
             }

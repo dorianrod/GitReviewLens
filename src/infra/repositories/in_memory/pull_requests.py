@@ -14,19 +14,19 @@ class PullRequestsInMemoryRepository(PullRequestsRepository):
         self.pull_requests_by_source_id = {}
         super().__init__(logger, git_repository)
 
-    def get_by_id(self, id):
+    async def get_by_id(self, id):
         entity = self.pull_requests.get(id)
         if entity:
             return entity
 
         raise NotExistsException(f"Pull request {id} not found")
 
-    def upsert(self, entity, options=None):
-        super().upsert(entity, options)
+    async def upsert(self, entity, options=None):
+        await super().upsert(entity, options)
         self.pull_requests[entity.id] = entity
         self.pull_requests_by_source_id[entity.source_id] = entity
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         filters = filters or {}
         exclude_ids = filters.get("exclude_ids", [])
 

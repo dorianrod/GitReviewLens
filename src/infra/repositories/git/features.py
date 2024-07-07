@@ -14,7 +14,7 @@ class FeaturesGit(FeaturesRepository):
     logger: LoggerInterface
     path: str
 
-    def get_by_id(self, id, options=None):
+    async def get_by_id(self, id, options=None):
         options = options or {}
 
         self.logger.info("Getting git commit...")
@@ -56,7 +56,7 @@ class FeaturesGit(FeaturesRepository):
 
         return feature
 
-    def find_all(self, options=None):
+    async def find_all(self, options=None):
         options = options or {}
 
         features: list[Feature] = []
@@ -80,6 +80,6 @@ class FeaturesGit(FeaturesRepository):
                 continue
             if to_date and commit_date > to_date:
                 continue
-            features.append(self.get_by_id(commit.hash, options))
+            features.append(await self.get_by_id(commit.hash, options))
 
         return features

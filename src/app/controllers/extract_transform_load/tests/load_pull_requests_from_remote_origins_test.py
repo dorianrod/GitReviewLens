@@ -23,14 +23,14 @@ def mock_settings(mocker, mock_git_settings):
     )
 
 
-def test_call_use_case_for_each_repo(mock_logger, mock_git_settings):
+async def test_call_use_case_for_each_repo(mock_logger, mock_git_settings):
     with patch.object(
         LoadPullRequestsFromRemoteOriginController,
         'load_from_repository',
         return_value=[],
     ) as mock:
         controller = LoadPullRequestsFromRemoteOriginController(logger=mock_logger)
-        controller.execute()
+        await controller.execute()
 
         repositories = mock_git_settings.get_branches()
 
@@ -45,7 +45,7 @@ def test_call_use_case_for_each_repo(mock_logger, mock_git_settings):
         }
 
 
-def test_only_loads_new_pull_requests(
+async def test_only_loads_new_pull_requests(
     mock_logger,
     mock_git_settings,
     fixture_pull_request_dict,
@@ -59,12 +59,12 @@ def test_only_loads_new_pull_requests(
         db_repo = PullRequestsDatabaseRepository(
             logger=mock_logger, git_repository=git_repository
         )
-        db_repo.upsert(
+        await db_repo.upsert(
             PullRequest.from_dict(
                 {**fixture_pull_request_dict, "git_repository": git_repository}
             )
         )
-        db_repo.upsert(
+        await db_repo.upsert(
             PullRequest.from_dict(
                 {
                     **fixture_pull_request_dict,
@@ -76,7 +76,7 @@ def test_only_loads_new_pull_requests(
         )
 
         controller = LoadPullRequestsFromRemoteOriginController(logger=mock_logger)
-        controller.execute()
+        await controller.execute()
 
         assert mock_usecase.call_count == len(mock_git_settings.get_branches())
         mock_usecase.assert_any_call(

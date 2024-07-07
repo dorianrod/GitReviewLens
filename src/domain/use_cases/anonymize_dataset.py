@@ -57,7 +57,7 @@ class AnonymizeDatasetUseCase(
 
         return anonymized_repository
 
-    def execute(
+    async def execute(
         self,
         pull_requests: Sequence[PullRequest],
         features: Sequence[Feature],

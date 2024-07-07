@@ -23,7 +23,7 @@ class TransferPullRequestsToAnotherRepositoryUseCase(
 
     logger: LoggerInterface
 
-    def execute(
+    async def execute(
         self,
         options: Optional[PullRequestsFilters] = None,
     ) -> list[PullRequest]:
@@ -37,7 +37,7 @@ class TransferPullRequestsToAnotherRepositoryUseCase(
                 **(options or {}),
             },
         )
-        pull_requests_from_source = self.pull_requests_source_repository.find_all(
+        pull_requests_from_source = await self.pull_requests_source_repository.find_all(
             options_filters
         )
 
@@ -47,22 +47,22 @@ class TransferPullRequestsToAnotherRepositoryUseCase(
         pull_requests: list[PullRequest] = []
         for pull_request in pull_requests_from_source:
             pull_request.comments = []
-            self.pull_requests_target_repository.upsert(
+            await self.pull_requests_target_repository.upsert(
                 pull_request, {"upset_comments": False}
             )
 
-            comments = self.comments_source_repository.find_all(
+            comments = await self.comments_source_repository.find_all(
                 {"pull_request": pull_request}
             )
             for comment in comments:
-                self.comments_target_repository.upsert(
+                await self.comments_target_repository.upsert(
                     comment, {"pull_request": pull_request}
                 )
 
             pull_requests.append(pull_request)
 
             # To update first delay comments
-            self.pull_requests_target_repository.upsert(
+            await self.pull_requests_target_repository.upsert(
                 pull_request, {"upset_comments": False}
             )
 

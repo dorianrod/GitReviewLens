@@ -1,3 +1,4 @@
+import asyncio
 from dataclasses import dataclass
 
 from src.app.controllers.base_controller import BaseController
@@ -18,22 +19,25 @@ class TranscodePullRequestsInDatabaseController(BaseController[None, None]):
     logger: LoggerInterface
     path: str = "/transco/transcoders.json"
 
+    async def transcode_branch(self, branch, transcoder):
+        self.logger.info("Transcoding pull requests in " + str(branch.repository))
+
+        repository = PullRequestsDatabaseRepository(
+            logger=self.logger, git_repository=branch.repository
+        )
+
+        usecase = TranscodePullRequestsInRepositoryUsecase(
+            logger=self.logger, repository=repository, transcoder=transcoder
+        )
+
+        await usecase.execute()
+
     @monitor("Transcoding pull requests into database")
-    def execute(self, *args):
-        transcoder = TranscodersJsonRepository(
+    async def execute(self, *args):
+        transcoder = await TranscodersJsonRepository(
             logger=self.logger, path=self.path
         ).get_by_id("pull_requests_type")
 
         branches = settings.get_branches()
-        for branch in branches:
-            self.logger.info("Transcoding pull requests in " + str(branch.repository))
-
-            repository = PullRequestsDatabaseRepository(
-                logger=self.logger, git_repository=branch.repository
-            )
-
-            usecase = TranscodePullRequestsInRepositoryUsecase(
-                logger=self.logger, repository=repository, transcoder=transcoder
-            )
-
-            usecase.execute()
+        tasks = [self.transcode_branch(branch, transcoder) for branch in branches]
+        await asyncio.gather(*tasks)

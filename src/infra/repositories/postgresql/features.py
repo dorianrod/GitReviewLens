@@ -12,10 +12,10 @@ from src.infra.repositories.postgresql.utils import (
 
 
 class FeaturesDatabaseRepository(FeaturesRepository):
-    def upsert(self, entity, options=None):
+    async def upsert(self, entity, options=None):
         options = options or {}
 
-        super().upsert(entity, options)
+        await super().upsert(entity, options)
 
         session = get_db_session()
         feature = (
@@ -26,7 +26,7 @@ class FeaturesDatabaseRepository(FeaturesRepository):
         upsert_developer = options.get("upsert_developer", True)
         if upsert_developer:
             developer_repository = DeveloperDatabaseRepository(logger=self.logger)
-            developer_repository.upsert(entity.developer)
+            await developer_repository.upsert(entity.developer)
 
         columns = FeatureModel.from_entity(entity)
         if feature is None:
@@ -40,7 +40,7 @@ class FeaturesDatabaseRepository(FeaturesRepository):
         session.add(feature)
         session.commit()
 
-    def find_all(self, options=None):
+    async def find_all(self, options=None):
         session = get_db_session()
         results = session.query(FeatureModel).all()
 

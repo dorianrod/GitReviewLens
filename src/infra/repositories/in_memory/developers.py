@@ -10,11 +10,11 @@ class DevelopersInMemoryRepository(DeveloperRepository):
         super().__init__(logger)
         self.developers: dict[str, Developer] = {}
 
-    def find_all(self):
+    async def find_all(self):
         return list(self.developers.values())
 
-    def get_by_id(self, id: str):
+    async def get_by_id(self, id: str):
         return self.developers.get(id)
 
-    def upsert(self, developer: Developer, options=None):
+    async def upsert(self, developer: Developer, options=None):
         self.developers[developer.id] = developer

@@ -6,7 +6,7 @@ from src.infra.repositories.azure.utils import get_base_url, get_header
 
 
 class CommentsAzureRepository(CommentsRepository):
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         filters = filters or {}
 
         pull_request = filters.get("pull_request")

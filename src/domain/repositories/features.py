@@ -15,5 +15,5 @@ class FeaturesRepository(BaseRepository[Feature, dict, dict]):
         self.logger = logger
         self.git_repository = Repository.parse(git_repository)
 
-    def upsert(self, entity, options=None):
+    async def upsert(self, entity, options=None):
         raise_exception_if_repository_differs_from_entity(self.git_repository, entity)

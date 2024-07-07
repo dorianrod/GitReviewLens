@@ -17,7 +17,7 @@ class PullRequestsAzureRepository(PullRequestsRepository):
         )
         super().__init__(*args, **kwargs)
 
-    def _get_all_pull_requests(self, start_date, end_date, skip=0):
+    async def _get_all_pull_requests(self, start_date, end_date, skip=0):
         MAX_RESULTS = self.max_results
 
         results = []
@@ -37,13 +37,13 @@ class PullRequestsAzureRepository(PullRequestsRepository):
             last_value = data["value"][-1]
             last_date = parse_date(last_value.get("creationDate"))
             if is_in_range(last_date, start_date, end_date):
-                results += self._get_all_pull_requests(
+                results += await self._get_all_pull_requests(
                     start_date, end_date, skip + MAX_RESULTS
                 )
 
         return results
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         filters = filters or {}
 
         start_date = parse_date(filters.get("start_date"))
@@ -54,7 +54,9 @@ class PullRequestsAzureRepository(PullRequestsRepository):
             f"Fetching pull requests in {self.git_repository} Azure from {start_date} to {end_date}"
         )
 
-        pull_requests_from_azure = self._get_all_pull_requests(start_date, end_date)
+        pull_requests_from_azure = await self._get_all_pull_requests(
+            start_date, end_date
+        )
 
         pull_requests: list[PullRequest] = []
         for pr in pull_requests_from_azure:

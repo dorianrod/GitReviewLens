@@ -11,5 +11,5 @@ _T = TypeVar("_T")
 class GetAllUseCase(BaseUseCase[Sequence[_T]]):
     repository: BaseRepository
 
-    def execute(self) -> Sequence[_T]:
-        return self.repository.find_all()
+    async def execute(self) -> Sequence[_T]:
+        return await self.repository.find_all()

@@ -23,7 +23,7 @@ def pull_request(fixture_pull_request_dict):
     )
 
 
-def test_does_get_pull_request_comments(
+async def test_does_get_pull_request_comments(
     mocker, mock_pull_request_user_comment_in_github, repository, pull_request
 ):
     with requests_mock.Mocker() as mocker:
@@ -32,7 +32,7 @@ def test_does_get_pull_request_comments(
             json=[mock_pull_request_user_comment_in_github],
         )
 
-        comments = repository.find_all({"pull_request": pull_request})
+        comments = await repository.find_all({"pull_request": pull_request})
 
         assert len(comments) == 1
         assert comments[0].to_dict() == {
@@ -47,7 +47,7 @@ def test_does_get_pull_request_comments(
         }
 
 
-def test_does_use_pagination(
+async def test_does_use_pagination(
     mocker,
     mock_pull_request_user_comment_in_github,
     mock_pull_request_user_comment_2_in_github,
@@ -69,12 +69,14 @@ def test_does_use_pagination(
         )
 
         repository.max_results = 1
-        pull_requests = repository.find_all(filters={"pull_request": pull_request})
+        pull_requests = await repository.find_all(
+            filters={"pull_request": pull_request}
+        )
 
         assert len(pull_requests) == 2
 
 
-def test_does_filter_authors(
+async def test_does_filter_authors(
     mocker,
     mock_pull_request_user_comment_in_github,
     mock_pull_request_user_comment_2_in_github,
@@ -90,7 +92,7 @@ def test_does_filter_authors(
             ],
         )
 
-        pull_requests = repository.find_all(
+        pull_requests = await repository.find_all(
             filters={"pull_request": pull_request, "authors_to_exclude": ["dupont"]}
         )
 

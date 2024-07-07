@@ -9,7 +9,7 @@ from src.infra.repositories.postgresql.utils import (
 
 
 class CommentsDatabaseRepository(CommentsRepository):
-    def upsert(self, entity: Comment, options=None) -> None:
+    async def upsert(self, entity: Comment, options=None) -> None:
         options = options or {}
 
         pull_request: PullRequest = options.get("pull_request")
@@ -42,14 +42,16 @@ class CommentsDatabaseRepository(CommentsRepository):
 
         if upsert_developer:
             repository_developer = DeveloperDatabaseRepository(logger=self.logger)
-            repository_developer.upsert(entity.developer)
+            await repository_developer.upsert(entity.developer)
 
         if upsert_pull_request:
             repository_pull_request = PullRequestsDatabaseRepository(
                 logger=self.logger,
                 git_repository=self.git_repository,
             )
-            repository_pull_request.upsert(pull_request, {"upsert_comments": False})
+            await repository_pull_request.upsert(
+                pull_request, {"upsert_comments": False}
+            )
 
         self.logger.info(f"Creating {repr(entity)}")
 
@@ -62,7 +64,7 @@ class CommentsDatabaseRepository(CommentsRepository):
         session.add(comment)
         session.commit()
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         filters = filters or {}
 
         pull_request = filters.get("pull_request")

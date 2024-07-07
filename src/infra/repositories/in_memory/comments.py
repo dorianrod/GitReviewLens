@@ -12,15 +12,15 @@ class CommentsInMemoryRepository(CommentsRepository):
         super().__init__(logger, git_repository)
         self.comments_by_pr = {}
 
-    def upsert(self, entity, options=None):
-        super().upsert(entity, options)
+    async def upsert(self, entity, options=None):
+        await super().upsert(entity, options)
 
         options = options or {}
         pull_request: PullRequest = options.get("pull_request")
 
         self.comments_by_pr[pull_request.id] = entity
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         filters = filters or {}
 
         pull_request = filters.get("pull_request")

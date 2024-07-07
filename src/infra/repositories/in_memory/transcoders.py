@@ -10,12 +10,12 @@ class TranscodersInMemoryRepository(TranscodersRepository):
         super().__init__(logger)
         self.transcoders: dict[str, Transcoder] = {}
 
-    def find_all(self):
+    async def find_all(self):
         return list(self.transcoders.values())
 
-    def get_by_id(self, id: str):
+    async def get_by_id(self, id: str):
         return self.transcoders.get(id, Transcoder(None, {}))
 
-    def upsert(self, entity: Transcoder, options=None):
+    async def upsert(self, entity: Transcoder, options=None):
         if entity.name:
             self.transcoders[entity.name] = entity

@@ -13,7 +13,7 @@ class CommentsGithubRepository(CommentsRepository):
         self.max_results = kwargs.pop("max_results") if "max_results" in kwargs else 100
         super().__init__(*args, **kwargs)
 
-    def _get_all_comments(self, pull_request_id, page=1):
+    async def _get_all_comments(self, pull_request_id, page=1):
         results = []
 
         url = f"{get_base_url(self.git_repository)}/pulls/{pull_request_id}/comments?per_page={self.max_results}&page={page}"
@@ -28,18 +28,18 @@ class CommentsGithubRepository(CommentsRepository):
         results += comments_from_github
 
         if self.use_pagination and len(comments_from_github) == self.max_results:
-            results += self._get_all_comments(
+            results += await self._get_all_comments(
                 page=page + 1, pull_request_id=pull_request_id
             )
 
         return results
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         pull_request = filters.get("pull_request")
         if not pull_request:
             raise Exception("No pull request provided")
 
-        comments_from_github = self._get_all_comments(
+        comments_from_github = await self._get_all_comments(
             pull_request_id=pull_request.source_id
         )
         authors_to_exclude = filters.get("authors_to_exclude", [])

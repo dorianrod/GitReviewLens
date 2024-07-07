@@ -12,7 +12,9 @@ class TranscodePullRequestsUseCase(BaseUseCaseWithParameters[Sequence[PullReques
     transcoder: Transcoder
     logger: LoggerInterface
 
-    def execute(self, pull_requests: Sequence[PullRequest]) -> Sequence[PullRequest]:
+    async def execute(
+        self, pull_requests: Sequence[PullRequest]
+    ) -> Sequence[PullRequest]:
         transcoded_pull_requests: list[PullRequest] = []
 
         for pull_request in pull_requests:

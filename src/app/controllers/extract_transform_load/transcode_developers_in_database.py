@@ -16,10 +16,10 @@ class TranscodeDevelopersInDatabaseController(BaseController[None, None]):
     path: str = "/transco/transcoders.json"
 
     @monitor("Transcoding developers into database")
-    def execute(self):
+    async def execute(self):
         repository = DeveloperDatabaseRepository(logger=self.logger)
 
-        transcoder = TranscodersJsonRepository(
+        transcoder = await TranscodersJsonRepository(
             logger=self.logger, path=self.path
         ).get_by_id("developers_names_by_email")
 
@@ -27,4 +27,4 @@ class TranscodeDevelopersInDatabaseController(BaseController[None, None]):
             logger=self.logger, repository=repository, transcoder=transcoder
         )
 
-        usecase.execute()
+        await usecase.execute()

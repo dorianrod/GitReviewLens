@@ -10,5 +10,5 @@ from src.domain.entities.developer import Developer
 class DeveloperRepository(BaseRepository[Developer, Optional[dict], Optional[dict]]):
     logger: LoggerInterface
 
-    def upsert(self, entity: Developer, options: dict | None = None):
+    async def upsert(self, entity: Developer, options: dict | None = None):
         pass

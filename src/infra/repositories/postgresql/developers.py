@@ -21,7 +21,7 @@ class DeveloperDatabaseRepository(DeveloperRepository):
         )
         return developer
 
-    def upsert(self, entity, options=None):
+    async def upsert(self, entity, options=None):
         options = options or {}
 
         developer = self._get_model_by_id(entity)
@@ -41,7 +41,7 @@ class DeveloperDatabaseRepository(DeveloperRepository):
         session.add(developer)
         session.commit()
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         session = get_db_session()
         developers_data = list(
             session.query(DeveloperModel.name, DeveloperModel.email).all()
@@ -51,7 +51,7 @@ class DeveloperDatabaseRepository(DeveloperRepository):
         ]
         return developers
 
-    def get_by_id(self, id):
+    async def get_by_id(self, id):
         session = get_db_session()
         developers_data = session.query(DeveloperModel.name, DeveloperModel.email).get(
             id

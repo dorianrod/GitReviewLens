@@ -16,7 +16,7 @@ class ApproversGithubRepository(DeveloperRepository):
         self.git_repository = Repository.parse(git_repository)
         super().__init__(*args, **kwargs)
 
-    def _get_all_approvers(self, pull_request_id, page=1):
+    async def _get_all_approvers(self, pull_request_id, page=1):
         url = f"{get_base_url(self.git_repository)}/pulls/{pull_request_id}/reviews?per_page={self.max_results}&page={page}"
 
         response = requests.get(url, headers=get_header(self.git_repository))
@@ -31,18 +31,18 @@ class ApproversGithubRepository(DeveloperRepository):
             review for review in approvers_from_github if review["state"] == "APPROVED"
         ]
         if self.use_pagination and len(approvers_from_github) == self.max_results:
-            all_approvers += self._get_all_approvers(
+            all_approvers += await self._get_all_approvers(
                 page=page + 1, pull_request_id=pull_request_id
             )
 
         return all_approvers
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         pull_request = filters.get("pull_request")
         if not pull_request:
             raise Exception("No pull request provided")
 
-        approvers_from_github = self._get_all_approvers(
+        approvers_from_github = await self._get_all_approvers(
             pull_request_id=pull_request.source_id
         )
 

@@ -1,3 +1,4 @@
+import asyncio
 from abc import ABC
 from typing import Generic, Optional, Sequence, TypeVar
 
@@ -16,33 +17,35 @@ class BaseRepository(ABC, Generic[_T, _F, _U]):
 
     logger: LoggerInterface
 
-    def upsert(self, entity: _T, options: Optional[_U] = None):
+    async def upsert(self, entity: _T, options: Optional[_U] = None):
         raise NotImplementedError("Not used yet")
 
-    def create(self, entity: _T, options: Optional[_U] = None):
-        self.upsert(entity, {**(options or {}), "is_new": True})  # type: ignore
+    async def create(self, entity: _T, options: Optional[_U] = None):
+        return await self.upsert(entity, {**(options or {}), "is_new": True})  # type: ignore
 
-    def update(self, entity: _T, options: Optional[_U] = None):
-        self.upsert(entity, {**(options or {}), "is_new": False})  # type: ignore
+    async def update(self, entity: _T, options: Optional[_U] = None):
+        return await self.upsert(entity, {**(options or {}), "is_new": False})  # type: ignore
 
-    def create_all(self, entities: Sequence[_T]) -> None:
-        for entity in entities:
-            self.create(entity)
+    async def create_all(self, entities: Sequence[_T]) -> None:
+        tasks = [self.create(entity) for entity in entities]
+        return await asyncio.gather(*tasks)
 
-    def update_all(self, entities: Sequence[_T]) -> None:
-        for entity in entities:
-            self.update(entity)
+    async def update_all(self, entities: Sequence[_T]) -> None:
+        tasks = [self.update(entity) for entity in entities]
+        return await asyncio.gather(*tasks)
 
-    def upsert_all(self, entities: Sequence[_T], options: Optional[_U] = None) -> None:
-        for entity in entities:
-            self.upsert(entity, options)
+    async def upsert_all(
+        self, entities: Sequence[_T], options: Optional[_U] = None
+    ) -> None:
+        tasks = [self.upsert(entity) for entity in entities]
+        return await asyncio.gather(*tasks)
 
-    def get_by_id(self, id: str) -> _T | None:
-        item = self.find_all({"id": id})  # type: ignore
+    async def get_by_id(self, id: str) -> _T | None:
+        item = await self.find_all({"id": id})  # type: ignore
         if len(item) == 0:
             raise NotExistsException(f"Item with id {id} does not exist")
 
         return item[0]
 
-    def find_all(self, filters: Optional[_F] = None) -> Sequence[_T]:
+    async def find_all(self, filters: Optional[_F] = None) -> Sequence[_T]:
         raise NotImplementedError("Not used yet")

@@ -16,14 +16,14 @@ def mock_settings(mocker, mock_git_settings):
     )
 
 
-def test_call_use_case_for_each_repo(mock_logger, mock_git_settings):
+async def test_call_use_case_for_each_repo(mock_logger, mock_git_settings):
     with patch.object(
         GitRepoLocal,
         'clone',
         return_value=[],
     ) as mock:
         controller = CloneRepositoriesController(logger=mock_logger)
-        controller.execute()
+        await controller.execute()
 
         branches = mock_git_settings.get_branches()
 

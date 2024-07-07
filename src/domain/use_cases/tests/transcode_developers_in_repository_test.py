@@ -17,13 +17,13 @@ def use_case(mock_logger):
     )
 
 
-def test_it_transcodes_developers_in_repository(fixture_developer_dict, use_case):
+async def test_it_transcodes_developers_in_repository(fixture_developer_dict, use_case):
     original = Developer.from_dict(fixture_developer_dict)
     repository = use_case.repository
-    repository.create(original)
+    await repository.create(original)
 
-    use_case.execute()
+    await use_case.execute()
 
-    transcoded = repository.get_by_id(original.id)
+    transcoded = await repository.get_by_id(original.id)
     assert transcoded.full_name == "JEAN"
     assert original.full_name != transcoded.full_name

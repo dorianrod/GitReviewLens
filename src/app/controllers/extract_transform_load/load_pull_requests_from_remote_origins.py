@@ -1,3 +1,4 @@
+import asyncio
 from dataclasses import dataclass
 from typing import Sequence
 
@@ -22,7 +23,7 @@ class LoadPullRequestsFromRemoteOriginController(
 ):
     logger: LoggerInterface
 
-    def load_from_repository(self, git_repository, options=None):
+    async def load_from_repository(self, git_repository, options=None):
         remote_repositories = get_repositories_for_git_repository(git_repository)
 
         RemoteCommentRepository = remote_repositories["comments"]
@@ -33,7 +34,7 @@ class LoadPullRequestsFromRemoteOriginController(
         )
 
         # Only load new pull requests if there is no options
-        pull_requests = target_repository.find_all()
+        pull_requests = await target_repository.find_all()
         if len(pull_requests) > 0 and options is None:
             max_date = max(
                 pull_request.completion_date for pull_request in pull_requests
@@ -54,12 +55,16 @@ class LoadPullRequestsFromRemoteOriginController(
             pull_requests_target_repository=target_repository,
         )
 
-        pull_requests = usecase.execute(options)
+        pull_requests = await usecase.execute(options)
 
         return pull_requests
 
     @monitor("Loading pull requests from remote origin")
-    def execute(self, options=None):
+    async def execute(self, options=None):
         branches = settings.get_branches()
-        for branch in branches:
+        tasks = [
             self.load_from_repository(git_repository=branch.repository, options=options)
+            for branch in branches
+        ]
+
+        await asyncio.gather(*tasks)

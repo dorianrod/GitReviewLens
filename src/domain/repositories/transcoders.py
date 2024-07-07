@@ -12,9 +12,9 @@ class TranscodersRepository(BaseRepository[Transcoder, dict, dict]):
     logger: LoggerInterface
 
     @abstractmethod
-    def find_all(self, options=None) -> Sequence[Transcoder]:
+    async def find_all(self, options=None) -> Sequence[Transcoder]:
         pass
 
     @abstractmethod
-    def get_by_id(self, id: str) -> Transcoder:
+    async def get_by_id(self, id: str) -> Transcoder:
         pass

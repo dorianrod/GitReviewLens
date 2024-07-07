@@ -12,7 +12,7 @@ class CloneRepositoriesController(BaseController[None, None]):
     logger: LoggerInterface
 
     @monitor("Cloning repositories")
-    def execute(self):
+    async def execute(self):
         branches = settings.get_branches()
         for branch in branches:
             repository = branch.repository

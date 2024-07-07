@@ -35,7 +35,7 @@ def fetch_all(db_session):
 
 
 @pytest.fixture
-def pull_request_without_comment(
+async def pull_request_without_comment(
     mock_logger,
     fixture_feature_dict,
     fixture_pull_request_dict,
@@ -54,9 +54,9 @@ def pull_request_without_comment(
         ]
     ]
 
-    PullRequestsDatabaseRepository(mock_logger, git_repository="orga/repo").upsert_all(
-        pull_requests_1
-    )
+    await PullRequestsDatabaseRepository(
+        mock_logger, git_repository="orga/repo"
+    ).upsert_all(pull_requests_1)
 
     features_1 = [
         Feature.from_dict(feature)
@@ -68,13 +68,13 @@ def pull_request_without_comment(
             }
         ]
     ]
-    FeaturesDatabaseRepository(mock_logger, git_repository="orga/repo").upsert_all(
-        features_1
-    )
+    await FeaturesDatabaseRepository(
+        mock_logger, git_repository="orga/repo"
+    ).upsert_all(features_1)
 
 
 @pytest.fixture
-def pull_request_with_several_comments(
+async def pull_request_with_several_comments(
     mock_logger,
     fixture_feature_dict,
     fixture_pull_request_dict,
@@ -109,9 +109,9 @@ def pull_request_with_several_comments(
         ]
     ]
 
-    PullRequestsDatabaseRepository(mock_logger, git_repository="orga/repo").upsert_all(
-        pull_requests_1
-    )
+    await PullRequestsDatabaseRepository(
+        mock_logger, git_repository="orga/repo"
+    ).upsert_all(pull_requests_1)
 
     features_1 = [
         Feature.from_dict(feature)
@@ -123,13 +123,13 @@ def pull_request_with_several_comments(
             }
         ]
     ]
-    FeaturesDatabaseRepository(mock_logger, git_repository="orga/repo").upsert_all(
-        features_1
-    )
+    await FeaturesDatabaseRepository(
+        mock_logger, git_repository="orga/repo"
+    ).upsert_all(features_1)
 
 
 @pytest.fixture
-def dataset_1(
+async def dataset_1(
     mock_logger,
     fixture_feature_dict,
     fixture_pull_request_dict,
@@ -158,9 +158,9 @@ def dataset_1(
         ]
     ]
 
-    PullRequestsDatabaseRepository(mock_logger, git_repository="orga/repo").upsert_all(
-        pull_requests_1
-    )
+    await PullRequestsDatabaseRepository(
+        mock_logger, git_repository="orga/repo"
+    ).upsert_all(pull_requests_1)
 
     features_1 = [
         Feature.from_dict(feature)
@@ -172,9 +172,9 @@ def dataset_1(
             }
         ]
     ]
-    FeaturesDatabaseRepository(mock_logger, git_repository="orga/repo").upsert_all(
-        features_1
-    )
+    await FeaturesDatabaseRepository(
+        mock_logger, git_repository="orga/repo"
+    ).upsert_all(features_1)
 
     pull_requests_2 = [
         PullRequest.from_dict(pr)
@@ -196,7 +196,7 @@ def dataset_1(
             },
         ]
     ]
-    PullRequestsDatabaseRepository(
+    await PullRequestsDatabaseRepository(
         mock_logger, git_repository="orga/anotherrepo"
     ).upsert_all(pull_requests_2)
 
@@ -212,13 +212,13 @@ def dataset_1(
             }
         ]
     ]
-    FeaturesDatabaseRepository(
+    await FeaturesDatabaseRepository(
         mock_logger, git_repository="orga/anotherrepo"
     ).upsert_all(features_2)
 
 
 @pytest.fixture
-def dataset_2(
+async def dataset_2(
     mock_logger,
     fixture_comment_dict,
     fixture_pull_request_dict,
@@ -282,9 +282,9 @@ def dataset_2(
 
         pull_requests.append(pr_1)
 
-    PullRequestsDatabaseRepository(mock_logger, git_repository="orga/repo").upsert_all(
-        pull_requests
-    )
+    await PullRequestsDatabaseRepository(
+        mock_logger, git_repository="orga/repo"
+    ).upsert_all(pull_requests)
 
 
 class TestSummaryIndicators:

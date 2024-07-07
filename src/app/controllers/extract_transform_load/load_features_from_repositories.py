@@ -18,7 +18,7 @@ class LoadFeaturesController(BaseController[None, Sequence[Feature]]):
     path: str = "/repos"
 
     @monitor("Loading features from repositories")
-    def execute(self, options=None) -> Sequence[Feature]:
+    async def execute(self, options=None) -> Sequence[Feature]:
         if not options:
             options = {}
 
@@ -30,7 +30,7 @@ class LoadFeaturesController(BaseController[None, Sequence[Feature]]):
             db_features_repository = FeaturesDatabaseRepository(
                 logger=self.logger, git_repository=repository
             )
-            features_in_db = db_features_repository.find_all()
+            features_in_db = await db_features_repository.find_all()
 
             self.logger.info(f"Loading features from repository {repository.name}...")
             max_date = None
@@ -43,7 +43,7 @@ class LoadFeaturesController(BaseController[None, Sequence[Feature]]):
                 branch=branch,
             )
             features_repository = FeaturesGit(logger=self.logger, path=repo_path)
-            features_from_git = features_repository.find_all(
+            features_from_git = await features_repository.find_all(
                 {
                     "from_date": max_date,
                     "to_date": datetime.now().isoformat(),
@@ -52,7 +52,7 @@ class LoadFeaturesController(BaseController[None, Sequence[Feature]]):
                     **options,
                 }
             )
-            db_features_repository.upsert_all(features_from_git)
+            await db_features_repository.upsert_all(features_from_git)
             self.logger.info(
                 f"{len(features_from_git)} features from repository {repository.name} loaded..."
             )

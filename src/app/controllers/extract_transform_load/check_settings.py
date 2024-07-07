@@ -21,7 +21,7 @@ class CheckSettings(BaseController[None, None]):
     logger: LoggerInterface
 
     @monitor("Checking settings")
-    def execute(self):
+    async def execute(self):
         error = False
         branches = settings.get_branches()
 
@@ -44,7 +44,7 @@ class CheckSettings(BaseController[None, None]):
                 remote_repository = PullRequestsGithubRepository(**options)  # type: ignore
 
             try:
-                remote_repository.find_all(
+                await remote_repository.find_all(
                     {
                         "start_date": parse_date(datetime.now()),
                         "end_date": parse_date(datetime.now()),
@@ -60,7 +60,7 @@ class CheckSettings(BaseController[None, None]):
                 error = True
 
         try:
-            CloneRepositoriesController(logger=MutedLogger()).execute()
+            await CloneRepositoriesController(logger=MutedLogger()).execute()
             self.logger.info("Repositories cloned successfully")
         except Exception as e:
             self.logger.error(f"Unable to clone some repositories: {str(e)}")

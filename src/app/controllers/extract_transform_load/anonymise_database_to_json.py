@@ -39,7 +39,7 @@ class AnonymizeDatabaseDataToJSONController(BaseController[None, None]):
         self.env_file_model = env_file_model or "/anonymized_data/.env"
 
     @monitor("anonymizing pull_requests")
-    def anonymize_pull_requests(self, git_repository):
+    async def anonymize_pull_requests(self, git_repository):
         json_repository_pull_request = PullRequestsJsonRepository(
             logger=self.logger,
             path=f"{self.path}/pull_requests.json",
@@ -50,14 +50,14 @@ class AnonymizeDatabaseDataToJSONController(BaseController[None, None]):
         )
 
         self.logger.info("Extracting pull_requests from database...")
-        pull_requests = db_repository_pull_requests.find_all()
-        AnonymizeDatasetUseCase(self.logger).execute(pull_requests, [])  # type: ignore
+        pull_requests = await db_repository_pull_requests.find_all()
+        await AnonymizeDatasetUseCase(self.logger).execute(pull_requests, [])  # type: ignore
 
-        json_repository_pull_request.upsert_all(pull_requests)
+        await json_repository_pull_request.upsert_all(pull_requests)
         self.logger.info(f"Saved {len(pull_requests)} pull requests")
 
     @monitor("anonymizing features")
-    def anonymize_features(self, git_repository):
+    async def anonymize_features(self, git_repository):
         json_repository_features = FeaturesJsonRepository(
             logger=self.logger,
             path=f"{self.path}/features.json",
@@ -68,12 +68,12 @@ class AnonymizeDatabaseDataToJSONController(BaseController[None, None]):
         )
 
         self.logger.info("Extracting features from database...")
-        features = db_repository_features.find_all()
-        json_repository_features.upsert_all(features)
+        features = await db_repository_features.find_all()
+        await json_repository_features.upsert_all(features)
         self.logger.info(f"Saved {len(features)} features")
 
     @monitor("anonymizing database")
-    def execute(self, start_date=None, end_date=None):
+    async def execute(self, start_date=None, end_date=None):
         branches = settings.get_branches()
 
         anonymized_branches = []
@@ -92,10 +92,10 @@ class AnonymizeDatabaseDataToJSONController(BaseController[None, None]):
             )
 
             self.logger.info("Extracting pull_requests from database...")
-            pull_requests = db_repository_pull_requests.find_all()
+            pull_requests = await db_repository_pull_requests.find_all()
 
             self.logger.info("Extracting features from database...")
-            features = db_repository_features.find_all()
+            features = await db_repository_features.find_all()
 
             self.logger.info("Anonymizing features and pull requests...")
 
@@ -106,11 +106,12 @@ class AnonymizeDatabaseDataToJSONController(BaseController[None, None]):
                     organisation="demo", project="git", name=f"project_{i}"
                 ),
             )
-            anonymized_pull_requests, anonymized_features = use_case.execute(
+            result = await use_case.execute(
                 pull_requests,
                 features,
                 {"start_date": start_date, "end_date": end_date},
             )
+            anonymized_pull_requests, anonymized_features = result
 
             anonymized_repository = use_case.get_anonymized_repository(git_repository)
 
@@ -130,12 +131,12 @@ class AnonymizeDatabaseDataToJSONController(BaseController[None, None]):
             self.logger.info(
                 f"Saving {len(pull_requests)} pull requests to {json_repository_pull_request.path}"
             )
-            json_repository_pull_request.upsert_all(anonymized_pull_requests)
+            await json_repository_pull_request.upsert_all(anonymized_pull_requests)
 
             self.logger.info(
                 f"Saving {len(anonymized_features)} features to {json_repository_features.path}"
             )
-            json_repository_features.upsert_all(anonymized_features)
+            await json_repository_features.upsert_all(anonymized_features)
 
             anonymized_branches.append(
                 Branch(

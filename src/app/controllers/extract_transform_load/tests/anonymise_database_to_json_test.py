@@ -41,11 +41,11 @@ def clean_temp_files():
 
 
 @pytest.fixture(autouse=True)
-def dataset(mock_logger, fixture_pull_request_dict, fixture_feature_dict):
+async def dataset(mock_logger, fixture_pull_request_dict, fixture_feature_dict):
     db_pull_request_repo = PullRequestsDatabaseRepository(
         logger=mock_logger, git_repository=git_repository
     )
-    db_pull_request_repo.upsert(
+    await db_pull_request_repo.upsert(
         PullRequest.from_dict(
             {**fixture_pull_request_dict, "git_repository": git_repository}
         )
@@ -54,15 +54,15 @@ def dataset(mock_logger, fixture_pull_request_dict, fixture_feature_dict):
     db_features_repo = FeaturesDatabaseRepository(
         logger=mock_logger, git_repository=git_repository
     )
-    db_features_repo.upsert(
+    await db_features_repo.upsert(
         Feature.from_dict({**fixture_feature_dict, "git_repository": git_repository})
     )
 
 
-def test_anonymize_repositories(mock_logger):
+async def test_anonymize_repositories(mock_logger):
     anonymized_git_repository = "demo/git/project_1"
 
-    AnonymizeDatabaseDataToJSONController(
+    await AnonymizeDatabaseDataToJSONController(
         logger=mock_logger,
         path=path,
         env_file_model=env_file_model,
@@ -81,8 +81,8 @@ def test_anonymize_repositories(mock_logger):
         path=f"{path}/features.json",
     )
 
-    pull_requests = json_repository_pull_request.find_all()
-    features = json_repository_features.find_all()
+    pull_requests = await json_repository_pull_request.find_all()
+    features = await json_repository_features.find_all()
 
     assert len(pull_requests) == 1
     assert len(features) == 1

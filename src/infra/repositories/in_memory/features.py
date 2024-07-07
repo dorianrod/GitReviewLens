@@ -11,14 +11,14 @@ class FeaturesInMemoryRepository(FeaturesRepository):
         self.features = {}
         super().__init__(logger, git_repository)
 
-    def get_by_id(self, id):
+    async def get_by_id(self, id):
         return self.features[id]
 
-    def upsert(self, entity, options=None):
-        super().upsert(entity, options)
+    async def upsert(self, entity, options=None):
+        await super().upsert(entity, options)
         self.features[entity.id] = entity
 
-    def find_all(self, filters=None):
+    async def find_all(self, filters=None):
         filters = filters or {}
         exclude_ids = filters.get("exclude_ids", [])
 

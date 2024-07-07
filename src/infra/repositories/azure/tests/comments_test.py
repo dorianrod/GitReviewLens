@@ -25,7 +25,7 @@ def pull_request(fixture_pull_request_dict):
     return PullRequest.from_dict({**fixture_pull_request_dict, "source_id": "1"})
 
 
-def test_does_not_create_system_comment(
+async def test_does_not_create_system_comment(
     mocker, mock_pull_request_system_comment, pull_request, repository
 ):
     with requests_mock.Mocker() as mocker:
@@ -43,12 +43,12 @@ def test_does_not_create_system_comment(
             },
         )
 
-        comments = repository.find_all(filters={"pull_request": pull_request})
+        comments = await repository.find_all(filters={"pull_request": pull_request})
 
         assert len(comments) == 0
 
 
-def test_does_get_user_comment_from_several_threads(
+async def test_does_get_user_comment_from_several_threads(
     mocker,
     mock_pull_request_user_comment,
     mock_pull_request_user_2_comment,
@@ -68,7 +68,7 @@ def test_does_get_user_comment_from_several_threads(
             },
         )
 
-        comments = repository.find_all(filters={"pull_request": pull_request})
+        comments = await repository.find_all(filters={"pull_request": pull_request})
 
         assert len(comments) == 2
         assert comments[0].to_dict() == {
@@ -93,7 +93,7 @@ def test_does_get_user_comment_from_several_threads(
         }
 
 
-def test_does_filters_authors(
+async def test_does_filters_authors(
     mocker,
     mock_pull_request_user_comment,
     repository,
@@ -109,7 +109,7 @@ def test_does_filters_authors(
             },
         )
 
-        comments = repository.find_all(
+        comments = await repository.find_all(
             filters={
                 "pull_request": pull_request,
                 "authors_to_exclude": ["Dorian RODRIGUEZ"],

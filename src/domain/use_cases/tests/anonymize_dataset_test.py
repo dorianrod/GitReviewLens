@@ -6,11 +6,11 @@ from src.domain.use_cases.anonymize_dataset import AnonymizeDatasetUseCase
 
 
 @pytest.fixture
-def anonymized_dataset(mock_logger, pull_request, feature):
+async def anonymized_dataset(mock_logger, pull_request, feature):
     transcoder = AnonymizeDatasetUseCase(
         logger=mock_logger,
     )
-    return transcoder.execute([pull_request], [feature])
+    return await transcoder.execute([pull_request], [feature])
 
 
 @pytest.fixture
@@ -23,11 +23,11 @@ def feature(fixture_feature_dict, pull_request):
     return Feature.from_dict({**fixture_feature_dict, "commit": pull_request.commit})
 
 
-def test_manage_integrity(mock_logger, pull_request, feature):
+async def test_manage_integrity(mock_logger, pull_request, feature):
     transcoder = AnonymizeDatasetUseCase(
         logger=mock_logger,
     )
-    pull_requests, features = transcoder.execute(
+    pull_requests, features = await transcoder.execute(
         [pull_request, pull_request], [feature, feature]
     )
     assert len(pull_requests) == 2
@@ -40,33 +40,33 @@ def test_manage_integrity(mock_logger, pull_request, feature):
     assert pull_requests[0].get_developers() == pull_requests[1].get_developers()
 
 
-def test_filters_out_features_and_pull_requests_before_start_date(
+async def test_filters_out_features_and_pull_requests_before_start_date(
     mock_logger, pull_request, feature
 ):
     transcoder = AnonymizeDatasetUseCase(
         logger=mock_logger,
     )
-    pull_requests, features = transcoder.execute(
+    pull_requests, features = await transcoder.execute(
         [pull_request], [feature], {"start_date": "2024-10-26T11:10:13"}  # type: ignore
     )
     assert len(pull_requests) == 0
     assert len(features) == 0
 
 
-def test_filters_out_features_and_pull_requests_after_end_date(
+async def test_filters_out_features_and_pull_requests_after_end_date(
     mock_logger, pull_request, feature
 ):
     transcoder = AnonymizeDatasetUseCase(
         logger=mock_logger,
     )
-    pull_requests, features = transcoder.execute(
+    pull_requests, features = await transcoder.execute(
         [pull_request], [feature], {"end_date": "2020-10-26T11:10:13"}  # type: ignore
     )
     assert len(pull_requests) == 0
     assert len(features) == 0
 
 
-def test_anonymize_pull_request_creator(anonymized_dataset, pull_request):
+async def test_anonymize_pull_request_creator(anonymized_dataset, pull_request):
     pull_requests, _ = anonymized_dataset
     assert len(pull_requests) == 1
     assert (
@@ -79,13 +79,13 @@ def test_anonymize_pull_request_creator(anonymized_dataset, pull_request):
     )
 
 
-def test_anonymize_pull_request_title(anonymized_dataset, pull_request):
+async def test_anonymize_pull_request_title(anonymized_dataset, pull_request):
     pull_requests, _ = anonymized_dataset
     assert len(pull_requests) == 1
     assert pull_requests[0].title and pull_requests[0].title != pull_request.title
 
 
-def test_anonymize_pull_request_repository(anonymized_dataset, pull_request):
+async def test_anonymize_pull_request_repository(anonymized_dataset, pull_request):
     pull_requests, _ = anonymized_dataset
     assert len(pull_requests) == 1
     assert pull_requests[0].git_repository.name != pull_request.git_repository.name
@@ -98,7 +98,7 @@ def test_anonymize_pull_request_repository(anonymized_dataset, pull_request):
     )
 
 
-def test_anonymize_pull_request_approvers(anonymized_dataset, pull_request):
+async def test_anonymize_pull_request_approvers(anonymized_dataset, pull_request):
     pull_requests, _ = anonymized_dataset
     assert len(pull_requests) == 1
     assert len(pull_request.approvers) > 0
@@ -108,7 +108,7 @@ def test_anonymize_pull_request_approvers(anonymized_dataset, pull_request):
         assert pull_requests[0].approvers[index].full_name != approver.full_name
 
 
-def test_anonymize_pull_request_commenters(anonymized_dataset, pull_request):
+async def test_anonymize_pull_request_commenters(anonymized_dataset, pull_request):
     pull_requests, _ = anonymized_dataset
     assert len(pull_requests) == 1
     assert len(pull_request.comments) > 0
@@ -123,7 +123,7 @@ def test_anonymize_pull_request_commenters(anonymized_dataset, pull_request):
         )
 
 
-def test_anonymize_pull_request_comment(anonymized_dataset, pull_request):
+async def test_anonymize_pull_request_comment(anonymized_dataset, pull_request):
     pull_requests, _ = anonymized_dataset
     assert len(pull_request.comments) > 0
 
@@ -132,7 +132,7 @@ def test_anonymize_pull_request_comment(anonymized_dataset, pull_request):
         assert len(pull_requests[0].comments[index].content) == len(comment.content)
 
 
-def test_anonymize_feature_developer(anonymized_dataset, feature):
+async def test_anonymize_feature_developer(anonymized_dataset, feature):
     _, features = anonymized_dataset
 
     assert len(features) == 1
@@ -140,7 +140,7 @@ def test_anonymize_feature_developer(anonymized_dataset, feature):
     assert features[0].developer.email != feature.developer.email
 
 
-def test_anonymize_feature_repository(anonymized_dataset, feature):
+async def test_anonymize_feature_repository(anonymized_dataset, feature):
     _, features = anonymized_dataset
 
     assert len(features) == 1
