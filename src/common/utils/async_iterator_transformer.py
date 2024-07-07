@@ -5,7 +5,7 @@ class AsyncTransformIterator:
     def __init__(self, async_iterator: AsyncIterator):
         self.async_iterator = async_iterator
 
-    async def transform(data):
+    async def transform(self, data):
         return data
 
     def __aiter__(self):

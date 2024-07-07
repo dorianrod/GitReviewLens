@@ -24,7 +24,7 @@ class PullRequestsAzureRepository(PullRequestsRepository):
             **self.pagination,
         )
 
-        pull_requests = []
+        pull_requests: list[dict] = []
         iterator = await worker.fetch()
         async for row in iterator:
             if not row:

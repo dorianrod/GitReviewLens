@@ -14,6 +14,6 @@ class GetDevelopersController(BaseController[None, Sequence[Developer]]):
     logger: LoggerInterface
 
     @monitor("Getting developers from database")
-    def execute(self) -> Sequence[Developer]:
+    async def execute(self) -> Sequence[Developer]:
         repository = DeveloperDatabaseRepository(logger=self.logger)
-        return GetAllUseCase(repository=repository).execute()
+        return await GetAllUseCase(repository=repository).execute()

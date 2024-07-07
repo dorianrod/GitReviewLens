@@ -1,6 +1,6 @@
 import asyncio
 from abc import ABC, abstractmethod
-from typing import Any, Callable, Optional
+from typing import Any, Awaitable, Callable, Optional, Protocol, cast
 
 from src.common.utils.async_iterator_transformer import AsyncTransformIterator
 
@@ -27,7 +27,7 @@ class Worker(ABC):
             finally:
                 queue.task_done()
 
-    async def add_task(self, queue: asyncio.Queue, running_tasks):
+    async def add_task(self, queue: asyncio.Queue, running_tasks: list[Any]):
         if self.semaphore:
             async with self.semaphore:
                 task = asyncio.create_task(self.run_task(queue))
@@ -43,12 +43,14 @@ class Worker(ABC):
 class WorkerIterator:
     def __init__(self, worker: Worker):
         self.worker = worker
-        self.running_tasks = []
-        self.queue = asyncio.Queue()
+        self.running_tasks: list[Any] = []
+        self.queue: asyncio.Queue = asyncio.Queue()
         self.stop_processing = False
 
     async def initialize_tasks(self):
-        size_initial_tasks = min(self.worker.max_concurrency, self.queue.qsize())
+        size_initial_tasks = int(
+            min(self.worker.max_concurrency or float('inf'), self.queue.qsize())
+        )
         for _ in range(size_initial_tasks):
             await self.worker.add_task(self.queue, self.running_tasks)
 
@@ -90,6 +92,12 @@ class WorkerIterator:
         return await self.result_iterator.__anext__()
 
 
+class ConcurrencyFunction(Protocol):
+    def __call__(self, msg: Any) -> Any: ...
+    def run(self, msgs: list[Any]) -> AsyncTransformIterator: ...
+    def run_all(self, msgs: list[Any]) -> Awaitable[list[Any]]: ...
+
+
 def concurrency_iterator(max_concurrency: int):
     class ExtractOriginalData(AsyncTransformIterator):
         async def transform(self, data):
@@ -114,9 +122,10 @@ def concurrency_iterator(max_concurrency: int):
             iterator = get_iterator(parameters)
             return [result async for result in iterator]
 
-        func.run = get_iterator
-        func.run_all = run_all
+        decorated_func = cast(ConcurrencyFunction, func)
+        setattr(decorated_func, 'run', get_iterator)
+        setattr(decorated_func, 'run_all', run_all)
 
-        return func
+        return decorated_func
 
     return decorator

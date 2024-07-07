@@ -20,6 +20,7 @@ class PaginatorWorker(Worker, ABC):
         timeout: Optional[int] = None,
     ):
         super().__init__(max_concurrency)
+        assert max_concurrency is not None, "max_concurrency is mandatory"
         self.headers = headers
         self.timeout = timeout
         self.items_per_page = items_per_page
@@ -58,6 +59,6 @@ class PaginatorWorker(Worker, ABC):
 
     async def fetch(self):
         iterator = await self.work()
-        for _ in range(self.max_concurrency):
+        for _ in range(self.max_concurrency):  # type: ignore
             await self.add_url_to_queue(iterator.queue)
         return iterator

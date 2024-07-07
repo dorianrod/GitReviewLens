@@ -189,7 +189,7 @@ async def test_works_when_already_loaded_features(mock_logger, mock_settings):
             }
         )
 
-        db_features_repository.upsert_all([feature_1, feature_2])
+        await db_features_repository.upsert_all([feature_1, feature_2])
 
         controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
         await controller.execute()

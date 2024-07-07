@@ -54,7 +54,7 @@ class DumpDatabaseController(BaseController[None, None]):
 
         self.logger.info("Making backup for developers...")
         previous_json_developers = await json_repository_developers.find_all()
-        DevelopersJsonRepository(
+        await DevelopersJsonRepository(
             logger=self.logger,
             path=f"{self.path}/{backup_date}/developers.json",
         ).upsert_all(previous_json_developers)
