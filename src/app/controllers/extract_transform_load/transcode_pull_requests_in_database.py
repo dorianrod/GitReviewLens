@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.utils.worker import concurrency_aio
 from src.domain.use_cases.transcode_pull_requests_in_repository import (
     TranscodePullRequestsInRepositoryUsecase,
 )
@@ -19,6 +20,7 @@ class TranscodePullRequestsInDatabaseController(BaseController[None, None]):
     logger: LoggerInterface
     path: str = "/transco/transcoders.json"
 
+    @concurrency_aio(max_concurrency=5)
     async def transcode_branch(self, branch, transcoder):
         self.logger.info("Transcoding pull requests in " + str(branch.repository))
 

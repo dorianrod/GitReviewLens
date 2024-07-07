@@ -20,10 +20,13 @@ class TranscodeDevelopersInRepositoryUseCase(BaseUseCase[None]):
         )
         transcoded_developers = await transcoder.execute(developers)
 
-        nb_updated = 0
+        developers_to_update = []
         for i in range(len(transcoded_developers)):
             if transcoded_developers[i].full_name != developers[i].full_name:
-                nb_updated += 1
-                await self.repository.update(transcoded_developers[i])
+                developers_to_update.append(transcoded_developers[i])
 
-        self.logger.info("Updated " + str(nb_updated) + " developers")
+        await self.repository.update_all(
+            developers_to_update,
+        )
+
+        self.logger.info("Updated " + str(len(developers_to_update)) + " developers")

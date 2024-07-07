@@ -6,6 +6,7 @@ from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
 from src.common.utils.env import replace_env_var
+from src.common.utils.worker import concurrency_aio
 from src.domain.entities.branch import Branch
 from src.domain.entities.repository import Repository
 from src.domain.factories.repository import RepositoryFactory
@@ -72,78 +73,80 @@ class AnonymizeDatabaseDataToJSONController(BaseController[None, None]):
         await json_repository_features.upsert_all(features)
         self.logger.info(f"Saved {len(features)} features")
 
+    @concurrency_aio(max_concurrency=5)
+    async def anonymize_branch(self, branch, start_date, end_date, i):
+        git_repository = branch.repository
+
+        db_repository_pull_requests = PullRequestsDatabaseRepository(
+            logger=self.logger, git_repository=git_repository
+        )
+        db_repository_features = FeaturesDatabaseRepository(
+            logger=self.logger, git_repository=git_repository
+        )
+
+        self.logger.info("Extracting pull_requests from database...")
+        pull_requests = await db_repository_pull_requests.find_all()
+
+        self.logger.info("Extracting features from database...")
+        features = await db_repository_features.find_all()
+
+        self.logger.info("Anonymizing features and pull requests...")
+
+        use_case = AnonymizeDatasetUseCase(
+            self.logger,
+            git_repository=self.git_repository
+            or RepositoryFactory.create_repository(
+                organisation="demo", project="git", name=f"project_{i}"
+            ),
+        )
+        result = await use_case.execute(
+            pull_requests,
+            features,
+            {"start_date": start_date, "end_date": end_date},
+        )
+        anonymized_pull_requests, anonymized_features = result
+
+        anonymized_repository = use_case.get_anonymized_repository(git_repository)
+
+        parameters_with_anonymized_repo = {
+            "logger": self.logger,
+            "git_repository": anonymized_repository,
+        }
+        json_repository_pull_request = PullRequestsJsonRepository(
+            **parameters_with_anonymized_repo,
+            path=f"{self.path}/pull_requests.json",
+        )
+        json_repository_features = FeaturesJsonRepository(
+            **parameters_with_anonymized_repo,
+            path=f"{self.path}/features.json",
+        )
+
+        self.logger.info(
+            f"Saving {len(pull_requests)} pull requests to {json_repository_pull_request.path}"
+        )
+        await json_repository_pull_request.upsert_all(anonymized_pull_requests)
+
+        self.logger.info(
+            f"Saving {len(anonymized_features)} features to {json_repository_features.path}"
+        )
+        await json_repository_features.upsert_all(anonymized_features)
+
+        return Branch(
+            name=branch.name,
+            repository=anonymized_repository,
+        )
+
     @monitor("anonymizing database")
     async def execute(self, start_date=None, end_date=None):
         branches = settings.get_branches()
 
-        anonymized_branches = []
-
-        i = 0
-        for branch in branches:
-            i += 1
-
-            git_repository = branch.repository
-
-            db_repository_pull_requests = PullRequestsDatabaseRepository(
-                logger=self.logger, git_repository=git_repository
-            )
-            db_repository_features = FeaturesDatabaseRepository(
-                logger=self.logger, git_repository=git_repository
-            )
-
-            self.logger.info("Extracting pull_requests from database...")
-            pull_requests = await db_repository_pull_requests.find_all()
-
-            self.logger.info("Extracting features from database...")
-            features = await db_repository_features.find_all()
-
-            self.logger.info("Anonymizing features and pull requests...")
-
-            use_case = AnonymizeDatasetUseCase(
-                self.logger,
-                git_repository=self.git_repository
-                or RepositoryFactory.create_repository(
-                    organisation="demo", project="git", name=f"project_{i}"
-                ),
-            )
-            result = await use_case.execute(
-                pull_requests,
-                features,
-                {"start_date": start_date, "end_date": end_date},
-            )
-            anonymized_pull_requests, anonymized_features = result
-
-            anonymized_repository = use_case.get_anonymized_repository(git_repository)
-
-            parameters_with_anonymized_repo = {
-                "logger": self.logger,
-                "git_repository": anonymized_repository,
-            }
-            json_repository_pull_request = PullRequestsJsonRepository(
-                **parameters_with_anonymized_repo,
-                path=f"{self.path}/pull_requests.json",
-            )
-            json_repository_features = FeaturesJsonRepository(
-                **parameters_with_anonymized_repo,
-                path=f"{self.path}/features.json",
-            )
-
-            self.logger.info(
-                f"Saving {len(pull_requests)} pull requests to {json_repository_pull_request.path}"
-            )
-            await json_repository_pull_request.upsert_all(anonymized_pull_requests)
-
-            self.logger.info(
-                f"Saving {len(anonymized_features)} features to {json_repository_features.path}"
-            )
-            await json_repository_features.upsert_all(anonymized_features)
-
-            anonymized_branches.append(
-                Branch(
-                    name=branch.name,
-                    repository=anonymized_repository,
-                )
-            )
+        anonymized_branches = await self.anonymize_branch.run_all(
+            self,
+            [
+                (branch, start_date, end_date, index)
+                for index, branch in enumerate(branches)
+            ],
+        )
 
         # create .env file for dataset
         replace_env_var(

@@ -1,4 +1,5 @@
 import asyncio
+import inspect
 from abc import ABC, abstractmethod
 from typing import Any, Awaitable, Callable, Optional, Protocol, cast
 
@@ -98,16 +99,32 @@ class ConcurrencyFunction(Protocol):
     def run_all(self, msgs: list[Any]) -> Awaitable[list[Any]]: ...
 
 
-def concurrency_iterator(max_concurrency: int):
+def concurrency_aio(max_concurrency: int):
     class ExtractOriginalData(AsyncTransformIterator):
         async def transform(self, data):
             return data[0]
 
     def decorator(func: Callable[..., Any]):
-        def get_iterator(parameters):
+        def get_iterator(self, parameters=[]):
+            parent_self = self
+            if not parameters:
+                parameters = parent_self
+                parent_self = None
+
+            func_signature = inspect.signature(func)
+            func_params = list(func_signature.parameters)
+
             class MyWorker(Worker):
                 async def process_task(self, task: Any, queue: asyncio.Queue) -> Any:
-                    result = await func(task)
+                    if isinstance(task, tuple):
+                        args = [*task]
+                    else:
+                        args = [task]
+
+                    if func_params[0] != "self":
+                        result = await func(*args)
+                    else:
+                        result = await func(parent_self, *args)
                     return (result, True)  # if result is None, it would stop iteration
 
             worker = MyWorker(max_concurrency=max_concurrency)
@@ -118,8 +135,12 @@ def concurrency_iterator(max_concurrency: int):
 
             return ExtractOriginalData(worker_iterator)
 
-        async def run_all(parameters):
-            iterator = get_iterator(parameters)
+        async def run_all(self, parameters=[]):
+            if not parameters:
+                parameters = self
+                self = None
+
+            iterator = get_iterator(self, parameters)
             return [result async for result in iterator]
 
         decorated_func = cast(ConcurrencyFunction, func)

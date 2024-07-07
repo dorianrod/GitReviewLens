@@ -30,14 +30,16 @@ class BaseRepository(ABC, Generic[_T, _F, _U]):
         tasks = [self.create(entity) for entity in entities]
         await asyncio.gather(*tasks)
 
-    async def update_all(self, entities: Sequence[_T]) -> None:
-        tasks = [self.update(entity) for entity in entities]
+    async def update_all(
+        self, entities: Sequence[_T], options: Optional[_U] = None
+    ) -> None:
+        tasks = [self.update(entity, options) for entity in entities]
         await asyncio.gather(*tasks)
 
     async def upsert_all(
         self, entities: Sequence[_T], options: Optional[_U] = None
     ) -> None:
-        tasks = [self.upsert(entity) for entity in entities]
+        tasks = [self.upsert(entity, options) for entity in entities]
         await asyncio.gather(*tasks)
 
     async def get_by_id(self, id: str) -> _T | None:

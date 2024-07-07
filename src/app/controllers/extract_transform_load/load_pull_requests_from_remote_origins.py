@@ -1,10 +1,10 @@
-import asyncio
 from dataclasses import dataclass
 from typing import Sequence
 
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.utils.worker import concurrency_aio
 from src.domain.entities.pull_request import PullRequest
 from src.domain.use_cases.transfer_pull_requests_from_repositories import (
     TransferPullRequestsToAnotherRepositoryUseCase,
@@ -23,7 +23,8 @@ class LoadPullRequestsFromRemoteOriginController(
 ):
     logger: LoggerInterface
 
-    async def load_from_repository(self, git_repository, options=None):
+    @concurrency_aio(max_concurrency=5)
+    async def load_from_repository(self, git_repository, options):
         remote_repositories = get_repositories_for_git_repository(git_repository)
 
         RemoteCommentRepository = remote_repositories["comments"]
@@ -62,9 +63,7 @@ class LoadPullRequestsFromRemoteOriginController(
     @monitor("Loading pull requests from remote origin")
     async def execute(self, options=None):
         branches = settings.get_branches()
-        tasks = [
-            self.load_from_repository(git_repository=branch.repository, options=options)
-            for branch in branches
-        ]
 
-        await asyncio.gather(*tasks)
+        tasks = [(branch.repository, options) for branch in branches]
+        result = self.load_from_repository.run_all(self, tasks)
+        return await result
