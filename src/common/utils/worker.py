@@ -68,22 +68,14 @@ class WorkerIterator:
 
                 if result is None:
                     self.stop_processing = True
-
-                if result:
+                else:
                     yield result
-
-                if self.stop_processing:
-                    if self.running_tasks:
-                        await asyncio.gather(
-                            *self.running_tasks, return_exceptions=True
-                        )
-                        self.running_tasks = []
-                    return
 
                 if self.queue.empty():
                     continue
 
-                await self.worker.add_task(self.queue, self.running_tasks)
+                if not self.stop_processing:
+                    await self.worker.add_task(self.queue, self.running_tasks)
 
     def __aiter__(self):
         self.result_iterator = self.gather_results()

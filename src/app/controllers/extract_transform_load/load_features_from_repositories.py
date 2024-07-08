@@ -23,16 +23,18 @@ class LoadFeaturesController(BaseController[None, Sequence[Feature]]):
     async def load_from_repository(self, branch, options):
         repository = branch.repository
 
+        self.logger.info(f"Loading features from repository {repository.name}...")
+        max_date = options.get("from_date", None)
+
         db_features_repository = FeaturesDatabaseRepository(
             logger=self.logger, git_repository=repository
         )
-        features_in_db = await db_features_repository.find_all()
-
-        self.logger.info(f"Loading features from repository {repository.name}...")
-        max_date = None
-        for feature in features_in_db:
-            if max_date is None or feature.date > max_date:
-                max_date = feature.date
+        if not max_date:
+            features_in_db = await db_features_repository.find_all()
+            # TODO Not optimized, implements optimized operations within repositories
+            for feature in features_in_db:
+                if max_date is None or feature.date > max_date:
+                    max_date = feature.date
 
         repo_path = f"{self.path}/{repository.name}"
         GitRepoLocal(logger=self.logger).checkout(

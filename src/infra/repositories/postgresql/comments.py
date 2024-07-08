@@ -14,7 +14,7 @@ class CommentsDatabaseRepository(CommentsRepository):
 
         pull_request: PullRequest = options.get("pull_request")
 
-        super().upsert(entity, options)
+        await super().upsert(entity, options)
 
         from src.infra.repositories.postgresql.developers import (
             DeveloperDatabaseRepository,
@@ -53,7 +53,7 @@ class CommentsDatabaseRepository(CommentsRepository):
                 pull_request, {"upsert_comments": False}
             )
 
-        self.logger.info(f"Creating {repr(entity)}")
+        self.logger.debug(f"Creating {repr(entity)}")
 
         if comment is not None:
             for key in columns:

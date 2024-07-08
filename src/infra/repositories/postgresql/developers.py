@@ -31,10 +31,10 @@ class DeveloperDatabaseRepository(DeveloperRepository):
         session = get_db_session()
 
         if developer is not None:
-            self.logger.info(f"Updating developer: {repr(entity)}")
+            self.logger.debug(f"Updating developer: {repr(entity)}")
             developer.name = entity.full_name
         else:
-            self.logger.info(f"Creating developer: {repr(entity)}")
+            self.logger.debug(f"Creating developer: {repr(entity)}")
             columns = DeveloperModel.from_entity(entity)
             developer = DeveloperModel(**columns)
 

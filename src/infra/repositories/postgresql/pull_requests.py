@@ -37,9 +37,9 @@ class PullRequestsDatabaseRepository(PullRequestsRepository):
         raise_exception_if_upsert_cannot_be_done(options, pull_request)
 
         if pull_request is None:
-            self.logger.info("Creating pull request: " + repr(entity))
+            self.logger.debug("Creating pull request: " + repr(entity))
         else:
-            self.logger.info("Updating pull request: " + repr(entity))
+            self.logger.debug("Updating pull request: " + repr(entity))
 
         columns = PullRequestModel.from_entity(entity)
         columns.pop("comments")

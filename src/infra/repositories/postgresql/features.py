@@ -30,10 +30,10 @@ class FeaturesDatabaseRepository(FeaturesRepository):
 
         columns = FeatureModel.from_entity(entity)
         if feature is None:
-            self.logger.info(f"Creating {repr(entity)}")
+            self.logger.debug(f"Creating {repr(entity)}")
             feature = FeatureModel(**columns)
         else:
-            self.logger.info(f"Updating {repr(entity)}")
+            self.logger.debug(f"Updating {repr(entity)}")
             for key in columns:
                 setattr(feature, key, columns[key])
 

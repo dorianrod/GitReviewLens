@@ -8,6 +8,7 @@ from src.app.controllers.extract_transform_load.load_features_from_repositories 
     GitRepoLocal,
     LoadFeaturesController,
 )
+from src.common.utils.date import parse_date
 from src.domain.entities.feature import Feature
 from src.infra.repositories.postgresql.features import FeaturesDatabaseRepository
 
@@ -85,9 +86,11 @@ async def test_works_when_already_loaded_features(mock_logger, mock_settings):
         )
 
         await db_features_repository.upsert_all([feature_1, feature_2])
+        initial_features_in_db = await db_features_repository.find_all()
+        assert len(initial_features_in_db) == 2
 
         controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
-        await controller.execute()
+        await controller.execute({"from_date": parse_date("2022-01-01")})
 
         features_in_db = await db_features_repository.find_all()
         assert [feature.to_dict() for feature in features_in_db] == expected_result

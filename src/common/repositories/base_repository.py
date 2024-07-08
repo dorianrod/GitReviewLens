@@ -40,7 +40,8 @@ class BaseRepository(ABC, Generic[_T, _F, _U]):
         self, entities: Sequence[_T], options: Optional[_U] = None
     ) -> None:
         tasks = [self.upsert(entity, options) for entity in entities]
-        await asyncio.gather(*tasks)
+        result = await asyncio.gather(*tasks)
+        print(result)
 
     async def get_by_id(self, id: str) -> _T | None:
         item = await self.find_all({"id": id})  # type: ignore

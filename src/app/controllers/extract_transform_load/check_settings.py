@@ -42,6 +42,9 @@ class CheckSettings(BaseController[None, None]):
                 remote_repository = PullRequestsAzureRepository(**options)
             elif repository.type == RepositoryTypes.GITHUB:
                 remote_repository = PullRequestsGithubRepository(**options)  # type: ignore
+            else:
+                self.logger.error(f"Repository type for {repository} is unknown")
+                error = True
 
             try:
                 await remote_repository.find_all(
@@ -60,6 +63,7 @@ class CheckSettings(BaseController[None, None]):
                 error = True
 
         try:
+            self.logger.info("Cloning repositories...")
             await CloneRepositoriesController(logger=MutedLogger()).execute()
             self.logger.info("Repositories cloned successfully")
         except Exception as e:

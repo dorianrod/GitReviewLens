@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta, timezone
 
 import holidays
+import pandas as pd
 import pytz
 
 
@@ -166,3 +167,10 @@ def set_tz_if_not_set(date):
         return date.replace(tzinfo=timezone.utc)
 
     return date
+
+
+def add_delta_to_date(date: datetime, period: str, n: int = 1) -> datetime:
+    pd_date = pd.Timestamp(date)
+    delta = pd.Timedelta(period)
+    new_pd_date = pd_date + n * delta
+    return new_pd_date.to_pydatetime()

@@ -1,4 +1,5 @@
 import argparse
+import asyncio
 
 from dotenv import load_dotenv
 
@@ -23,9 +24,12 @@ if args.env:
     reload()
 
 command = Command(InitDatabaseController(logger=LoggerDefault()))
-command.launch(
-    load_pull_requests=args.load_pull_requests,
-    load_features=args.load_features,
-    drop_db=args.drop_db,
-    path=args.path or "/data",
+
+asyncio.run(
+    command.launch(
+        load_pull_requests=args.load_pull_requests,
+        load_features=args.load_features,
+        drop_db=args.drop_db,
+        path=args.path or "/data",
+    )
 )
