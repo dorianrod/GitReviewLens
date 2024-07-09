@@ -64,9 +64,7 @@ async def test_does_use_pagination(
         )
 
         repository.max_results = 1
-        pull_requests = await repository.find_all(
-            filters={"pull_request": pull_request}
-        )
+        pull_requests = await repository.find_all({"pull_request": pull_request})
 
         assert len(pull_requests) == 2
 
@@ -85,8 +83,6 @@ async def test_filters_out_comments(
             ],
         )
 
-        pull_requests = await repository.find_all(
-            filters={"pull_request": pull_request}
-        )
+        pull_requests = await repository.find_all({"pull_request": pull_request})
 
         assert len(pull_requests) == 0

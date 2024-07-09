@@ -4,7 +4,7 @@ from datetime import datetime
 from src.common.utils.date import format_to_iso, get_business_time_diff, parse_date
 from src.common.utils.json import recursive_asdict
 from src.common.utils.string import get_hash
-from src.domain.entities.common import BaseEntity
+from src.domain.entities.common import BaseEntity, eq
 from src.domain.entities.repository import Repository
 from src.settings import settings
 
@@ -115,6 +115,12 @@ class PullRequest(BaseEntity):
 
     def to_dict(self):
         pull_request_dict = recursive_asdict(self)
+        pull_request_dict["approvers"] = sorted(
+            pull_request_dict["approvers"], key=lambda x: x["email"]
+        )
+        pull_request_dict["comments"] = sorted(
+            pull_request_dict["comments"], key=lambda x: x["creation_date"]
+        )
         pull_request_dict["merge_time"] = self.merge_time
         pull_request_dict["first_comment_delay"] = self.first_comment_delay
         pull_request_dict["completion_date"] = format_to_iso(self.completion_date)
@@ -124,3 +130,7 @@ class PullRequest(BaseEntity):
 
     def __repr__(self):
         return f"<PullRequest {str(self.git_repository)} - {self.source_id} - {self.title}>"
+
+    def __eq__(self, obj):
+        # For unknown reason : tests fails if not override
+        return eq(self, obj)

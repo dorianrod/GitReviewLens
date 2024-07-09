@@ -18,6 +18,10 @@ class Repository(BaseEntity):
         return self.path
 
     @property
+    def id(self):
+        return self.path
+
+    @property
     def type(self) -> RepositoryType | None:
         if not self.url:
             return None

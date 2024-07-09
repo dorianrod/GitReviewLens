@@ -7,7 +7,13 @@ from src.domain.exceptions import RepositoryIncompatibility
 async def test_upsert(feature_repository, fixture_feature_dict):
     feature = Feature.from_dict(fixture_feature_dict)
     await feature_repository.upsert(feature)
-    assert await feature_repository.find_all() == [feature]
+    features = await feature_repository.find_all()
+    a = features[0].to_dict()
+    b = feature.to_dict()
+
+    for key, value in a.items():
+        assert value == b[key], key
+    assert a == b
 
 
 async def test_cannot_create_into_wrong_git_repo(

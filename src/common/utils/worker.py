@@ -29,12 +29,13 @@ class Worker(ABC):
                 queue.task_done()
 
     async def add_task(self, queue: asyncio.Queue, running_tasks: list[Any]):
+        loop = asyncio.get_event_loop()
         if self.semaphore:
             async with self.semaphore:
-                task = asyncio.create_task(self.run_task(queue))
+                task = loop.create_task(self.run_task(queue))
                 running_tasks.append(task)
         else:
-            task = asyncio.create_task(self.run_task(queue))
+            task = loop.create_task(self.run_task(queue))
             running_tasks.append(task)
 
     async def work(self):

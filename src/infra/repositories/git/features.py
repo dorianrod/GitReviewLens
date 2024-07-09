@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pydriller import Git, Repository  # type: ignore
 
 from src.common.monitoring.logger import LoggerInterface
-from src.common.utils.date import parse_date
+from src.common.utils.date import format_to_utc, parse_date
 from src.domain.entities.feature import Feature
 from src.domain.repositories.features import FeaturesRepository
 
@@ -90,7 +90,7 @@ def serialize_commit(commit, options={}):
         "git_repository": git_repository,
         "count_deleted_lines": deletions,
         "count_inserted_lines": insertions,
-        "date": parse_date(commit.committer_date).isoformat(),
+        "date": format_to_utc(commit.committer_date),
         "commit": commit.hash,
         "developer": {
             "full_name": commit.author.name,

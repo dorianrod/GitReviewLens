@@ -59,7 +59,7 @@ async def test_decorator_with_several_parameters():
         return msg + str(suffix)
 
     result = await fn.run_all([("mes1", "-a"), ("mes2", "-b")])
-    assert result == ["mes1-a", "mes2-b"]
+    assert sorted(result) == sorted(["mes1-a", "mes2-b"])
 
 
 async def test_decorator_in_class():

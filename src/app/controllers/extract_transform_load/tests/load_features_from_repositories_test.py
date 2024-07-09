@@ -1,6 +1,6 @@
 import os
 import zipfile
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pytest
 
@@ -10,26 +10,18 @@ from src.app.controllers.extract_transform_load.load_features_from_repositories 
 )
 from src.common.utils.date import parse_date
 from src.domain.entities.feature import Feature
+from src.infra.database.postgresql.lock import EntityLockManager
 from src.infra.repositories.postgresql.features import FeaturesDatabaseRepository
 
 
-async def test_extract_features_from_local_repo(mock_logger, mock_settings):
-    with patch.object(
-        GitRepoLocal,
-        'checkout',
-        return_value=[],
-    ):
-        controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
-        await controller.execute()
-
-        db_features_repository = FeaturesDatabaseRepository(
-            logger=mock_logger,
-            git_repository=mock_settings.get_branches()[0].repository,
-        )
-
-        features_in_db = await db_features_repository.find_all()
-
-        assert [feature.to_dict() for feature in features_in_db] == expected_result
+def assert_features_equal(feat1, feat2):
+    assert (
+        sorted(feat1, key=lambda x: x['commit'])[0]
+        == sorted(feat2, key=lambda x: x['commit'])[0]
+    )
+    assert sorted(feat1, key=lambda x: x['commit']) == sorted(
+        feat2, key=lambda x: x['commit']
+    )
 
 
 async def test_works_when_already_loaded_features(mock_logger, mock_settings):
@@ -93,7 +85,30 @@ async def test_works_when_already_loaded_features(mock_logger, mock_settings):
         await controller.execute({"from_date": parse_date("2022-01-01")})
 
         features_in_db = await db_features_repository.find_all()
-        assert [feature.to_dict() for feature in features_in_db] == expected_result
+        assert_features_equal(
+            [feature.to_dict() for feature in features_in_db], expected_result
+        )
+
+
+async def test_extract_features_from_local_repo(mock_logger, mock_settings):
+    with patch.object(
+        GitRepoLocal,
+        'checkout',
+        return_value=[],
+    ):
+        controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
+        await controller.execute()
+
+        db_features_repository = FeaturesDatabaseRepository(
+            logger=mock_logger,
+            git_repository=mock_settings.get_branches()[0].repository,
+        )
+
+        features_in_db = await db_features_repository.find_all()
+
+        assert_features_equal(
+            [feature.to_dict() for feature in features_in_db], expected_result
+        )
 
 
 current_file_path = os.path.abspath(__file__)

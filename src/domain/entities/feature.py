@@ -3,7 +3,6 @@ from datetime import datetime
 
 from src.common.utils.date import format_to_iso, parse_date
 from src.common.utils.json import recursive_asdict
-from src.common.utils.string import get_hash
 from src.domain.entities.common import BaseEntity
 from src.domain.entities.developer import Developer
 from src.domain.entities.repository import Repository
@@ -24,7 +23,7 @@ class Feature(BaseEntity):
 
     @property
     def id(self):
-        return get_hash(self.commit + self.git_repository.path)
+        return str(hash((self.commit, self.git_repository.path)))
 
     @property
     def count_modified_lines(self):

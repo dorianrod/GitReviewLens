@@ -29,8 +29,8 @@ class InitDatabaseController(BaseController[None, None]):
         self.logger.info("Droping database...")
 
         if drop_db:
-            drop_database()
-            init_db()
+            await drop_database()
+            await init_db()
 
         branches = settings.get_branches()
         for branch in branches:

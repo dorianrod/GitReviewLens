@@ -27,21 +27,23 @@ class BaseRepository(ABC, Generic[_T, _F, _U]):
         await self.upsert(entity, {**(options or {}), "is_new": False})  # type: ignore
 
     async def create_all(self, entities: Sequence[_T]) -> None:
-        tasks = [self.create(entity) for entity in entities]
+        loop = asyncio.get_event_loop()
+        tasks = [loop.create_task(self.create(entity)) for entity in entities]
         await asyncio.gather(*tasks)
 
     async def update_all(
         self, entities: Sequence[_T], options: Optional[_U] = None
     ) -> None:
-        tasks = [self.update(entity, options) for entity in entities]
+        loop = asyncio.get_event_loop()
+        tasks = [loop.create_task(self.update(entity, options)) for entity in entities]
         await asyncio.gather(*tasks)
 
     async def upsert_all(
         self, entities: Sequence[_T], options: Optional[_U] = None
     ) -> None:
-        tasks = [self.upsert(entity, options) for entity in entities]
-        result = await asyncio.gather(*tasks)
-        print(result)
+        loop = asyncio.get_event_loop()
+        tasks = [loop.create_task(self.upsert(entity, options)) for entity in entities]
+        await asyncio.gather(*tasks)
 
     async def get_by_id(self, id: str) -> _T | None:
         item = await self.find_all({"id": id})  # type: ignore

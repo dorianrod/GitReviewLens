@@ -184,13 +184,13 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION to_timezone(
-    date_utc timestamp without time zone,
+    date_utc timestamptz,
     timezone_dest text
 )
 RETURNS timestamp without time zone
 AS $$
 BEGIN
-    RETURN date_utc AT TIME ZONE 'UTC' AT TIME ZONE timezone_dest;
+    RETURN date_utc AT TIME ZONE timezone_dest;
 END;
 $$ LANGUAGE plpgsql;
 

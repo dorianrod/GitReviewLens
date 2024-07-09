@@ -1,4 +1,8 @@
-from sqlalchemy import create_engine, text
+from contextlib import asynccontextmanager
+
+from sqlalchemy import create_engine, delete, text
+from sqlalchemy.ext.asyncio import async_sessionmaker  # type: ignore
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import create_database, database_exists, drop_database
 
@@ -8,64 +12,85 @@ from .models.models import Base, Comment, Developer, Feature, PullRequest
 
 __engine = None
 __db_session = None
+AsyncSessionLocal = None
 
 
-def create_grafana_indicators_in_database():
+def create_sync_session():
+    Session = sessionmaker(
+        bind=create_engine(get_db_uri(False), connect_args={"connect_timeout": 5}),
+        expire_on_commit=True,
+    )
+    session = Session()
+    return session
+
+
+async def create_grafana_indicators_in_database():
     with open(settings.init_sql, 'r') as f:
         sql_commands = f.read()
-
-    if __db_session:
-        __db_session.execute(text(sql_commands))
-        __db_session.commit()
-
-
-def get_db_session():
-    global __db_session
-    if not __db_session:
-        init_db(None)
-
-    return __db_session
+    session = create_sync_session()
+    with session.begin():
+        session.execute(text(sql_commands))
+    session.commit()
 
 
-def get_db_uri():
-    return f"postgresql://{settings.db_user}:{settings.db_pass}@{settings.db_host}:{settings.db_port}/{settings.db_name}"
+@asynccontextmanager
+async def get_db_session():
+    global AsyncSessionLocal
+    if not AsyncSessionLocal:
+        await init_db(None)
+
+    assert AsyncSessionLocal is not None
+    async with AsyncSessionLocal() as session:
+        yield session
 
 
-def init_db(app=None):
+def get_engine():
     global __engine
-    global __db_session
+    return __engine
+
+
+def get_db_uri(asyncpg=True):
+    asyncpg_suffix = "+asyncpg" if asyncpg else ""
+    return f"postgresql{asyncpg_suffix}://{settings.db_user}:{settings.db_pass}@{settings.db_host}:{settings.db_port}/{settings.db_name}"
+
+
+async def init_db(app=None):
+    global __engine, __db_session, AsyncSessionLocal
 
     uri = get_db_uri()
+    sync_uri = get_db_uri(False)
+    if not database_exists(sync_uri):
+        create_database(sync_uri)
 
-    if not database_exists(uri):
-        create_database(uri)
-
-    connect_args = {"connect_timeout": 5}
-    __engine = create_engine(uri, connect_args=connect_args)
+    __engine = create_async_engine(uri, echo=False, pool_size=30, max_overflow=5)
     try:
-        Base.metadata.create_all(__engine, checkfirst=True)
+        async with __engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
     except Exception as e:
         print(e)
 
-    Session = sessionmaker(bind=__engine)
-    __db_session = Session()
+    AsyncSessionLocal = async_sessionmaker(  # type: ignore
+        bind=__engine, class_=AsyncSession, expire_on_commit=False
+    )
+    __db_session = AsyncSessionLocal()
 
     if app:
         app.config["SQLALCHEMY_DATABASE_URI"] = uri
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 
-def empty_db():
-    session = get_db_session()
-    with session.begin():
-        session.query(Feature).delete()
-        session.query(Comment).delete()
-        session.query(PullRequest).delete()
-        session.query(Developer).delete()
-    session.commit()
+async def empty_db():
+    async with get_db_session() as session:
+        async with session.begin():
+            for model in [Feature, Comment, PullRequest, Developer]:
+                try:
+                    await session.execute(delete(model))
+                except Exception:
+                    pass
+        await session.commit()
 
 
-def drop_db():
-    uri = get_db_uri()
+async def drop_db():
+    uri = get_db_uri(False)
     if database_exists(uri):
         drop_database(uri)

@@ -1,11 +1,13 @@
+from abc import abstractmethod
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, cast
 
 from sqlalchemy import JSON, Column, DateTime, Float, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import Mapped, declarative_base, relationship
 
 from src.common.utils.string import get_hash
 from src.domain.entities.comment import Comment as CommentEntity
+from src.domain.entities.common import BaseEntity
 from src.domain.entities.developer import Developer as DeveloperEntity
 from src.domain.entities.feature import Feature as FeatureEntity
 from src.domain.entities.pull_request import PullRequest as PullRequestEntity
@@ -14,7 +16,21 @@ from src.domain.entities.repository import Repository
 Base = declarative_base()
 
 
-class Developer(Base):  # type: ignore
+class BaseModel(Base):  # type: ignore
+    __abstract__ = True
+
+    @staticmethod
+    @abstractmethod
+    def to_entity(data):
+        pass
+
+    @staticmethod
+    @abstractmethod
+    def from_entity(entity: BaseEntity, options: Optional[dict] = None):
+        pass
+
+
+class Developer(BaseModel):
     __tablename__ = "developers"
 
     id = Column(String, primary_key=True)
@@ -29,7 +45,9 @@ class Developer(Base):  # type: ignore
     def to_entity(data):
         return DeveloperEntity(full_name=data.name, email=data.email)
 
-    def from_entity(developer: DeveloperEntity):
+    @staticmethod
+    def from_entity(entity: BaseEntity, options=None):
+        developer = cast(DeveloperEntity, entity)
         return {
             "id": developer.id,
             "email": developer.email,
@@ -37,14 +55,14 @@ class Developer(Base):  # type: ignore
         }
 
 
-class Comment(Base):  # type: ignore
+class Comment(BaseModel):
     __tablename__ = "comments"
 
     id = Column(String, primary_key=True)
 
     content = Column(String, nullable=False)
     creation_date = Column(
-        DateTime,
+        DateTime(timezone=True),
         nullable=False,
         default=datetime.utcnow,
     )
@@ -71,14 +89,14 @@ class Comment(Base):  # type: ignore
         )
 
     @staticmethod
-    def from_entity(
-        comment: CommentEntity, pull_request: Optional[PullRequestEntity] = None
-    ):
-        comment_dict = comment.to_dict()
+    def from_entity(entity: BaseEntity, options=None):
+        comment = cast(CommentEntity, entity)
+        options = options or {}
+        pull_request: Optional[PullRequestEntity] = options.get("pull_request")
         return {
             "id": get_hash(comment.id + pull_request.id if pull_request else ""),
             "content": comment.content,
-            "creation_date": comment_dict["creation_date"],
+            "creation_date": comment.creation_date,
             "pull_request_id": pull_request.id if pull_request else None,
             "developer_id": comment.developer.id,
         }
@@ -92,7 +110,7 @@ pull_request_approvers = Table(
 )
 
 
-class PullRequest(Base):  # type: ignore
+class PullRequest(BaseModel):
     __tablename__ = "pull_requests"
 
     id = Column(String, primary_key=True)
@@ -100,8 +118,12 @@ class PullRequest(Base):  # type: ignore
     source_id = Column(String)
     repository = Column(String)
 
-    completion_date = Column(DateTime, nullable=False, default=datetime.utcnow)
-    creation_date = Column(DateTime, nullable=False, default=datetime.utcnow)
+    completion_date = Column(
+        DateTime(timezone=True), nullable=False, default=datetime.utcnow
+    )
+    creation_date = Column(
+        DateTime(timezone=True), nullable=False, default=datetime.utcnow
+    )
     created_by_id = Column(String, ForeignKey("developers.id"), nullable=False)
     approvers: Mapped[List[Developer]] = relationship(secondary=pull_request_approvers)
     merge_time = Column(Float)
@@ -132,44 +154,61 @@ class PullRequest(Base):  # type: ignore
             previous_commit=data.previous_commit,
             commit=data.commit,
             created_by=Developer.to_entity(data.created_by),
-            approvers=[Developer.to_entity(approver) for approver in data.approvers],
-            comments=[Comment.to_entity(comment) for comment in data.comments],
+            approvers=(
+                [Developer.to_entity(approver) for approver in data.approvers]
+                if data.approvers
+                else []
+            ),
+            comments=(
+                [Comment.to_entity(comment) for comment in data.comments]
+                if data.comments
+                else []
+            ),
         )
 
     @staticmethod
-    def from_entity(pull_request: PullRequestEntity):
-        pr_dict = pull_request.to_dict()
-        return {
+    def from_entity(entity: BaseEntity, options=None):
+        pull_request = cast(PullRequestEntity, entity)
+        options = options or {}
+        many_to_many = options.get("many_to_many", False)
+
+        values = {
             "id": pull_request.id,
-            "source_id": pr_dict["source_id"],
-            "repository": pr_dict["git_repository"],
-            "type": pr_dict["type"],
-            "title": pr_dict["title"],
-            "completion_date": pr_dict["completion_date"],
-            "creation_date": pr_dict["creation_date"],
-            "merge_time": pr_dict["merge_time"],
-            "first_comment_delay": pr_dict["first_comment_delay"],
-            "source_branch": pr_dict["source_branch"],
-            "target_branch": pr_dict["target_branch"],
-            "previous_commit": pr_dict["previous_commit"],
-            "commit": pr_dict["commit"],
-            "created_by_id": pr_dict["created_by"]["email"],
-            "approvers": pull_request.approvers or [],
-            "comments": [],
+            "source_id": pull_request.source_id,
+            "repository": pull_request.git_repository.path,
+            "type": pull_request.type,
+            "title": pull_request.title,
+            "completion_date": pull_request.completion_date,
+            "creation_date": pull_request.creation_date,
+            "merge_time": pull_request.merge_time,
+            "first_comment_delay": pull_request.first_comment_delay,
+            "source_branch": pull_request.source_branch,
+            "target_branch": pull_request.target_branch,
+            "previous_commit": pull_request.previous_commit,
+            "commit": pull_request.commit,
+            "created_by_id": pull_request.created_by.email,
         }
+
+        if many_to_many:
+            values["approvers"] = [
+                approver.email for approver in pull_request.approvers
+            ]
+            values["comments"] = ([],)  # TODO see if usefull
+
+        return values
 
     def __repr__(self):
         return f"<PullRequest(id={self.source_id}, repository={self.repository})>"
 
 
-class Feature(Base):  # type: ignore
+class Feature(BaseModel):
     __tablename__ = "features"
 
     id = Column(String, primary_key=True)
 
     commit = Column(String)
 
-    date = Column(DateTime, nullable=False)
+    date = Column(DateTime(timezone=True), nullable=False)
 
     count_deleted_lines = Column(Integer)
     count_inserted_lines = Column(Integer)
@@ -184,19 +223,20 @@ class Feature(Base):  # type: ignore
     repository = Column(String)
 
     @staticmethod
-    def from_entity(entity: FeatureEntity):
+    def from_entity(entity: BaseEntity, options=None):
+        feature = cast(FeatureEntity, entity)
         return {
-            "id": entity.id,
-            "repository": entity.git_repository.path,
-            "commit": entity.commit,
-            "date": entity.date.isoformat(),
-            "developer_id": entity.developer.id,
-            "count_deleted_lines": entity.count_deleted_lines,
-            "count_inserted_lines": entity.count_inserted_lines,
-            "dmm_unit_complexity": entity.dmm_unit_complexity,
-            "dmm_unit_interfacing": entity.dmm_unit_interfacing,
-            "dmm_unit_size": entity.dmm_unit_size,
-            "modified_files": entity.modified_files,
+            "id": feature.id,
+            "repository": feature.git_repository.path,
+            "commit": feature.commit,
+            "date": feature.date,
+            "developer_id": feature.developer.id,
+            "count_deleted_lines": feature.count_deleted_lines,
+            "count_inserted_lines": feature.count_inserted_lines,
+            "dmm_unit_complexity": feature.dmm_unit_complexity,
+            "dmm_unit_interfacing": feature.dmm_unit_interfacing,
+            "dmm_unit_size": feature.dmm_unit_size,
+            "modified_files": feature.modified_files,
         }
 
     @staticmethod

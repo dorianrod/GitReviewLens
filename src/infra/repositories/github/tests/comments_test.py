@@ -69,9 +69,7 @@ async def test_does_use_pagination(
         )
 
         repository.max_results = 1
-        pull_requests = await repository.find_all(
-            filters={"pull_request": pull_request}
-        )
+        pull_requests = await repository.find_all({"pull_request": pull_request})
 
         assert len(pull_requests) == 2
 
@@ -93,7 +91,7 @@ async def test_does_filter_authors(
         )
 
         pull_requests = await repository.find_all(
-            filters={"pull_request": pull_request, "authors_to_exclude": ["dupont"]}
+            {"pull_request": pull_request, "authors_to_exclude": ["dupont"]}
         )
 
         assert len(pull_requests) == 1

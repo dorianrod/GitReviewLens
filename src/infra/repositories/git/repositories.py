@@ -37,7 +37,7 @@ class GitRepoLocal(GitRepoRepository):
             allow_unsafe_protocols=True,
             allow_unsafe_options=True,
             multi_options=['--no-checkout'],
-            progress=progress_logger,
+            progress=progress_logger,  # type: ignore
         )
 
     def checkout(self, branch):

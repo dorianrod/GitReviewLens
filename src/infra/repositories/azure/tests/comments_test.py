@@ -43,7 +43,7 @@ async def test_does_not_create_system_comment(
             },
         )
 
-        comments = await repository.find_all(filters={"pull_request": pull_request})
+        comments = await repository.find_all({"pull_request": pull_request})
 
         assert len(comments) == 0
 
@@ -68,7 +68,7 @@ async def test_does_get_user_comment_from_several_threads(
             },
         )
 
-        comments = await repository.find_all(filters={"pull_request": pull_request})
+        comments = await repository.find_all({"pull_request": pull_request})
 
         assert len(comments) == 2
         assert comments[0].to_dict() == {
@@ -110,7 +110,7 @@ async def test_does_filters_authors(
         )
 
         comments = await repository.find_all(
-            filters={
+            {
                 "pull_request": pull_request,
                 "authors_to_exclude": ["Dorian RODRIGUEZ"],
             }

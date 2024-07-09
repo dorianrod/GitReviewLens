@@ -11,20 +11,22 @@ from src.domain.exceptions import RepositoryIncompatibility
 
 async def test_it_creates_comment(
     comment_repository,
+    pull_request_repository,
     fixture_comment_dict,
     fixture_pull_request_dict,
 ):
     pull_request = PullRequest.from_dict(fixture_pull_request_dict)
     pull_request.comments = []
+    await pull_request_repository.create(pull_request)
 
     comment = Comment.from_dict(fixture_comment_dict)
     comment.creation_date = datetime.now()
 
-    await comment_repository.create(comment, {"pull_request": pull_request})
-
-    created_comments = await comment_repository.find_all(
-        filters={"pull_request": pull_request}
+    await comment_repository.create(
+        comment, {"pull_request": pull_request, "upsert_pull_request": False}
     )
+
+    created_comments = await comment_repository.find_all({"pull_request": pull_request})
     assert len(created_comments) == 1
 
     created_comment = created_comments[0]
@@ -34,7 +36,7 @@ async def test_it_creates_comment(
 
 
 async def test_cannot_create_comment_into_wrong_git_repo(
-    comment_repository, fixture_comment_dict, fixture_pull_request_dict, db_session
+    comment_repository, fixture_comment_dict, fixture_pull_request_dict
 ):
     pull_request = PullRequest.from_dict(fixture_pull_request_dict)
     pull_request.comments = []
@@ -47,7 +49,7 @@ async def test_cannot_create_comment_into_wrong_git_repo(
     with pytest.raises(RepositoryIncompatibility):
         await comment_repository.create(comment, {"pull_request": pull_request})
 
-    comments = await comment_repository.find_all(filters={"pull_request": pull_request})
+    comments = await comment_repository.find_all({"pull_request": pull_request})
     assert comments == []
 
 

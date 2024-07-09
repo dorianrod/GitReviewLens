@@ -3,6 +3,8 @@ Flask
 flask[async]
 requests
 sqlalchemy
+sqlalchemy[asyncio]
+asyncpg
 pydantic
 pytest
 pytest-asyncio
@@ -29,7 +31,9 @@ GitPython
 types-requests
 types-sqlalchemy
 types-sqlalchemy_utils
-holidays
+holidays==0.49
 pytz
 argparse
 Faker
+pandas
+pandas-stubs

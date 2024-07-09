@@ -1,7 +1,9 @@
 import os
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import pytest
+
+from src.infra.database.postgresql.lock import EntityLockManager
 
 
 @pytest.fixture
@@ -119,3 +121,12 @@ def mock_logger():
     from src.infra.monitoring.logger import LoggerDefault
 
     return Mock(spec=LoggerDefault)()
+
+
+@pytest.fixture(autouse=True)
+def patch_lock_manager():
+    with patch(
+        'src.infra.repositories.postgresql.generic_db.lock_manager',
+        new=EntityLockManager(),
+    ):
+        yield

@@ -11,6 +11,10 @@ class Branch(BaseEntity):
     name: str
     repository: Repository
 
+    @property
+    def id(self):
+        return self.name
+
     @staticmethod
     def parse(config: dict | str | Any) -> 'Branch':
         if isinstance(config, str):
