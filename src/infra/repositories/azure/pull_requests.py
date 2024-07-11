@@ -10,7 +10,7 @@ class PullRequestsAzureRepository(PullRequestsRepository):
     def __init__(self, pagination={}, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.pagination = {
-            "max_concurrency": 5,
+            "max_concurrency": 3,
             "items_per_page": 1000,
             **pagination,
         }
@@ -21,14 +21,13 @@ class PullRequestsAzureRepository(PullRequestsRepository):
             end_date=end_date,
             git_repository=self.git_repository,
             headers=get_header(self.git_repository),
+            logger=self.logger,
             **self.pagination,
         )
 
         pull_requests: list[dict] = []
         iterator = await worker.fetch()
         async for row in iterator:
-            if not row:
-                break
             pull_requests = pull_requests + row
 
         return pull_requests

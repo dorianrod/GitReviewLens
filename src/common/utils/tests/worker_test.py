@@ -31,8 +31,10 @@ async def test_do_not_execute_all_actions_with_iterator():
 
     iterator = fn.run(["mes1", "mes2", "mes3"])
 
+    first_values = set(["mes1", "mes2"])
     async for row in iterator:
-        result = row
+        first_values.remove(row)
+        assert len(first_values) == 1
         break
 
     await asyncio.sleep(0.5)
@@ -40,13 +42,11 @@ async def test_do_not_execute_all_actions_with_iterator():
     assert (
         len(start_times) == 2
     )  # Concurrency is 2, so the "mes2" has already been executed
-    assert result in ["mes1", "mes2"]
 
     async for row in iterator:
-        result = row
+        first_values.remove(row)
+        assert len(first_values) == 0
         break
-
-    assert result == "mes2"  # we only run one value for iterator
 
     # All tasks have been executed
     assert len(start_times) == 3

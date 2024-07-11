@@ -3,6 +3,7 @@ import inspect
 from abc import ABC, abstractmethod
 from typing import Any, Awaitable, Callable, Optional, Protocol, cast
 
+from src.common.utils.async_iterator_filter import AsyncFilterEmptyIterator
 from src.common.utils.async_iterator_transformer import AsyncTransformIterator
 
 
@@ -17,11 +18,15 @@ class Worker(ABC):
         raise NotImplementedError
 
     async def run_task(self, queue: asyncio.Queue):
+        stop_message = None, False
         while True:
-            task = await queue.get()
+            if queue.empty():
+                return stop_message
+
             try:
+                task = await queue.get()
                 if task is None:
-                    return
+                    return stop_message
 
                 result = await self.process_task(task, queue)
                 return result
@@ -64,18 +69,17 @@ class WorkerIterator:
                 self.running_tasks, return_when=asyncio.FIRST_COMPLETED
             )
             for task in done:
-                result = await task
+                was_stop_processing = self.stop_processing
+
+                result, should_continue = await task
                 self.running_tasks.remove(task)
 
-                if result is None:
+                if not should_continue:
                     self.stop_processing = True
-                else:
-                    yield result
 
-                if self.queue.empty():
-                    continue
+                yield result
 
-                if not self.stop_processing:
+                if not was_stop_processing or not self.queue.empty():
                     await self.worker.add_task(self.queue, self.running_tasks)
 
     def __aiter__(self):
@@ -93,16 +97,19 @@ class ConcurrencyFunction(Protocol):
 
 
 def concurrency_aio(max_concurrency: int):
-    class ExtractOriginalData(AsyncTransformIterator):
-        async def transform(self, data):
-            return data[0]
+    # class ExtractOriginalData(AsyncTransformIterator):
+    #     async def transform(self, data):
+    #         return data[0]
 
     def decorator(func: Callable[..., Any]):
-        def get_iterator(self, parameters=[]):
-            parent_self = self
-            if not parameters:
+        def get_parameters(parent_self, parameters):
+            if parameters is None:
                 parameters = parent_self
                 parent_self = None
+            return parent_self, parameters
+
+        def get_iterator(self, parameters=None):
+            parent_self, parameters = get_parameters(self, parameters)
 
             func_signature = inspect.signature(func)
             func_params = list(func_signature.parameters)
@@ -126,14 +133,13 @@ def concurrency_aio(max_concurrency: int):
             for task in parameters:
                 worker_iterator.queue.put_nowait(task)
 
-            return ExtractOriginalData(worker_iterator)
+            return AsyncFilterEmptyIterator(
+                worker_iterator
+            )  # ExtractOriginalData(worker_iterator)
 
-        async def run_all(self, parameters=[]):
-            if not parameters:
-                parameters = self
-                self = None
-
-            iterator = get_iterator(self, parameters)
+        async def run_all(self, parameters=None):
+            parent_self, parameters = get_parameters(self, parameters)
+            iterator = get_iterator(parent_self, parameters)
             return [result async for result in iterator]
 
         decorated_func = cast(ConcurrencyFunction, func)

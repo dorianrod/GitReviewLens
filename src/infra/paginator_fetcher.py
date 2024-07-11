@@ -4,6 +4,7 @@ from typing import Any, Dict, Optional, Tuple
 
 import aiohttp
 
+from src.common.utils.async_iterator_filter import AsyncFilterEmptyIterator
 from src.common.utils.worker import Worker
 
 
@@ -15,6 +16,7 @@ class PaginatorWorker(Worker, ABC):
     def __init__(
         self,
         items_per_page: int,
+        logger,
         headers: Dict[str, str] = {},
         max_concurrency: int = 10,
         timeout: Optional[int] = None,
@@ -23,6 +25,7 @@ class PaginatorWorker(Worker, ABC):
         assert max_concurrency is not None, "max_concurrency is mandatory"
         self.headers = headers
         self.timeout = timeout
+        self.logger = logger
         self.items_per_page = items_per_page
         self.page = 0
         self.page_lock = asyncio.Lock()
@@ -36,6 +39,8 @@ class PaginatorWorker(Worker, ABC):
 
     async def fetch_data(self, url: str) -> Tuple[Any, bool]:
         """Fetch data from the given URL and process it."""
+        self.logger.info(f"Fetching {url}")
+
         async with aiohttp.ClientSession(
             headers=self.headers,
             timeout=aiohttp.ClientTimeout(total=self.timeout) if self.timeout else None,
@@ -55,10 +60,11 @@ class PaginatorWorker(Worker, ABC):
         data, should_continue = await self.fetch_data(url)
         if should_continue:
             await self.add_url_to_queue(queue)
-        return data
+        return data, should_continue
 
     async def fetch(self):
         iterator = await self.work()
         for _ in range(self.max_concurrency):  # type: ignore
             await self.add_url_to_queue(iterator.queue)
-        return iterator
+
+        return AsyncFilterEmptyIterator(iterator)

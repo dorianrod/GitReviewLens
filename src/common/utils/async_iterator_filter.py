@@ -20,3 +20,8 @@ class AsyncFilterIterator:
                     return item
             except StopAsyncIteration:
                 raise StopAsyncIteration
+
+
+class AsyncFilterEmptyIterator(AsyncFilterIterator):
+    async def filter(self, value):
+        return value is not None and value != []
