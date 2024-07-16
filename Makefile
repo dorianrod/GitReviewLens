@@ -42,6 +42,9 @@ transcode_into_database:
 bash:
 	docker exec -it gitreviewlens_server /bin/bash
 
+install_requirements:
+	docker exec gitreviewlens_server pip install -r ./requirements.txt
+
 # CI
 run_test_database:
 	docker rm -f postgres_test
