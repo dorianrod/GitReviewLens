@@ -40,6 +40,10 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        folder: [app, infra, domain, common, presentation]
+
     services:
       postgres:
         image: postgres:latest
@@ -73,6 +77,6 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Run Tests
+      - name: Run Tests in ${{ matrix.folder }}
         run: |
-          env INIT_SQL_PATH=${{ github.workspace }}/postgres/indicators.sql pytest ./src
+          env INIT_SQL_PATH=${{ github.workspace }}/postgres/indicators.sql pytest ./src/${{ matrix.folder }}
