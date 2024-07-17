@@ -9,7 +9,7 @@ from src.infra.database.postgresql.lock import EntityLockManager
 
 @pytest.fixture
 def mock_git_settings():
-    from src.settings import __Settings
+    from src.common.settings import __Settings
 
     class TestSettings(__Settings):
         app_name: str = "Pull requests"

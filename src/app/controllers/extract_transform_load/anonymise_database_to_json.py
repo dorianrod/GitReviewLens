@@ -5,6 +5,7 @@ from typing import Optional
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.common.utils.env import replace_env_var
 from src.common.utils.worker import concurrency_aio
 from src.domain.entities.branch import Branch
@@ -17,7 +18,6 @@ from src.infra.repositories.postgresql.features import FeaturesDatabaseRepositor
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
 )
-from src.settings import settings
 
 
 class AnonymizeDatabaseDataToJSONController(BaseController[None, None]):

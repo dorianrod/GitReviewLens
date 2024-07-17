@@ -6,9 +6,9 @@ from dotenv import load_dotenv
 from src.app.controllers.database_dump_and_init.init_database import (
     InitDatabaseController,
 )
+from src.common.settings import reload
 from src.infra.monitoring.logger import LoggerDefault
 from src.presentation.commands.base_command import Command
-from src.settings import reload
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('--load_pull_requests', action=argparse.BooleanOptionalAction)

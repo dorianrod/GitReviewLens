@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 from datetime import datetime
 
+from src.common.settings import settings
 from src.common.utils.date import format_to_iso, get_business_time_diff, parse_date
 from src.common.utils.json import recursive_asdict
 from src.common.utils.string import get_hash
 from src.domain.entities.common import BaseEntity, eq
 from src.domain.entities.repository import Repository
-from src.settings import settings
 
 from .comment import Comment
 from .developer import Developer

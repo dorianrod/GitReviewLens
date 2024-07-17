@@ -3,7 +3,7 @@ import os
 
 from pydantic_settings import BaseSettings
 
-from .domain.entities.branch import Branch
+from ..domain.entities.branch import Branch
 
 
 class __Settings(BaseSettings):

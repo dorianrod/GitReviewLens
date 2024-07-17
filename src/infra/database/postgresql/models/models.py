@@ -1,5 +1,5 @@
+from src.common.settings import settings
 from src.infra.database.postgresql.models.factory import build_models
-from src.settings import settings
 
 models = build_models(settings.db_schema)
 

@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.common.utils.worker import concurrency_aio
 from src.domain.use_cases.transcode_pull_requests_in_repository import (
     TranscodePullRequestsInRepositoryUsecase,
@@ -12,7 +13,6 @@ from src.infra.repositories.json.transcoders import TranscodersJsonRepository
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
 )
-from src.settings import settings
 
 
 @dataclass

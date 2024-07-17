@@ -7,13 +7,13 @@ from src.app.controllers.extract_transform_load.clone_repository import (
 )
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.common.utils.date import parse_date
 from src.domain.entities.types import RepositoryTypes
 from src.domain.repositories.pull_requests import PullRequestsRepository
 from src.infra.monitoring.logger import MutedLogger
 from src.infra.repositories.azure.pull_requests import PullRequestsAzureRepository
 from src.infra.repositories.github.pull_requests import PullRequestsGithubRepository
-from src.settings import settings
 
 
 @dataclass

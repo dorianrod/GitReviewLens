@@ -6,8 +6,8 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import create_database, database_exists, drop_database
 
+from src.common.settings import settings
 from src.infra.database.postgresql.models.factory import build_models
-from src.settings import settings
 
 from .models.models import Comment, Developer, Feature, PullRequest
 

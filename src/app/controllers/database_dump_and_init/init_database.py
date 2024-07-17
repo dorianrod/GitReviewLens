@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.infra.database.postgresql.database import drop_db as drop_database
 from src.infra.database.postgresql.database import init_db
 from src.infra.repositories.json.features import FeaturesJsonRepository
@@ -11,7 +12,6 @@ from src.infra.repositories.postgresql.features import FeaturesDatabaseRepositor
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
 )
-from src.settings import settings
 
 
 @dataclass

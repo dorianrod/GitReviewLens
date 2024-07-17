@@ -4,6 +4,7 @@ from typing import Sequence
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.common.utils.worker import concurrency_aio
 from src.domain.entities.pull_request import PullRequest
 from src.domain.use_cases.transfer_pull_requests_from_repositories import (
@@ -13,7 +14,6 @@ from src.infra.repositories.factory import get_repositories_for_git_repository
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
 )
-from src.settings import settings
 
 
 @dataclass

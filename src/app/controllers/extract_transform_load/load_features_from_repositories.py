@@ -6,12 +6,12 @@ from typing import Sequence
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.common.utils.worker import concurrency_aio
 from src.domain.entities.feature import Feature
 from src.infra.repositories.git.features import FeaturesGit
 from src.infra.repositories.git.repositories import GitRepoLocal
 from src.infra.repositories.postgresql.features import FeaturesDatabaseRepository
-from src.settings import settings
 
 
 @dataclass

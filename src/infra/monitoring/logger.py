@@ -1,7 +1,7 @@
 import logging
 
 from src.common.monitoring.logger import LoggerInterface
-from src.settings import settings
+from src.common.settings import settings
 
 
 class LoggerDefault(LoggerInterface):

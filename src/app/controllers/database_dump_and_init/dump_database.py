@@ -5,6 +5,7 @@ from datetime import datetime
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.infra.repositories.json.developers import DevelopersJsonRepository
 from src.infra.repositories.json.features import FeaturesJsonRepository
 from src.infra.repositories.json.pull_requests import PullRequestsJsonRepository
@@ -13,7 +14,6 @@ from src.infra.repositories.postgresql.features import FeaturesDatabaseRepositor
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
 )
-from src.settings import settings
 
 
 @dataclass
