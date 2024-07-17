@@ -21,9 +21,11 @@ class FeaturesDatabaseRepository(GenericDatabaseRepository, FeaturesRepository):
         await super().upsert(entity, options)
 
     async def _select_find_all(self, session, options=None):
+        Model = self.Model
+
         query = (
-            select(FeatureModel)
-            .options(joinedload(FeatureModel.developer))
-            .filter(FeatureModel.repository == self.git_repository.path)
+            select(Model)
+            .options(joinedload(Model.developer))
+            .filter(Model.repository == self.git_repository.path)
         )
         return query

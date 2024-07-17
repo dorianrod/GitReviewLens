@@ -1,4 +1,3 @@
-import asyncio
 from datetime import date, datetime, timedelta
 
 import pytest
@@ -7,7 +6,7 @@ from sqlalchemy import text
 from src.domain.entities.comment import Comment
 from src.domain.entities.feature import Feature
 from src.domain.entities.pull_request import PullRequest
-from src.infra.database.postgresql.database import create_sync_session
+from src.infra.database.postgresql.database import get_db_session
 from src.infra.repositories.postgresql.features import FeaturesDatabaseRepository
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
@@ -15,9 +14,9 @@ from src.infra.repositories.postgresql.pull_requests import (
 
 
 class TestSummaryIndicators:
-    async def test_no_filters(self, dataset_1, fetch_all):
-        query = """
-            SELECT * from get_summary_statistics(
+    async def test_no_filters(self, dataset_1, fetch_all, db_schema):
+        query = f"""
+            SELECT * from {db_schema}.get_summary_statistics(
                 NULL,
                 NULL,
                 NULL,
@@ -45,10 +44,10 @@ class TestSummaryIndicators:
 
 
 class TestSummaryIndicatorsByWeekday:
-    async def test_no_filters(self, dataset_1, fetch_all):
-        query = """
+    async def test_no_filters(self, dataset_1, fetch_all, db_schema):
+        query = f"""
             SELECT *
-            FROM get_summary_statistics_by_week_day(
+            FROM {db_schema}.get_summary_statistics_by_week_day(
                 'completion',
                 NULL,
                 NULL,
@@ -233,10 +232,10 @@ expected_2_days = [
 
 
 class TestSummaryIndicatorsByDay:
-    async def test_no_filters(self, dataset_1, fetch_all):
-        query = """
+    async def test_no_filters(self, dataset_1, fetch_all, db_schema):
+        query = f"""
         SELECT *
-            FROM get_summary_statistics_by_day(
+            FROM {db_schema}.get_summary_statistics_by_day(
                 '1 day',
                 0.5,
                 'completion',
@@ -276,10 +275,10 @@ class TestSummaryIndicatorsByDay:
             },
         ]
 
-    async def test_only_smooth_over_period(self, dataset_1, fetch_all):
-        query = """
+    async def test_only_smooth_over_period(self, dataset_1, fetch_all, db_schema):
+        query = f"""
         SELECT *
-            FROM get_summary_statistics_by_day(
+            FROM {db_schema}.get_summary_statistics_by_day(
                 '2 day',
                 0.5,
                 'completion',
@@ -323,10 +322,12 @@ class TestSummaryIndicatorsByDaySmooth:
             ),
         ],
     )
-    async def test_smooth_values(self, expected, aggregation_period, fetch_all):
+    async def test_smooth_values(
+        self, expected, aggregation_period, fetch_all, db_schema
+    ):
         query = f"""
             SELECT *
-            FROM get_summary_statistics_by_day(
+            FROM {db_schema}.get_summary_statistics_by_day(
                 '{aggregation_period}',
                 0.5,
                 'creation',
@@ -346,10 +347,12 @@ class TestSummaryIndicatorsByDaySmooth:
 
 
 class TestSankeyReviewers:
-    async def test_no_filters(self, dataset_1, pull_request_without_comment, fetch_all):
-        query = """
+    async def test_no_filters(
+        self, db_schema, dataset_1, pull_request_without_comment, fetch_all
+    ):
+        query = f"""
             SELECT *
-            FROM get_sankey_reviewers(
+            FROM {db_schema}.get_sankey_reviewers(
                 NULL,
                 NULL,
                 NULL,
@@ -384,10 +387,11 @@ class TestReviewsByTimeranges:
         pull_request_without_comment,
         pull_request_with_several_comments,
         fetch_all,
+        db_schema,
     ):
-        query = """
+        query = f"""
             SELECT *
-            FROM get_review_by_time_ranges(
+            FROM {db_schema}.get_review_by_time_ranges(
                 NULL,
                 NULL,
                 NULL,
@@ -414,10 +418,11 @@ class TestMergeTimeByComplexity:
         pull_request_without_comment,
         pull_request_with_several_comments,
         fetch_all,
+        db_schema,
     ):
-        query = """
+        query = f"""
             SELECT *
-            FROM get_merge_time_by_complexity(
+            FROM {db_schema}.get_merge_time_by_complexity(
                 NULL,
                 NULL,
                 NULL,
@@ -461,12 +466,11 @@ def mock_settings(mocker, mock_git_settings):
 @pytest.fixture
 def fetch_all():
     async def _execute(query):
-        db_session = create_sync_session()
-
-        result = db_session.execute(text(query))
-        rows = result.fetchall()
-        keys = result.keys()
-        values = [dict(zip(keys, row)) for row in rows]
+        async with get_db_session() as session:
+            result = await session.execute(text(query))
+            rows = result.fetchall()
+            keys = result.keys()
+            values = [dict(zip(keys, row)) for row in rows]
         return values
 
     return _execute
@@ -598,7 +602,7 @@ async def dataset_1(
 
     await PullRequestsDatabaseRepository(
         mock_logger, git_repository="orga/repo"
-    ).upsert_all(pull_requests_1)
+    ).create_all(pull_requests_1)
 
     features_1 = [
         Feature.from_dict(feature)
@@ -612,7 +616,7 @@ async def dataset_1(
     ]
     await FeaturesDatabaseRepository(
         mock_logger, git_repository="orga/repo"
-    ).upsert_all(features_1)
+    ).create_all(features_1)
 
     pull_requests_2 = [
         PullRequest.from_dict(pr)
@@ -636,7 +640,7 @@ async def dataset_1(
     ]
     await PullRequestsDatabaseRepository(
         mock_logger, git_repository="orga/anotherrepo"
-    ).upsert_all(pull_requests_2)
+    ).create_all(pull_requests_2)
 
     features_2 = [
         Feature.from_dict(feature)
@@ -652,7 +656,7 @@ async def dataset_1(
     ]
     await FeaturesDatabaseRepository(
         mock_logger, git_repository="orga/anotherrepo"
-    ).upsert_all(features_2)
+    ).create_all(features_2)
 
 
 @pytest.fixture

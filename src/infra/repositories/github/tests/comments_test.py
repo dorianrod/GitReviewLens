@@ -1,5 +1,5 @@
 import pytest
-import requests_mock
+from aioresponses import aioresponses
 
 from src.domain.entities.pull_request import PullRequest
 from src.infra.repositories.github.comments import CommentsGithubRepository
@@ -24,12 +24,12 @@ def pull_request(fixture_pull_request_dict):
 
 
 async def test_does_get_pull_request_comments(
-    mocker, mock_pull_request_user_comment_in_github, repository, pull_request
+    mock_pull_request_user_comment_in_github, repository, pull_request
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/comments?per_page=100&page=1",
-            json=[mock_pull_request_user_comment_in_github],
+            payload=[mock_pull_request_user_comment_in_github],
         )
 
         comments = await repository.find_all({"pull_request": pull_request})
@@ -38,6 +38,7 @@ async def test_does_get_pull_request_comments(
         assert comments[0].to_dict() == {
             'id': 'e78ee796779ea493cdbbd75320401da89ce13456dd256c9e6ddc24ba373dd050',
             "content": "Great stuff!",
+            "pull_request_id": pull_request.id,
             "creation_date": "2011-04-14T16:00:49Z",
             "developer": {
                 "full_name": "octocat",
@@ -48,24 +49,23 @@ async def test_does_get_pull_request_comments(
 
 
 async def test_does_use_pagination(
-    mocker,
     mock_pull_request_user_comment_in_github,
     mock_pull_request_user_comment_2_in_github,
     repository,
     pull_request,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/comments?per_page=1&page=1",
-            json=[mock_pull_request_user_comment_in_github],
+            payload=[mock_pull_request_user_comment_in_github],
         )
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/comments?per_page=1&page=2",
-            json=[mock_pull_request_user_comment_2_in_github],
+            payload=[mock_pull_request_user_comment_2_in_github],
         )
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/comments?per_page=1&page=3",
-            json=[],
+            payload=[],
         )
 
         repository.max_results = 1
@@ -75,16 +75,15 @@ async def test_does_use_pagination(
 
 
 async def test_does_filter_authors(
-    mocker,
     mock_pull_request_user_comment_in_github,
     mock_pull_request_user_comment_2_in_github,
     repository,
     pull_request,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/comments?per_page=100&page=1",
-            json=[
+            payload=[
                 mock_pull_request_user_comment_in_github,
                 mock_pull_request_user_comment_2_in_github,
             ],

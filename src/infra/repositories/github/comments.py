@@ -1,8 +1,9 @@
-import requests
+import aiohttp
 
 from src.domain.entities.comment import Comment
 from src.domain.repositories.comments import CommentsRepository
 from src.infra.repositories.github.utils import get_base_url, get_email, get_header
+from src.infra.requests.fetch import async_fetch
 
 
 class CommentsGithubRepository(CommentsRepository):
@@ -18,21 +19,23 @@ class CommentsGithubRepository(CommentsRepository):
 
         url = f"{get_base_url(self.git_repository)}/pulls/{pull_request_id}/comments?per_page={self.max_results}&page={page}"
 
-        response = requests.get(url, headers=get_header(self.git_repository))
-        if response.status_code != 200:
-            raise Exception(
-                f"Unable to get comments in Github: {str(response.content)}"
+        async with aiohttp.ClientSession(
+            headers=get_header(self.git_repository),
+        ) as client:
+            self.client = client
+            comments_from_github = await async_fetch(
+                url,
+                client=self.client,
             )
 
-        comments_from_github = response.json()
-        results += comments_from_github
+            results += comments_from_github
 
-        if self.use_pagination and len(comments_from_github) == self.max_results:
-            results += await self._get_all_comments(
-                page=page + 1, pull_request_id=pull_request_id
-            )
+            if self.use_pagination and len(comments_from_github) == self.max_results:
+                results += await self._get_all_comments(
+                    page=page + 1, pull_request_id=pull_request_id
+                )
 
-        return results
+            return results
 
     async def find_all(self, filters=None):
         pull_request = filters.get("pull_request")
@@ -54,6 +57,7 @@ class CommentsGithubRepository(CommentsRepository):
             comments.append(
                 Comment.from_dict(
                     {
+                        "pull_request_id": pull_request.id,
                         "creation_date": comment["created_at"],
                         "content": comment["body"],
                         "developer": {

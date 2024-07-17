@@ -1,11 +1,22 @@
 import pytest
 
+from src.infra.database.conftest import (
+    create_test_schema,
+    db_schema,
+    mock_get_async_engine,
+    mock_get_db_session,
+)
 from src.infra.repositories.postgresql.comments import CommentsDatabaseRepository
 from src.infra.repositories.postgresql.developers import DeveloperDatabaseRepository
 from src.infra.repositories.postgresql.features import FeaturesDatabaseRepository
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
 )
+
+create_test_schema
+db_schema
+mock_get_db_session
+mock_get_async_engine
 
 
 @pytest.fixture(scope="function")

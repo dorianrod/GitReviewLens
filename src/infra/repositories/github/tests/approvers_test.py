@@ -1,5 +1,5 @@
 import pytest
-import requests_mock
+from aioresponses import aioresponses
 
 from src.domain.entities.pull_request import PullRequest
 from src.infra.repositories.github.approvers import ApproversGithubRepository
@@ -23,13 +23,11 @@ def pull_request(fixture_pull_request_dict):
     )
 
 
-async def test_does_approvers(
-    mocker, mock_approver_in_github, repository, pull_request
-):
-    with requests_mock.Mocker() as mocker:
+async def test_does_approvers(mock_approver_in_github, repository, pull_request):
+    with aioresponses() as mocker:
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=100&page=1",
-            json=[mock_approver_in_github],
+            payload=[mock_approver_in_github],
         )
 
         approvers = await repository.find_all({"pull_request": pull_request})
@@ -43,24 +41,23 @@ async def test_does_approvers(
 
 
 async def test_does_use_pagination(
-    mocker,
     mock_approver_in_github,
     mock_approver_2_in_github,
     repository,
     pull_request,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=1&page=1",
-            json=[mock_approver_in_github],
+            payload=[mock_approver_in_github],
         )
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=1&page=2",
-            json=[mock_approver_2_in_github],
+            payload=[mock_approver_2_in_github],
         )
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=1&page=3",
-            json=[],
+            payload=[],
         )
 
         repository.max_results = 1
@@ -70,15 +67,14 @@ async def test_does_use_pagination(
 
 
 async def test_filters_out_comments(
-    mocker,
     mock_commenter_in_github,
     repository,
     pull_request,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=100&page=1",
-            json=[
+            payload=[
                 mock_commenter_in_github,
             ],
         )

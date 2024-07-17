@@ -18,7 +18,7 @@ def async_retry(
 ):
     def decorator(func: Callable[..., Awaitable[T]]) -> Callable[..., Awaitable[T]]:
         @wraps(func)
-        async def wrapper(*args, **kwargs) -> T:
+        async def wrapper(*args, **kwargs) -> T:  # type: ignore
             for attempt in range(max_retries):
                 try:
                     return await func(*args, **kwargs)

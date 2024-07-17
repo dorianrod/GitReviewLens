@@ -31,3 +31,16 @@ class CommentsRepository(BaseRepository[Comment, dict, CommentUpsertOptions]):
         raise_exception_if_repository_differs_from_entity(
             self.git_repository, pull_request
         )
+
+    def _get_pull_requests_from_options(self, filters=None):
+        filters = filters or {}
+        pull_requests = filters.get("pull_requests")
+        pull_request = filters.get("pull_request")
+        pull_requests_ids: list[str] = [
+            (pr.source_id, pr.id) for pr in ([pull_request] if pull_request else pull_requests or [])  # type: ignore
+        ]
+
+        if not pull_requests_ids:
+            raise Exception("No pull request provided")
+
+        return pull_requests_ids

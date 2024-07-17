@@ -11,7 +11,7 @@ async def create_app(logger):
     app.state.logger = logger
     app.state.TIMEOUT = 60
 
-    await init_db(app)
+    await init_db()
 
     for route in routes:
         app.include_router(route)

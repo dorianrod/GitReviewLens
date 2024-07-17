@@ -14,7 +14,7 @@ class Comment(BaseEntity):
     developer: Developer
     content: str
     creation_date: datetime
-    pull_request_id: Optional[str]
+    pull_request_id: Optional[str] = None
 
     def clone(self):
         return Comment.from_dict(self.to_dict())

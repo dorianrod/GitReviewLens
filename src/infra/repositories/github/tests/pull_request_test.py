@@ -1,5 +1,5 @@
 import pytest
-import requests_mock
+from aioresponses import aioresponses
 
 from src.infra.repositories.github.pull_requests import PullRequestsGithubRepository
 
@@ -16,14 +16,13 @@ def repository(mock_logger):
 
 
 async def test_does_not_create_active_pull_requests(
-    mocker,
     repository,
     mock_active_pull_request_in_github,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=100&page=1",
-            json=[mock_active_pull_request_in_github],
+            payload=[mock_active_pull_request_in_github],
         )
 
         pull_requests = await repository.find_all()
@@ -32,17 +31,17 @@ async def test_does_not_create_active_pull_requests(
 
 
 async def test_does_create_completed_pull_requests(
-    mocker, repository, mock_completed_pull_request_in_github, mock_approvers_in_github
+    repository, mock_completed_pull_request_in_github, mock_approvers_in_github
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=100&page=1",
-            json=[mock_completed_pull_request_in_github],
+            payload=[mock_completed_pull_request_in_github],
         )
 
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls/1234/reviews?per_page=100&page=1",
-            json=mock_approvers_in_github,
+            payload=mock_approvers_in_github,
         )
 
         pull_requests = await repository.find_all()
@@ -78,34 +77,33 @@ async def test_does_create_completed_pull_requests(
 
 
 async def test_does_use_pagination(
-    mocker,
     mock_completed_pull_request_in_github,
     mock_completed_pull_request_2_in_github,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=1&page=1",
-            json=[mock_completed_pull_request_in_github],
+            payload=[mock_completed_pull_request_in_github],
         )
 
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=1&page=2",
-            json=[mock_completed_pull_request_2_in_github],
+            payload=[mock_completed_pull_request_2_in_github],
         )
 
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=1&page=3",
-            json=[],
+            payload=[],
         )
 
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls/1234/reviews?per_page=100&page=1",
-            json=[],
+            payload=[],
         )
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls/789/reviews?per_page=100&page=1",
-            json=[],
+            payload=[],
         )
 
         repository.max_results = 1
@@ -119,10 +117,10 @@ async def test_stops_using_pagination_with_dates(
     mock_completed_pull_request_in_github,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=1&page=1",
-            json=[mock_completed_pull_request_in_github],
+            payload=[mock_completed_pull_request_in_github],
         )
 
         repository.max_results = 1
@@ -136,14 +134,13 @@ async def test_stops_using_pagination_with_dates(
 
 
 async def test_filters_out_pull_requests_with_date_before_start_date(
-    mocker,
     mock_completed_pull_request_in_github,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=100&page=1",
-            json=[mock_completed_pull_request_in_github],
+            payload=[mock_completed_pull_request_in_github],
         )
         pull_requests = await repository.find_all(
             {
@@ -154,14 +151,13 @@ async def test_filters_out_pull_requests_with_date_before_start_date(
 
 
 async def test_filters_out_pull_requests_with_date_after_end_date(
-    mocker,
     mock_completed_pull_request_in_github,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=100&page=1",
-            json=[mock_completed_pull_request_in_github],
+            payload=[mock_completed_pull_request_in_github],
         )
 
         pull_requests = await repository.find_all(
@@ -174,19 +170,18 @@ async def test_filters_out_pull_requests_with_date_after_end_date(
 
 
 async def test_filters_in_pull_requests_with_startdate_and_enddate(
-    mocker,
     mock_completed_pull_request_in_github,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=100&page=1",
-            json=[mock_completed_pull_request_in_github],
+            payload=[mock_completed_pull_request_in_github],
         )
 
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls/1234/reviews?per_page=100&page=1",
-            json=[],
+            payload=[],
         )
 
         pull_requests = await repository.find_all(
@@ -200,14 +195,13 @@ async def test_filters_in_pull_requests_with_startdate_and_enddate(
 
 
 async def test_filters_out_pull_requests_with_exclude_filter(
-    mocker,
     mock_completed_pull_request_in_github,
     repository,
 ):
-    with requests_mock.Mocker() as mocker:
+    with aioresponses() as mocker:
         mocker.get(
             "https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page=100&page=1",
-            json=[mock_completed_pull_request_in_github],
+            payload=[mock_completed_pull_request_in_github],
         )
 
         pull_requests = await repository.find_all(

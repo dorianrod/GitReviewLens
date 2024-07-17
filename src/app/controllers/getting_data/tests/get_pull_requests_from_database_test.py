@@ -24,4 +24,5 @@ async def test_get_pull_requests(mock_logger, fixture_pull_request_dict):
         )
     )
 
-    assert await controller.execute() == [pull_request]
+    result = await controller.execute()
+    assert result == [pull_request]

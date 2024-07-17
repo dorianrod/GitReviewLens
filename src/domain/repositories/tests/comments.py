@@ -64,15 +64,20 @@ async def test_can_create_same_comments_for_different_repo(
         {**fixture_pull_request_dict, "git_repository": "orga/anotherrepo"}
     )
 
-    comment = Comment.from_dict(fixture_comment_dict)
-    await comment_repository.create(comment, {"pull_request": pull_request})
+    comment_1 = Comment.from_dict(
+        {**fixture_comment_dict, "pull_request_id": pull_request.id}
+    )
+    await comment_repository.create(comment_1, {"pull_request": pull_request})
+
+    comment_2 = Comment.from_dict(
+        {**fixture_comment_dict, "pull_request_id": pull_request_from_another_repo.id}
+    )
     await comment_repository_2.create(
-        comment, {"pull_request": pull_request_from_another_repo}
+        comment_2, {"pull_request": pull_request_from_another_repo}
     )
 
-    assert await comment_repository.find_all({"pull_request": pull_request}) == [
-        comment
-    ]
+    comments_1 = await comment_repository.find_all({"pull_request": pull_request})
+    assert comments_1 == [comment_1]
     assert await comment_repository_2.find_all(
         {"pull_request": pull_request_from_another_repo}
-    ) == [comment]
+    ) == [comment_2]

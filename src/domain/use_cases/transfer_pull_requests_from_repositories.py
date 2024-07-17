@@ -34,7 +34,7 @@ class TransferPullRequestsToAnotherRepositoryUseCase(
         self,
         options: Optional[PullRequestsFilters] = None,
     ) -> list[PullRequest]:
-        options_filters: PullRequestsFilters = options or {}
+        options_filters: PullRequestsFilters = options or {}  # type: ignore
 
         self.logger.info(
             f"Getting pull requests from {self.source_repository.__class__.__name__}..."

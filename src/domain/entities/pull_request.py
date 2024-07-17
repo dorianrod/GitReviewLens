@@ -91,17 +91,14 @@ class PullRequest(BaseEntity):
             else data.get("created_by").clone()
         )
 
-        return cls(
+        pull_request = cls(
             source_id=str(data["source_id"]),
             type=data.get("type") or "feature",
             approvers=[
                 Developer.from_dict(d) if not isinstance(d, Developer) else d.clone()
                 for d in data.get("approvers", [])
             ],
-            comments=[
-                Comment.from_dict(c) if not isinstance(c, Comment) else c.clone()
-                for c in data.get("comments", [])
-            ],
+            comments=[],
             created_by=created_by,
             creation_date=creation_date,
             completion_date=completion_date,
@@ -112,6 +109,17 @@ class PullRequest(BaseEntity):
             commit=data.get("commit"),
             previous_commit=data.get("previous_commit"),
         )
+
+        pull_request.comments = [
+            (
+                Comment.from_dict({**c, "pull_request_id": pull_request.id})
+                if not isinstance(c, Comment)
+                else c.clone()
+            )
+            for c in data.get("comments", [])
+        ]
+
+        return pull_request
 
     def to_dict(self):
         pull_request_dict = recursive_asdict(self)

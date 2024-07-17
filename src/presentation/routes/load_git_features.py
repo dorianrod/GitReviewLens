@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import APIRouter, HTTPException
 
 from src.app.controllers.extract_transform_load.load_features_from_repositories import (
@@ -9,7 +11,9 @@ router = APIRouter()
 
 
 @router.get("/load_features")
-async def load_git_features(from_date: str = None, to_date: str = None):
+async def load_git_features(
+    from_date: Optional[str] = None, to_date: Optional[str] = None
+):
     try:
         controller = LoadFeaturesController(logger=logger)
         features = await controller.execute(

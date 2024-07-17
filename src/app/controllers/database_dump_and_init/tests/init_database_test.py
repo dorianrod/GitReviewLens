@@ -20,8 +20,9 @@ path = os.path.join(directory_of_file, "temp")
 
 
 @pytest.fixture(scope="function", autouse=True)
-def mock_settings(mocker, mock_git_settings):
+def mock_settings(mocker, mock_git_settings, db_schema):
     mock_git_settings.git_branches = '[{"name":"master","repository":{"organisation":"orga","project":"", "name": "myrepo", "url": "", "token": ""}}]'
+    mock_git_settings.db_schema = db_schema
 
     mocker.patch(
         "src.app.controllers.database_dump_and_init.init_database.settings",

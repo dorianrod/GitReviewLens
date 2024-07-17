@@ -1,10 +1,11 @@
-import requests
+import aiohttp
 
 from src.common.utils.date import parse_date
 from src.domain.entities.pull_request import PullRequest
 from src.domain.repositories.pull_requests import PullRequestsRepository
 from src.infra.repositories.github.approvers import ApproversGithubRepository
 from src.infra.repositories.github.utils import get_base_url, get_email, get_header
+from src.infra.requests.fetch import async_fetch
 
 
 class PullRequestsGithubRepository(PullRequestsRepository):
@@ -22,28 +23,28 @@ class PullRequestsGithubRepository(PullRequestsRepository):
 
         url = f"{get_base_url(self.git_repository)}/pulls?state=closed&per_page={self.max_results}&page={page}"
 
-        self.logger.info(f"Fetching pull requests from Github: {url}")
-
-        response = requests.get(url, headers=get_header(self.git_repository))
-        if response.status_code != 200:
-            raise Exception(
-                f"Unable to get pull requests in Github: {str(response.content)}"
+        async with aiohttp.ClientSession(
+            headers=get_header(self.git_repository),
+        ) as client:
+            self.client = client
+            pull_requests_from_github = await async_fetch(
+                url,
+                client=self.client,
             )
 
-        pull_requests_from_github = response.json()
-        results += pull_requests_from_github
+            results += pull_requests_from_github
 
-        if self.use_pagination and len(pull_requests_from_github) == MAX_RESULTS:
-            last_value = pull_requests_from_github[-1]
-            last_date = parse_date(last_value["created_at"])
-            if (not end_date or last_date <= end_date) and (
-                not start_date or last_date >= start_date
-            ):
-                results += await self._get_all_pull_requests(
-                    start_date, end_date, page + 1
-                )
+            if self.use_pagination and len(pull_requests_from_github) == MAX_RESULTS:
+                last_value = pull_requests_from_github[-1]
+                last_date = parse_date(last_value["created_at"])
+                if (not end_date or last_date <= end_date) and (
+                    not start_date or last_date >= start_date
+                ):
+                    results += await self._get_all_pull_requests(
+                        start_date, end_date, page + 1
+                    )
 
-        return results
+            return results
 
     async def find_all(self, filters=None):
         filters = filters or {}

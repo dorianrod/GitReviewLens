@@ -5,9 +5,7 @@ from src.domain.exceptions import NotExistsException, RepositoryIncompatibility
 
 
 def assert_equal_dict(pr1, pr2):
-    assert pr1.to_dict() == pr2.to_dict()
-    is_true = pr1.__eq__(pr2)
-    assert is_true
+    assert pr1 == pr2
 
 
 class MixinPullRequests:

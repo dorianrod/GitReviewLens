@@ -74,8 +74,18 @@ def test_pullrequest_from_dict(fixture_pull_request_dict):
         Developer.from_dict(fixture_pull_request_dict["approvers"][1]),
     ]
     assert pullrequest.comments == [
-        Comment.from_dict(fixture_pull_request_dict["comments"][0]),
-        Comment.from_dict(fixture_pull_request_dict["comments"][1]),
+        Comment.from_dict(
+            {
+                **fixture_pull_request_dict["comments"][0],
+                "pull_request_id": pullrequest.id,
+            }
+        ),
+        Comment.from_dict(
+            {
+                **fixture_pull_request_dict["comments"][1],
+                "pull_request_id": pullrequest.id,
+            }
+        ),
     ]
 
 
@@ -84,7 +94,7 @@ def test_pullrequest_to_dict(fixture_pull_request_dict):
     assert pullrequest.to_dict() == {
         **fixture_pull_request_dict,
         "comments": [
-            Comment.from_dict(c).to_dict()
+            Comment.from_dict({**c, "pull_request_id": pullrequest.id}).to_dict()
             for c in fixture_pull_request_dict["comments"]
         ],
         "approvers": [

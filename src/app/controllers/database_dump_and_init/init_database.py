@@ -30,7 +30,7 @@ class InitDatabaseController(BaseController[None, None]):
 
         if drop_db:
             await drop_database()
-            await init_db()
+            await init_db(settings.db_schema)
 
         branches = settings.get_branches()
         for branch in branches:

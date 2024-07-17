@@ -68,7 +68,7 @@ $$ LANGUAGE plpgsql;
 
 DROP materialized VIEW IF EXISTS dates;
 create materialized view dates as 
-select * from get_dates_table('2000-01-01', '2030-01-01');
+select * from public.get_dates_table('2000-01-01', '2030-01-01');
 CREATE INDEX idx_date ON dates(date);
 
 
@@ -79,8 +79,8 @@ RETURNS TABLE (date DATE, day_of_week NUMERIC, day_of_week_str TEXT, is_weekend 
 BEGIN
     RETURN QUERY (
         SELECT * 
-        FROM dates
-        WHERE dates.date BETWEEN start_date::TIMESTAMP AND end_date::TIMESTAMP
+        FROM public.dates d
+        WHERE d.date BETWEEN start_date::TIMESTAMP AND end_date::TIMESTAMP
     );
 END;
 $$ LANGUAGE plpgsql;
@@ -255,38 +255,38 @@ BEGIN
             pr.id AS pr_id,
             pr.type AS type,
             pr.title,
-            CAST(DATE_TRUNC('day', to_timezone(pr.creation_date, timezone)) AS DATE) AS creation_day,
-            CAST(DATE_TRUNC('day', to_timezone(pr.completion_date, timezone)) AS DATE) AS completion_day,
+            CAST(DATE_TRUNC('day', public.to_timezone(pr.creation_date, timezone)) AS DATE) AS creation_day,
+            CAST(DATE_TRUNC('day', public.to_timezone(pr.completion_date, timezone)) AS DATE) AS completion_day,
             STRING_AGG(DISTINCT vd.name, ',') AS approvers_names,
-            to_timezone(pr.completion_date, timezone) as completion_date,
-            to_timezone(pr.creation_date, timezone) as creation_date,
+            public.to_timezone(pr.completion_date, timezone) as completion_date,
+            public.to_timezone(pr.creation_date, timezone) as creation_date,
             created_by_developer.name as created_by_name,
             pr.merge_time,
             pr.first_comment_delay,
             ft.count_inserted_lines::BIGINT as count_inserted_lines,
             ft.count_deleted_lines::BIGINT as count_deleted_lines
-        FROM pull_requests pr
-        LEFT JOIN developers created_by_developer ON created_by_developer.id = pr.created_by_id
-        LEFT JOIN pull_request_approvers pr_approvers on pr_approvers.pull_request_id = pr.id
-        LEFT JOIN developers vd ON vd.id = pr_approvers.approver_id
-        LEFT JOIN features ft ON ft.commit = pr.commit
+        FROM public.pull_requests pr
+        LEFT JOIN public.developers created_by_developer ON created_by_developer.id = pr.created_by_id
+        LEFT JOIN public.pull_request_approvers pr_approvers on pr_approvers.pull_request_id = pr.id
+        LEFT JOIN public.developers vd ON vd.id = pr_approvers.approver_id
+        LEFT JOIN public.features ft ON ft.commit = pr.commit
         WHERE 
             -- filter: period
             1 = 1 
-            AND (ISEMPTY(created_by) or created_by_developer.name = ANY(string_to_array(created_by, ',')) )
-            and ((ISEMPTY(start_date) or ISEMPTY(end_date)) OR pr.creation_date BETWEEN start_date::TIMESTAMP AND end_date::TIMESTAMP)
+            AND (public.ISEMPTY(created_by) or created_by_developer.name = ANY(string_to_array(created_by, ',')) )
+            and ((public.ISEMPTY(start_date) or public.ISEMPTY(end_date)) OR pr.creation_date BETWEEN start_date::TIMESTAMP AND end_date::TIMESTAMP)
             -- filter: approved_by
             AND (
-                (ISEMPTY(approved_by) or vd.name is NULL or vd.name = ANY(string_to_array(approved_by, ',')))
+                (public.ISEMPTY(approved_by) or vd.name is NULL or vd.name = ANY(string_to_array(approved_by, ',')))
             )
             -- filter: merge_time_interval
             AND (pr.merge_time)::FLOAT <= merge_time_interval_value
             -- filter: branch
-            and (ISEMPTY(target_branch_value) or (pr.target_branch)::TEXT = ANY(string_to_array(target_branch_value, ',')))
+            and (public.ISEMPTY(target_branch_value) or (pr.target_branch)::TEXT = ANY(string_to_array(target_branch_value, ',')))
             -- filter: type
-            and (ISEMPTY(feature_type) or (pr.type)::TEXT = ANY(string_to_array(feature_type, ',')))
+            and (public.ISEMPTY(feature_type) or (pr.type)::TEXT = ANY(string_to_array(feature_type, ',')))
             -- filter: repository
-            and (ISEMPTY(repositories) or (pr.repository)::TEXT = ANY(string_to_array(repositories, ',')))
+            and (public.ISEMPTY(repositories) or (pr.repository)::TEXT = ANY(string_to_array(repositories, ',')))
             
         GROUP by
             pr.id,
@@ -300,8 +300,8 @@ BEGIN
             ft.count_inserted_lines,
             ft.count_deleted_lines
         ) rows
-        LEFT JOIN get_dates() creation_dates ON rows.creation_day = creation_dates.date
-        LEFT JOIN get_dates() completion_dates ON rows.completion_day = completion_dates.date
+        LEFT JOIN public.get_dates() creation_dates ON rows.creation_day = creation_dates.date
+        LEFT JOIN public.get_dates() completion_dates ON rows.completion_day = completion_dates.date
         ;
 END;
 $$ LANGUAGE plpgsql;
@@ -338,13 +338,13 @@ BEGIN
     SELECT
     	c.id AS comment_id,
         pr.pr_id,
-        to_timezone(c.creation_date, timezone) as comment_date,
+        public.to_timezone(c.creation_date, timezone) as comment_date,
         commenter.name as commenter_name,
         LENGTH(c.content) AS comment_length,
         c.content AS comment_content,
         pr.created_by_name
-    FROM comments c
-    INNER JOIN filter_pull_requests(
+    FROM public.comments c
+    INNER JOIN public.filter_pull_requests(
     	created_by,
     	approved_by,
     	target_branch_value,
@@ -355,14 +355,14 @@ BEGIN
     	merge_time_interval,
     	timezone
     ) pr ON c.pull_request_id = pr.pr_id
-    LEFT JOIN developers commenter on commenter.id = c.developer_id
-    LEFT JOIN pull_request_approvers pr_approvers on pr_approvers.pull_request_id = pr.pr_id
-    LEFT JOIN developers vd ON vd.id = pr_approvers.approver_id
+    LEFT JOIN public.developers commenter on commenter.id = c.developer_id
+    LEFT JOIN public.pull_request_approvers pr_approvers on pr_approvers.pull_request_id = pr.pr_id
+    LEFT JOIN public.developers vd ON vd.id = pr_approvers.approver_id
     WHERE 
         1 = 1 
         -- filter: commented_by
         AND c.pull_request_id = pr.pr_id and pr.created_by_name != commenter.name
-        AND (ISEMPTY(commented_by) or commented_by = '-' or (commenter.name)::TEXT = ANY(string_to_array(commented_by, ',')))
+        AND (public.ISEMPTY(commented_by) or commented_by = '-' or (commenter.name)::TEXT = ANY(string_to_array(commented_by, ',')))
     group by 
         c.id,
         pr.pr_id,
@@ -433,7 +433,7 @@ BEGIN
         pr.first_comment_delay,
         pr.count_inserted_lines,
         pr.count_deleted_lines
-    FROM filter_pull_requests(
+    FROM public.filter_pull_requests(
         created_by,
         approved_by,
         target_branch_value,
@@ -444,7 +444,7 @@ BEGIN
         merge_time_interval,
         timezone
     ) pr
-    LEFT JOIN filter_comments(
+    LEFT JOIN public.filter_comments(
         commented_by,
         NULL, 
         NULL, 
@@ -456,11 +456,11 @@ BEGIN
         merge_time_interval,
         timezone
     ) comments ON comments.pr_id = pr.pr_id 
-    WHERE NOT ISEMPTY(pr.approvers_names) AND
+    WHERE NOT public.ISEMPTY(pr.approvers_names) AND
     (
         CASE 
             WHEN commented_by = '-' THEN comments.comment_id is null
-            WHEN NOT ISEMPTY(commented_by) THEN comments.comment_id is not null
+            WHEN NOT public.ISEMPTY(commented_by) THEN comments.comment_id is not null
             ELSE TRUE
         END
     );
@@ -500,7 +500,7 @@ BEGIN
         PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY p.first_comment_delay) as first_comment_delay,
         PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY p.count_inserted_lines + p.count_deleted_lines) as count_changed_lines,
         PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY p.count_inserted_lines - p.count_deleted_lines) as count_delta_changed_lines
-    FROM get_comments_or_pull_requests(
+    FROM public.get_comments_or_pull_requests(
         commented_by_param,
         created_by_param,
         reviewed_by_param,
@@ -549,7 +549,7 @@ BEGIN
         PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY p.first_comment_delay) as first_comment_delay,
         PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY p.count_inserted_lines + p.count_deleted_lines) as count_changed_lines,
         PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY p.count_inserted_lines - p.count_deleted_lines) as count_delta_changed_lines
-    FROM get_comments_or_pull_requests(
+    FROM public.get_comments_or_pull_requests(
         commented_by_param,
         created_by_param,
         reviewed_by_param,
@@ -605,7 +605,7 @@ BEGIN
         SELECT 
         p.pr_id,
         COUNT(distinct p.comment_id) as count_comments
-        FROM get_comments_or_pull_requests(
+        FROM public.get_comments_or_pull_requests(
             commented_by_param,
             created_by_param,
             reviewed_by_param,
@@ -662,7 +662,7 @@ BEGIN
             SUM(CASE WHEN p.commenter_name IS NOT NULL THEN 1.0 ELSE 0.0 END)::bigint as nb_comments,
             SUM(p.comment_length)::bigint as comment_length_sum,
             SUM(p.comment_length) / nullif(SUM(CASE WHEN p.commenter_name IS NOT NULL THEN 1.0 ELSE 0.0 END), 0)::FLOAT as comment_length_avg
-            FROM get_comments_or_pull_requests(
+            FROM public.get_comments_or_pull_requests(
                 commented_by_param,
                 created_by_param,
                 reviewed_by_param,
@@ -681,7 +681,7 @@ BEGIN
             SUM(CASE WHEN p.commenter_name IS NOT NULL THEN 1.0 ELSE 0.0 END)::bigint as total_nb_comments,
             SUM(p.comment_length)::bigint as total_comment_length_sum,
             SUM(p.comment_length) / nullif(SUM(CASE WHEN p.commenter_name IS NOT NULL THEN 1.0 ELSE 0.0 END), 0)::FLOAT as total_comment_length_avg
-            FROM filter_comments(
+            FROM public.filter_comments(
                 commented_by_param,
                 created_by_param,
                 reviewed_by_param,
@@ -721,7 +721,7 @@ BEGIN
     SELECT 
         approvers.name::TEXT as approver_name,
         COUNT(DISTINCT pr_id)::bigint as nb_pull_requests
-        FROM get_comments_or_pull_requests(
+        FROM public.get_comments_or_pull_requests(
             commented_by_param,
             created_by_param,
             reviewed_by_param,
@@ -761,7 +761,7 @@ BEGIN
 		p.created_by_name::text as created_by_name,
 		count(distinct p.comment_id)::bigint as number_comments,
 		count(distinct p.pr_id)::bigint as number_pr
-		FROM get_comments_or_pull_requests(
+		FROM public.get_comments_or_pull_requests(
             commented_by_param,
             created_by_param,
             reviewed_by_param,
@@ -804,14 +804,14 @@ BEGIN
 	COUNT(*)::bigint as count_comments
 	FROM (
 	    SELECT 
-	    (SELECT day_of_week_str FROM get_week_day(p.comment_date)) as week_day,
+	    (SELECT day_of_week_str FROM public.get_week_day(p.comment_date)) as week_day,
 	    CASE 
 	        WHEN EXTRACT(MINUTE FROM p.comment_date) >= 30 THEN 
 	            TO_CHAR(date_trunc('hour', p.comment_date) + INTERVAL '0.5 hour', 'HH24:MI')
 	        ELSE 
 	            TO_CHAR(date_trunc('hour', p.comment_date), 'HH24:MI')
 	    END as rounded_time
-	    FROM get_comments_or_pull_requests(
+	    FROM public.get_comments_or_pull_requests(
 		    commented_by_param,
 		    created_by_param,
 		    reviewed_by_param,
@@ -823,7 +823,7 @@ BEGIN
 	    ) p
 	    where comment_date is not null
 	) v
-	LEFT JOIN get_timeranges('07:00', '20:00', 30) tr ON is_time_in_timerange(v.rounded_time::TEXT, tr.time_range::TEXT) 
+	LEFT JOIN public.get_timeranges('07:00', '20:00', 30) tr ON public.is_time_in_timerange(v.rounded_time::TEXT, tr.time_range::TEXT) 
 	group by 
 	v.week_day,
 	tr.time_range
@@ -860,7 +860,7 @@ BEGIN
 	p.merge_time::float as merge_time,
 	(p.count_inserted_lines + p.count_deleted_lines)::bigint as count_changes,
 	(p.count_inserted_lines - p.count_deleted_lines)::bigint as count_changes_delta
-	FROM get_comments_or_pull_requests(
+	FROM public.get_comments_or_pull_requests(
 	    commented_by_param,
 	    created_by_param,
 	    reviewed_by_param,
@@ -921,10 +921,10 @@ BEGIN
 	        p.count_deleted_lines
 	    FROM (
 	    	select d.*, row_number() over(order by date) as num_day
-	    	from get_dates(from_date_param, to_date_param) d
+	    	from public.get_dates(from_date_param, to_date_param) d
 			WHERE NOT d.is_weekend
 	    ) days
-	    LEFT JOIN get_comments_or_pull_requests(
+	    LEFT JOIN public.get_comments_or_pull_requests(
 	        commented_by_param,
 	        created_by_param,
 	        reviewed_by_param,
@@ -990,30 +990,30 @@ BEGIN
     SELECT DISTINCT d.name 
     FROM ( 
         SELECT DISTINCT developer_id 
-        FROM comments 
+        FROM public.comments 
         LEFT JOIN pull_requests pr ON pr.id = comments.pull_request_id 
         WHERE pr.completion_date BETWEEN start_date::TIMESTAMP AND end_date::TIMESTAMP
 
         UNION 
 
         SELECT DISTINCT pr.created_by_id AS developer_id 
-        FROM pull_requests pr 
+        FROM public.pull_requests pr 
         WHERE pr.completion_date BETWEEN start_date::TIMESTAMP AND end_date::TIMESTAMP
 
         UNION 
 
         SELECT DISTINCT pr_approvers.approver_id AS developer_id 
-        FROM pull_requests pr 
+        FROM public.pull_requests pr 
         LEFT JOIN pull_request_approvers pr_approvers ON pr_approvers.pull_request_id = pr.id 
         WHERE pr.completion_date BETWEEN start_date::TIMESTAMP AND end_date::TIMESTAMP 
 
         UNION 
 
         SELECT DISTINCT ft.developer_id AS developer_id 
-        FROM features ft 
+        FROM public.features ft 
         WHERE ft.date BETWEEN start_date::TIMESTAMP AND end_date::TIMESTAMP 
     ) devs 
-    LEFT JOIN developers d ON d.id = devs.developer_id 
+    LEFT JOIN public.developers d ON d.id = devs.developer_id 
     WHERE devs.developer_id  is NOT NULL
     ORDER BY name; 
 END; 

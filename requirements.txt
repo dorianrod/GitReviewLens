@@ -6,6 +6,7 @@ sqlalchemy[asyncio]
 asyncpg
 pydantic
 pytest
+pytest-xdist
 pytest-asyncio
 pytest-mock
 pydantic_settings
@@ -13,7 +14,6 @@ pymysql
 pymongo
 mongomock
 python-dotenv
-requests_mock
 asyncio
 aiohttp
 aioresponses

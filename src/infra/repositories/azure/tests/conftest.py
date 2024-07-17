@@ -2,6 +2,19 @@ import pytest
 
 
 @pytest.fixture
+def mock_thread_comments():
+    def mock(mocker, pull_request_id, comments):
+        mocker.get(
+            f"https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests/{pull_request_id}/threads",
+            payload={
+                "value": comments,
+            },
+        )
+
+    return mock
+
+
+@pytest.fixture
 def mock_active_pull_request_in_azure():
     return {
         "pullRequestId": 1,

@@ -3,9 +3,8 @@ from sqlalchemy.orm import joinedload, subqueryload
 
 from src.domain.entities.pull_request import PullRequest
 from src.domain.repositories.pull_requests import PullRequestsRepository
-from src.infra.database.postgresql.database import get_db_session
+from src.infra.database.postgresql.database import start_transaction
 from src.infra.database.postgresql.models.models import PullRequest as PullRequestModel
-from src.infra.database.postgresql.models.models import pull_request_approvers
 from src.infra.repositories.postgresql.comments import CommentsDatabaseRepository
 from src.infra.repositories.postgresql.developers import DeveloperDatabaseRepository
 from src.infra.repositories.postgresql.generic_db import GenericDatabaseRepository
@@ -15,25 +14,22 @@ class PullRequestsDatabaseRepository(GenericDatabaseRepository, PullRequestsRepo
     Model = PullRequestModel
 
     async def _update_approvers(self, entity):
-        async with get_db_session() as session:
-            async with session.begin():
-                try:
-                    await session.execute(
-                        pull_request_approvers.delete().where(
-                            pull_request_approvers.c.pull_request_id == entity.id
-                        )
+        pull_request_approvers = self.Model.models["pull_request_approvers"]
+
+        async with start_transaction() as session:
+            await session.execute(
+                pull_request_approvers.delete().where(
+                    pull_request_approvers.c.pull_request_id == entity.id
+                )
+            )
+            for approver in entity.approvers:
+                await session.execute(
+                    pull_request_approvers.insert().values(
+                        pull_request_id=entity.id,
+                        approver_id=approver.id,
                     )
-                    for approver in entity.approvers:
-                        await session.execute(
-                            pull_request_approvers.insert().values(
-                                pull_request_id=entity.id,
-                                approver_id=approver.id,
-                            )
-                        )
-                    await session.commit()
-                except Exception as e:
-                    print(e)
-                    raise e
+                )
+            await session.commit()
 
     async def upsert(self, entity: PullRequest, options=None):
         options = options or {}
@@ -66,21 +62,24 @@ class PullRequestsDatabaseRepository(GenericDatabaseRepository, PullRequestsRepo
     async def _select_find_all(self, session, options=None):
         filters = options or {}
 
+        Model = self.Model
+        CommentModel = self.Model.models["Comment"]
+
         query = (
-            select(PullRequestModel)
+            select(Model)
             .options(
-                joinedload(PullRequestModel.created_by),
-                subqueryload(PullRequestModel.comments),
-                subqueryload(PullRequestModel.approvers),
+                joinedload(Model.created_by),
+                subqueryload(Model.comments).joinedload(CommentModel.developer),
+                subqueryload(Model.approvers),
             )
-            .filter(PullRequestModel.repository == self.git_repository.path)
+            .filter(Model.repository == self.git_repository.path)
         )
 
         pull_request_source_id = filters.get("source_id")
         pull_request_id = filters.get("id")
         if pull_request_id:
-            query = query.filter(PullRequestModel.id == pull_request_id)
+            query = query.filter(Model.id == pull_request_id)
         elif pull_request_source_id:
-            query.filter(PullRequestModel.source_id == pull_request_source_id)
+            query.filter(Model.source_id == pull_request_source_id)
 
         return query

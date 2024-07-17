@@ -77,9 +77,7 @@ class PullRequestsAzureRepository(PullRequestsRepository):
                 comments_by_pull_requests[comment.pull_request_id].append(comment)
 
             for pull_request in pull_requests:
-                pull_request.comments = comments_by_pull_requests[
-                    pull_request.source_id
-                ]
+                pull_request.comments = comments_by_pull_requests[pull_request.id]
 
         return pull_requests
 

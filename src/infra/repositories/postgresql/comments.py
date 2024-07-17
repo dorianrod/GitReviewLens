@@ -46,15 +46,17 @@ class CommentsDatabaseRepository(
         self.logger.debug(f"Creating {repr(entity)}")
         await super().upsert(entity, options)
 
-    async def _select_find_all(self, session, options=None):
-        filters = options or {}
+    async def _select_find_all(self, session, filters=None):
+        Model = self.Model
+
+        filters = filters or {}
 
         pull_request = filters.get("pull_request")
         if not pull_request:
             raise NotImplementedError()
 
         return (
-            select(CommentModel)
-            .options(joinedload(CommentModel.developer))
-            .filter(CommentModel.pull_request_id == pull_request.id)
+            select(Model)
+            .options(joinedload(Model.developer))
+            .filter(Model.pull_request_id == pull_request.id)
         )
