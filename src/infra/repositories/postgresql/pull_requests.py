@@ -55,7 +55,12 @@ class PullRequestsDatabaseRepository(GenericDatabaseRepository, PullRequestsRepo
                 logger=self.logger, git_repository=self.git_repository
             )
             await comment_repository.upsert_all(
-                entity.comments, {"pull_request": entity, "upsert_pull_request": False}
+                entity.comments,
+                {
+                    "pull_request": entity,
+                    "upsert_pull_request": False,
+                    "upsert_developers": False,
+                },
             )
 
     async def _select_find_all(self, session, options=None):

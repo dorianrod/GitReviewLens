@@ -11,7 +11,6 @@ from src.settings import settings
 from .models.models import Base, Comment, Developer, Feature, PullRequest
 
 __engine = None
-__db_session = None
 AsyncSessionLocal = None
 
 
@@ -37,15 +36,22 @@ async def create_grafana_indicators_in_database():
 async def get_db_session():
     global AsyncSessionLocal
     if not AsyncSessionLocal:
-        await init_db(None)
+        AsyncSessionLocal = async_sessionmaker(  # type: ignore
+            bind=get_async_engine(), class_=AsyncSession, expire_on_commit=False
+        )
 
     assert AsyncSessionLocal is not None
     async with AsyncSessionLocal() as session:
         yield session
 
 
-def get_engine():
+def get_async_engine():
     global __engine
+    if not __engine:
+        __engine = create_async_engine(
+            get_db_uri(), echo=False, pool_size=30, max_overflow=5
+        )
+
     return __engine
 
 
@@ -55,27 +61,14 @@ def get_db_uri(asyncpg=True):
 
 
 async def init_db(app=None):
-    global __engine, __db_session, AsyncSessionLocal
-
-    uri = get_db_uri()
     sync_uri = get_db_uri(False)
     if not database_exists(sync_uri):
         create_database(sync_uri)
-
-    __engine = create_async_engine(uri, echo=False, pool_size=30, max_overflow=5)
-    try:
-        async with __engine.begin() as conn:
+        async with get_async_engine().begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
-    except Exception as e:
-        print(e)
-
-    AsyncSessionLocal = async_sessionmaker(  # type: ignore
-        bind=__engine, class_=AsyncSession, expire_on_commit=False
-    )
-    __db_session = AsyncSessionLocal()
 
     if app:
-        app.config["SQLALCHEMY_DATABASE_URI"] = uri
+        app.config["SQLALCHEMY_DATABASE_URI"] = get_db_uri()
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 

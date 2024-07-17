@@ -1,7 +1,10 @@
+from collections import defaultdict
+
 from src.common.utils.date import is_in_range, parse_date
 from src.domain.entities.pull_request import PullRequest
 from src.domain.repositories.pull_requests import PullRequestsRepository
 from src.infra.paginator_fetcher import PaginatorWorker
+from src.infra.repositories.azure.comments import CommentsAzureRepository
 from src.infra.repositories.azure.constants import APPROVE, APPROVE_WITH_SUGGESTION
 from src.infra.repositories.azure.utils import get_base_url, get_header
 
@@ -34,6 +37,8 @@ class PullRequestsAzureRepository(PullRequestsRepository):
 
     async def find_all(self, filters=None):
         filters = filters or {}
+
+        get_comments = filters.get("get_comments", True)
         start_date = parse_date(filters.get("start_date"))
         end_date = parse_date(filters.get("end_date"))
         exclude_ids = set([str(id) for id in filters.get("exclude_ids", [])])
@@ -60,6 +65,23 @@ class PullRequestsAzureRepository(PullRequestsRepository):
                 {"git_repository": self.git_repository, **pr}
             )
             pull_requests.append(pull_request)
+
+        if get_comments:
+            comments_by_pull_requests = defaultdict(list)
+
+            comments_repo = CommentsAzureRepository(
+                logger=self.logger, git_repository=self.git_repository
+            )
+            comments = await comments_repo.find_all(
+                {"pull_requests": pull_requests[0:300]}
+            )
+            for comment in comments:
+                comments_by_pull_requests[comment.pull_request_id].append(comment)
+
+            for pull_request in pull_requests:
+                pull_request.comments = comments_by_pull_requests[
+                    pull_request.source_id
+                ]
 
         return pull_requests
 

@@ -37,9 +37,11 @@ class GenericDatabaseRepository(BaseRepository):
                 query = await self._select_find_all(session, options)
                 result = await session.execute(query)
                 rows = result.scalars().all()
+                entities = []
+                for row in rows:
+                    entities.append(self.Model.to_entity(row))
 
-            entities = [self.Model.to_entity(row) for row in rows]
-            return entities
+        return entities
 
     async def get_by_id(self, id):
         async with get_db_session() as session:

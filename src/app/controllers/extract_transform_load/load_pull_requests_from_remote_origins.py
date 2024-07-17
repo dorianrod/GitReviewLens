@@ -10,7 +10,6 @@ from src.domain.use_cases.transfer_pull_requests_from_repositories import (
     TransferPullRequestsToAnotherRepositoryUseCase,
 )
 from src.infra.repositories.factory import get_repositories_for_git_repository
-from src.infra.repositories.postgresql.comments import CommentsDatabaseRepository
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
 )
@@ -27,7 +26,6 @@ class LoadPullRequestsFromRemoteOriginController(
     async def load_from_repository(self, git_repository, options):
         remote_repositories = get_repositories_for_git_repository(git_repository)
 
-        RemoteCommentRepository = remote_repositories["comments"]
         RemotePullRequestRepository = remote_repositories["pull_requests"]
 
         target_repository = PullRequestsDatabaseRepository(
@@ -44,16 +42,10 @@ class LoadPullRequestsFromRemoteOriginController(
 
         usecase = TransferPullRequestsToAnotherRepositoryUseCase(
             logger=self.logger,
-            comments_source_repository=RemoteCommentRepository(
+            source_repository=RemotePullRequestRepository(
                 logger=self.logger, git_repository=git_repository
             ),
-            comments_target_repository=CommentsDatabaseRepository(
-                logger=self.logger, git_repository=git_repository
-            ),
-            pull_requests_source_repository=RemotePullRequestRepository(
-                logger=self.logger, git_repository=git_repository
-            ),
-            pull_requests_target_repository=target_repository,
+            target_repository=target_repository,
         )
 
         pull_requests = await usecase.execute(options)
@@ -65,5 +57,5 @@ class LoadPullRequestsFromRemoteOriginController(
         branches = settings.get_branches()
 
         tasks = [(branch.repository, options) for branch in branches]
-        result = self.load_from_repository.run_all(self, tasks)
-        return await result
+        result = await self.load_from_repository.run_all(self, tasks)
+        return result

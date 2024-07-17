@@ -2,10 +2,9 @@ import asyncio
 from abc import ABC, abstractmethod
 from typing import Any, Dict, Optional, Tuple
 
-import aiohttp
-
 from src.common.utils.async_iterator_filter import AsyncFilterEmptyIterator
 from src.common.utils.worker import Worker
+from src.infra.requests.fetch import async_fetch
 
 
 class RequestException(Exception):
@@ -41,13 +40,8 @@ class PaginatorWorker(Worker, ABC):
         """Fetch data from the given URL and process it."""
         self.logger.info(f"Fetching {url}")
 
-        async with aiohttp.ClientSession(
-            headers=self.headers,
-            timeout=aiohttp.ClientTimeout(total=self.timeout) if self.timeout else None,
-        ) as session:
-            async with session.get(url) as response:
-                data = await response.json()
-                return await self.process_data(data)
+        data = await async_fetch(url, headers=self.headers, timeout=self.timeout)
+        return await self.process_data(data)
 
     async def add_url_to_queue(self, queue: asyncio.Queue):
         async with self.page_lock:
