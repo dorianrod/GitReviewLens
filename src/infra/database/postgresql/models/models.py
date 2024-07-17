@@ -83,6 +83,7 @@ class Comment(BaseModel):
     @staticmethod
     def to_entity(data):
         return CommentEntity(
+            pull_request_id=data.pull_request_id,
             content=data.content,
             creation_date=data.creation_date,
             developer=Developer.to_entity(data.developer) if data.developer else None,

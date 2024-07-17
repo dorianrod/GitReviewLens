@@ -1,6 +1,5 @@
 debugpy
-Flask
-flask[async]
+uvicorn
 requests
 sqlalchemy
 sqlalchemy[asyncio]
@@ -37,3 +36,4 @@ argparse
 Faker
 pandas
 pandas-stubs
+fastapi

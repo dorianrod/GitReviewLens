@@ -66,15 +66,13 @@ class PullRequestsAzureRepository(PullRequestsRepository):
             )
             pull_requests.append(pull_request)
 
-        if get_comments:
+        if get_comments and pull_requests:
             comments_by_pull_requests = defaultdict(list)
 
             comments_repo = CommentsAzureRepository(
                 logger=self.logger, git_repository=self.git_repository
             )
-            comments = await comments_repo.find_all(
-                {"pull_requests": pull_requests[0:300]}
-            )
+            comments = await comments_repo.find_all({"pull_requests": pull_requests})
             for comment in comments:
                 comments_by_pull_requests[comment.pull_request_id].append(comment)
 

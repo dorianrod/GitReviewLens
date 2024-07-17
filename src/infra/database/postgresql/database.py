@@ -67,10 +67,6 @@ async def init_db(app=None):
         async with get_async_engine().begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
 
-    if app:
-        app.config["SQLALCHEMY_DATABASE_URI"] = get_db_uri()
-        app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
 
 async def empty_db():
     async with get_db_session() as session:

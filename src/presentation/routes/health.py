@@ -1,11 +1,12 @@
-from flask import Blueprint, jsonify
+from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 
 from src.settings import settings
 
-blueprint_health = Blueprint("health", __name__)
+router = APIRouter()
 
 
-@blueprint_health.route("/", methods=["GET"])
-@blueprint_health.route("/health", methods=["GET"])
-def get_application_state():
-    return jsonify({"status": "OK", "version": settings.version})
+@router.get("/", response_class=JSONResponse)
+@router.get("/health", response_class=JSONResponse)
+async def get_application_state():
+    return {"status": "OK", "version": settings.version}
