@@ -1,50 +1,33 @@
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from src.domain.entities.comment import Comment
-from src.domain.entities.pull_request import PullRequest
 from src.domain.repositories.comments import CommentsRepository
 from src.infra.database.postgresql.models.models import Comment as CommentModel
 from src.infra.repositories.postgresql.generic_db import GenericDatabaseRepository
+from src.infra.repositories.postgresql.upsert_all_developers import (
+    UpsertAllDevelopersMixin,
+)
 
 
 class CommentsDatabaseRepository(
-    GenericDatabaseRepository,
-    CommentsRepository,
+    GenericDatabaseRepository, CommentsRepository, UpsertAllDevelopersMixin
 ):
     Model = CommentModel
 
-    async def upsert(self, entity: Comment, options=None) -> None:
-        options = options or {}
+    async def upsert_all(self, entities, options=None) -> None:
+        if not entities:
+            return
 
-        pull_request: PullRequest = options.get("pull_request")
+        try:
+            is_new = options.pop("is_new")
+        except KeyError:
+            is_new = None
 
-        upsert_developer = options.get("upsert_developer", True)
-        upsert_pull_request = options.get("upsert_pull_request", True)
+        await self.upsert_all_developers(entities, options)
 
-        if upsert_developer:
-            from src.infra.repositories.postgresql.developers import (
-                DeveloperDatabaseRepository,
-            )
-
-            repository_developer = DeveloperDatabaseRepository(logger=self.logger)
-            await repository_developer.upsert(entity.developer)
-
-        if upsert_pull_request:
-            from src.infra.repositories.postgresql.pull_requests import (
-                PullRequestsDatabaseRepository,
-            )
-
-            repository_pull_request = PullRequestsDatabaseRepository(
-                logger=self.logger,
-                git_repository=self.git_repository,
-            )
-            await repository_pull_request.upsert(
-                pull_request, {"upsert_comments": False}
-            )
-
-        self.logger.debug(f"Creating {repr(entity)}")
-        await super().upsert(entity, options)
+        await self._upsert_all_entities_within_transaction(
+            entities, {**options, "is_new": is_new}
+        )
 
     async def _select_find_all(self, session, filters=None):
         Model = self.Model

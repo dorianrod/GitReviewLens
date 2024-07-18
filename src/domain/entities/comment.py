@@ -53,3 +53,10 @@ class Comment(BaseEntity):
 
     def __repr__(self):
         return f"<Comment by {repr(self.developer)} - size: {self.size}>"
+
+    @staticmethod
+    def get_developers_from_list(comments: list['Comment']) -> list[Developer]:
+        developers_set: set[Developer] = set()
+        for comment in comments:
+            developers_set.add(comment.developer)
+        return list(developers_set)

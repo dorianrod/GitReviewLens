@@ -1,83 +1,76 @@
 from datetime import datetime
 
-import pytest
-
 from src.common.utils.date import are_dates_equal
 from src.domain.entities.comment import Comment
 from src.domain.entities.pull_request import PullRequest
-from src.domain.entities.repository import Repository
-from src.domain.exceptions import RepositoryIncompatibility
 
 
-async def test_it_creates_comment(
-    comment_repository,
-    pull_request_repository,
-    fixture_comment_dict,
-    fixture_pull_request_dict,
-):
-    pull_request = PullRequest.from_dict(fixture_pull_request_dict)
-    pull_request.comments = []
-    await pull_request_repository.create(pull_request)
+class CommentMixin:
+    async def test_it_creates_comment(
+        self,
+        comment_repository,
+        pull_request_repository,
+        fixture_comment_dict,
+        fixture_pull_request_dict,
+    ):
+        pull_request = PullRequest.from_dict(fixture_pull_request_dict)
+        pull_request.comments = []
+        await pull_request_repository.create(pull_request)
 
-    comment = Comment.from_dict(fixture_comment_dict)
-    comment.creation_date = datetime.now()
+        comment = Comment.from_dict(fixture_comment_dict)
+        comment.creation_date = datetime.now()
+        comment.pull_request_id = pull_request.id
 
-    await comment_repository.create(
-        comment, {"pull_request": pull_request, "upsert_pull_request": False}
-    )
+        await comment_repository.create(comment)
 
-    created_comments = await comment_repository.find_all({"pull_request": pull_request})
-    assert len(created_comments) == 1
+        created_comments = await comment_repository.find_all(
+            {"pull_request": pull_request}
+        )
+        assert len(created_comments) == 1
 
-    created_comment = created_comments[0]
-    assert comment.developer.id == created_comment.developer.id
-    assert comment.content == created_comment.content
-    assert are_dates_equal(comment.creation_date, created_comment.creation_date)
+        created_comment = created_comments[0]
+        assert comment.developer.id == created_comment.developer.id
+        assert comment.content == created_comment.content
+        assert are_dates_equal(comment.creation_date, created_comment.creation_date)
 
+    async def test_can_create_same_comments_for_different_repo(
+        self,
+        comment_repository,
+        comment_repository_2,
+        fixture_comment_dict,
+        fixture_pull_request_dict,
+        pull_request_repository,
+        pull_request_repository_2,
+    ):
+        pull_request = PullRequest.from_dict(
+            {**fixture_pull_request_dict, "comments": []}
+        )
+        await pull_request_repository.upsert(pull_request)
 
-async def test_cannot_create_comment_into_wrong_git_repo(
-    comment_repository, fixture_comment_dict, fixture_pull_request_dict
-):
-    pull_request = PullRequest.from_dict(fixture_pull_request_dict)
-    pull_request.comments = []
+        pull_request_from_another_repo = PullRequest.from_dict(
+            {
+                **fixture_pull_request_dict,
+                "comments": [],
+                "git_repository": pull_request_repository_2.git_repository,
+            }
+        )
+        await pull_request_repository_2.upsert(pull_request_from_another_repo)
 
-    comment = Comment.from_dict(fixture_comment_dict)
-    comment.creation_date = datetime.now()
+        comment_1 = Comment.from_dict(
+            {**fixture_comment_dict, "pull_request_id": pull_request.id}
+        )
+        await comment_repository.create(comment_1)
 
-    comment_repository.git_repository = Repository.parse("orga/anotherrepo")
+        comment_2 = Comment.from_dict(
+            {
+                **fixture_comment_dict,
+                "pull_request_id": pull_request_from_another_repo.id,
+            }
+        )
+        await comment_repository_2.create(comment_2)
 
-    with pytest.raises(RepositoryIncompatibility):
-        await comment_repository.create(comment, {"pull_request": pull_request})
-
-    comments = await comment_repository.find_all({"pull_request": pull_request})
-    assert comments == []
-
-
-async def test_can_create_same_comments_for_different_repo(
-    comment_repository,
-    comment_repository_2,
-    fixture_comment_dict,
-    fixture_pull_request_dict,
-):
-    pull_request = PullRequest.from_dict(fixture_pull_request_dict)
-    pull_request_from_another_repo = PullRequest.from_dict(
-        {**fixture_pull_request_dict, "git_repository": "orga/anotherrepo"}
-    )
-
-    comment_1 = Comment.from_dict(
-        {**fixture_comment_dict, "pull_request_id": pull_request.id}
-    )
-    await comment_repository.create(comment_1, {"pull_request": pull_request})
-
-    comment_2 = Comment.from_dict(
-        {**fixture_comment_dict, "pull_request_id": pull_request_from_another_repo.id}
-    )
-    await comment_repository_2.create(
-        comment_2, {"pull_request": pull_request_from_another_repo}
-    )
-
-    comments_1 = await comment_repository.find_all({"pull_request": pull_request})
-    assert comments_1 == [comment_1]
-    assert await comment_repository_2.find_all(
-        {"pull_request": pull_request_from_another_repo}
-    ) == [comment_2]
+        comments_1 = await comment_repository.find_all({"pull_request": pull_request})
+        assert comments_1 == [comment_1]
+        assert await comment_repository_2.find_all(
+            {"pull_request": pull_request_from_another_repo}
+        ) == [comment_2]

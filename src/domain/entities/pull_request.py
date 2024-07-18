@@ -71,15 +71,35 @@ class PullRequest(BaseEntity):
             ),
         )
 
+    @staticmethod
+    def get_developers_from_list(pull_requests: list['PullRequest']) -> list[Developer]:
+        developers_set: set[Developer] = set()
+        for pull_request in pull_requests:
+            developers = pull_request.get_developers()
+            developers_set.update(developers)
+
+        return list(developers_set)
+
+    @staticmethod
+    def get_comments_from_list(pull_requests: list['PullRequest']) -> list[Comment]:
+        all_comments: list[Comment] = []
+        for pull_request in pull_requests:
+            for c in pull_request.comments:
+                c.pull_request_id = pull_request.id
+            all_comments = all_comments + pull_request.comments
+
+        return all_comments
+
     def get_developers(self) -> list[Developer]:
-        developers = {}
-        developers[self.created_by.id] = self.created_by
+        developers = set()
+        developers.add(self.created_by)
         for approver in self.approvers:
-            developers[approver.id] = approver
-        for comment in self.comments:
-            commenter = comment.developer
-            developers[commenter.id] = commenter
-        return list(developers.values())
+            developers.add(approver)
+
+        if len(self.comments):
+            developers.update(Comment.get_developers_from_list(self.comments))
+
+        return list(developers)
 
     @classmethod
     def from_dict(cls, data):

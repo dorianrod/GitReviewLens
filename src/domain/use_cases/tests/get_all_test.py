@@ -9,7 +9,7 @@ async def test_get_all(fixture_pull_request_dict, mock_logger):
     pull_request = PullRequest.from_dict(fixture_pull_request_dict)
 
     class TestPullRequestsRepository(PullRequestsRepository):
-        async def find_all(self, options=None) -> Sequence[PullRequest]:
+        async def find_all(self, options=None) -> list[PullRequest]:
             return [pull_request]
 
     pull_requests = await GetAllUseCase(  # type: ignore

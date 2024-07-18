@@ -65,3 +65,10 @@ class Feature(BaseEntity):
 
     def __repr__(self):
         return f"<Feature {self.id} - {self.git_repository}>"
+
+    @staticmethod
+    def get_developers_from_list(features: list['Feature']) -> list[Developer]:
+        developers_set: set[Developer] = set()
+        for feature in features:
+            developers_set.add(feature.developer)
+        return list(developers_set)

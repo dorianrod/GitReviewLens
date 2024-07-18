@@ -107,7 +107,13 @@ def build_models(schema):
             options = options or {}
             pull_request: Optional[PullRequestEntity] = options.get("pull_request")
             return {
-                "id": get_hash(comment.id + pull_request.id if pull_request else ""),
+                "id": get_hash(
+                    comment.id
+                    + (
+                        comment.pull_request_id
+                        or (pull_request.id if pull_request else "")
+                    )
+                ),
                 "content": comment.content,
                 "creation_date": comment.creation_date,
                 "pull_request_id": (

@@ -1,34 +1,18 @@
 from typing import Type
 
 from sqlalchemy import select
-
 from src.common.repositories.base_repository import BaseRepository
 from src.domain.exceptions import NotExistsException
-from src.infra.database.postgresql.database import get_db_session, start_transaction
-from src.infra.database.postgresql.lock import lock_manager
+from src.infra.database.postgresql.database import get_db_session
 from src.infra.database.postgresql.models.models import BaseModel
-from src.infra.repositories.postgresql.utils import upsert
+from src.infra.repositories.postgresql.upsert_entity_in_bulk import UpsertEntityInBulk
 
 
-class GenericDatabaseRepository(BaseRepository):
+class GenericDatabaseRepository(UpsertEntityInBulk, BaseRepository):
     Model: Type[BaseModel]
 
     async def upsert(self, entity, options=None):
-        await super().upsert(entity, options)
-
-        options = options or {}
-        async with lock_manager.lock(entity):
-            async with start_transaction() as session:
-                try:
-                    await upsert(
-                        session=session,
-                        entity=entity,
-                        SqlEntity=self.Model,
-                        options=options,
-                    )
-                    await session.commit()
-                except Exception as e:
-                    raise e
+        await self.upsert_all([entity], options)
 
     async def find_all(self, options=None):
         async with get_db_session() as session:  # start_transaction?

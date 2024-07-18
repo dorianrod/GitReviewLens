@@ -26,17 +26,15 @@ class BaseRepository(ABC, Generic[_T, _F, _U]):
     async def update(self, entity: _T, options: Optional[_U] = None):
         await self.upsert(entity, {**(options or {}), "is_new": False})  # type: ignore
 
-    async def create_all(self, entities: Sequence[_T]) -> None:
-        loop = asyncio.get_event_loop()
-        tasks = [loop.create_task(self.create(entity)) for entity in entities]
-        await asyncio.gather(*tasks)
+    async def create_all(
+        self, entities: list[_T], options: Optional[_U] = None
+    ) -> None:
+        await self.upsert_all(entities, {**(options or {}), "is_new": True})  # type: ignore
 
     async def update_all(
         self, entities: Sequence[_T], options: Optional[_U] = None
     ) -> None:
-        loop = asyncio.get_event_loop()
-        tasks = [loop.create_task(self.update(entity, options)) for entity in entities]
-        await asyncio.gather(*tasks)
+        await self.upsert_all(entities, {**(options or {}), "is_new": False})  # type: ignore
 
     async def upsert_all(
         self, entities: Sequence[_T], options: Optional[_U] = None
@@ -52,5 +50,5 @@ class BaseRepository(ABC, Generic[_T, _F, _U]):
 
         return item[0]
 
-    async def find_all(self, filters: Optional[_F] = None) -> Sequence[_T]:
+    async def find_all(self, filters: Optional[_F] = None) -> list[_T]:
         raise NotImplementedError("Not used yet")

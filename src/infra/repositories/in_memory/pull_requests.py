@@ -1,38 +1,36 @@
 from collections import defaultdict
 
 from src.common.monitoring.logger import LoggerInterface
+from src.domain.entities.comment import Comment
 from src.domain.entities.pull_request import PullRequest
 from src.domain.entities.repository import Repository
-from src.domain.exceptions import NotExistsException
 from src.domain.repositories.pull_requests import PullRequestsRepository
+from src.domain.repositories.utils import (
+    raise_exception_if_repository_differs_from_entity,
+)
+from src.infra.repositories.in_memory.base import BaseInMemoryRepositoryMixin
 from src.infra.repositories.in_memory.comments import CommentsInMemoryRepository
 
 
-class PullRequestsInMemoryRepository(PullRequestsRepository):
-    pull_requests: dict[str, PullRequest]
-    pull_requests_by_source_id: dict[str, PullRequest]
-
+class PullRequestsInMemoryRepository(
+    BaseInMemoryRepositoryMixin[PullRequest], PullRequestsRepository
+):
     def __init__(self, logger: LoggerInterface, git_repository: Repository | str):
-        self.pull_requests = {}
-        self.pull_requests_by_source_id = {}
         self.comments_repository = CommentsInMemoryRepository(
             logger=logger, git_repository=git_repository
         )
         super().__init__(logger, git_repository)
 
-    async def get_by_id(self, id):
-        entity = self.pull_requests.get(id)
-        if entity:
-            return entity
-
-        raise NotExistsException(f"Pull request {id} not found")
-
     async def upsert(self, entity, options=None):
+        raise_exception_if_repository_differs_from_entity(self.git_repository, entity)
+
         await super().upsert(entity, options)
-        self.pull_requests[entity.id] = entity
-        self.pull_requests_by_source_id[entity.source_id] = entity
+
         await self.comments_repository.upsert_all(
-            entity.comments, {"pull_request": entity}
+            [
+                Comment.from_dict({**comment.to_dict(), "pull_request_id": entity.id})
+                for comment in entity.comments
+            ]
         )
 
     async def find_all(self, filters=None):
@@ -41,7 +39,7 @@ class PullRequestsInMemoryRepository(PullRequestsRepository):
 
         pull_requests = [
             pull_request
-            for pull_request in self.pull_requests.values()
+            for pull_request in self.entities_by_ids.values()
             if pull_request.id not in exclude_ids
             and self.git_repository == pull_request.git_repository
         ]

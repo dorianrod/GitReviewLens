@@ -6,7 +6,6 @@ sqlalchemy[asyncio]
 asyncpg
 pydantic
 pytest
-pytest-xdist
 pytest-asyncio
 pytest-mock
 pydantic_settings

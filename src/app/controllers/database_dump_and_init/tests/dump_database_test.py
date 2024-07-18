@@ -71,14 +71,13 @@ async def test_dump_database(
         path=f"{path}/developers.json",
     ).find_all()
     assert len(developers) == 3
-    assert developers[0] == Developer.from_dict(fixture_developer_dict)
+    assert Developer.from_dict(fixture_developer_dict) in developers
 
     features = await FeaturesJsonRepository(
         logger=mock_logger,
         path=f"{path}/features.json",
         git_repository=git_repository,
     ).find_all()
-    assert features[0].to_dict() == Feature.from_dict(fixture_feature_dict).to_dict()
     assert features == [Feature.from_dict(fixture_feature_dict)]
 
     pull_requets = await PullRequestsJsonRepository(

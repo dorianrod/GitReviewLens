@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from src.domain.entities.common import BaseEntity
 
 
-@dataclass
+@dataclass(frozen=True)
 class Developer(BaseEntity):
     full_name: str
     email: str

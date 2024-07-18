@@ -34,6 +34,7 @@ class DumpDatabaseController(BaseController[None, None]):
 
         self.logger.info("Making backup for pull_requests...")
         previous_json_pull_requests = await json_repository_pull_request.find_all()
+
         await PullRequestsJsonRepository(
             logger=self.logger,
             path=f"{self.path}/{backup_date}/pull_requests.json",

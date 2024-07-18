@@ -16,9 +16,10 @@ class TranscodeDevelopersUseCase(BaseUseCaseWithParameters[Sequence[Developer]])
         transcoded_developers: list[Developer] = []
 
         for developer in developers:
-            transcoded_developer = Developer.from_dict(developer.to_dict())
-            transcoded_developer.full_name = self.transcoder.transcode(
-                transcoded_developer.email
+            full_name = self.transcoder.transcode(developer.email)
+
+            transcoded_developer = Developer.from_dict(
+                {**developer.to_dict(), "full_name": full_name}
             )
             transcoded_developers.append(transcoded_developer)
 
