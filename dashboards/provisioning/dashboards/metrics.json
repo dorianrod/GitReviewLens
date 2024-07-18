@@ -66,18 +66,30 @@
       },
       "id": 54,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "minimize",
+        "emptyValue": false,
         "favorites": false,
         "filter": false,
         "groupSelection": false,
         "header": true,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "repository"
       },
+      "pluginVersion": "3.1.0",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
     },
@@ -112,18 +124,30 @@
       },
       "id": 55,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "minimize",
+        "emptyValue": false,
         "favorites": false,
         "filter": false,
         "groupSelection": false,
         "header": true,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "type"
       },
+      "pluginVersion": "3.1.0",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
     },
@@ -158,18 +182,30 @@
       },
       "id": 56,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "minimize",
+        "emptyValue": false,
         "favorites": false,
         "filter": false,
         "groupSelection": false,
         "header": true,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "target_branch"
       },
+      "pluginVersion": "3.1.0",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
     },
@@ -204,18 +240,30 @@
       },
       "id": 57,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "button",
+        "emptyValue": false,
         "favorites": false,
         "filter": false,
         "groupSelection": false,
         "header": true,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": false,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "date_ref"
       },
+      "pluginVersion": "3.1.0",
       "title": "Date reference",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
@@ -1458,18 +1506,30 @@
       },
       "id": 49,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "button",
+        "emptyValue": false,
         "favorites": true,
         "filter": true,
         "groupSelection": false,
         "header": false,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": false,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "aggregation_period"
       },
+      "pluginVersion": "3.1.0",
       "title": "Aggregation period",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
@@ -1506,18 +1566,30 @@
       },
       "id": 58,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "button",
+        "emptyValue": false,
         "favorites": true,
         "filter": true,
         "groupSelection": false,
         "header": false,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": false,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "percentile"
       },
+      "pluginVersion": "3.1.0",
       "title": "Percentile",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
@@ -2288,7 +2360,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2307,18 +2380,30 @@
       },
       "id": 63,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": true,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "minimize",
+        "emptyValue": false,
         "favorites": true,
         "filter": true,
         "groupSelection": false,
         "header": false,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "commented_by"
       },
+      "pluginVersion": "3.1.0",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
     },
@@ -2359,7 +2444,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2378,18 +2464,30 @@
       },
       "id": 65,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "minimize",
+        "emptyValue": false,
         "favorites": true,
         "filter": true,
         "groupSelection": false,
         "header": false,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "created_by"
       },
+      "pluginVersion": "3.1.0",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
     },
@@ -2414,11 +2512,12 @@
           "format": "auto",
           "height": 600
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const title = \"# comments / pull requests\"\nconst names = {\n  \"category\": {\n    \"field\": \"range\",\n    \"name\": \"nb_of_comments\"\n  },\n  \"values\": {\n    \"field\": \"nb\",\n    \"name\": \"count\"\n  },\n}\n\nconst serie = data.series[0]\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right'\n  },\n  series: [\n    {\n      name: title,\n      radius: \"80%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
+        "getOption": "const title = \"# comments / pull requests\"\nconst names = {\n  \"category\": {\n    \"field\": \"range\",\n    \"name\": \"nb_of_comments\"\n  },\n  \"values\": {\n    \"field\": \"nb\",\n    \"name\": \"count\"\n  },\n}\n\nconst serie = context.panel.data.series[0]\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right'\n  },\n  series: [\n    {\n      name: title,\n      radius: \"80%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -2429,9 +2528,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
-      "pluginVersion": "10.2.0-133119",
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -2500,11 +2604,12 @@
           "format": "auto",
           "height": 600
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const title = \"# comments\"\nconst names = {\n  \"category\": {\n    \"field\": \"name\",\n    \"name\": \"name\"\n  },\n  \"values\": {\n    \"field\": \"nb_comments\",\n    \"name\": \"nb_comments\"\n  },\n}\n\nconst serie = data.series[0]\n\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nechartsInstance.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  locationService.partial(newValues);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll',\n    right: 50\n  },\n  series: [\n    {\n      name: title,\n      radius: \"80%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
+        "getOption": "const title = \"# comments\"\nconst names = {\n  \"category\": {\n    \"field\": \"name\",\n    \"name\": \"name\"\n  },\n  \"values\": {\n    \"field\": \"nb_comments\",\n    \"name\": \"nb_comments\"\n  },\n}\n\nconst serie = context.panel.data.series[0]\n\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\ncontext.panel.chart.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (context.grafana.replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  context.grafana.locationService.partial(newValues);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll',\n    right: 50\n  },\n  series: [\n    {\n      name: title,\n      radius: \"80%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -2515,9 +2620,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
-      "pluginVersion": "10.2.0-133119",
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -2626,7 +2736,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2767,11 +2878,12 @@
           "format": "auto",
           "height": 600
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const title = \"# approvals\"\nconst names = {\n  \"category\": {\n    \"field\": \"approver_name\",\n    \"name\": \"approver_name\"\n  },\n  \"values\": {\n    \"field\": \"nb_pull_requests\",\n    \"name\": \"nb_pull_requests\"\n  },\n}\n\nconst serie = data.series[0]\nif (!serie?.fields.length) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nechartsInstance.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-reviewed_by\"\n\n  const newValues = {}\n  const currentValues = (replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  locationService.partial(newValues, true);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll',\n    right: 50\n  },\n  series: [\n    {\n      name: title,\n      radius: \"70%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
+        "getOption": "const title = \"# approvals\"\nconst names = {\n  \"category\": {\n    \"field\": \"approver_name\",\n    \"name\": \"approver_name\"\n  },\n  \"values\": {\n    \"field\": \"nb_pull_requests\",\n    \"name\": \"nb_pull_requests\"\n  },\n}\n\nconst serie = context.panel.data.series[0]\nif (!serie?.fields.length) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\ncontext.panel.chart.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-reviewed_by\"\n\n  const newValues = {}\n  const currentValues = (context.grafana.replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  context.grafana.locationService.partial(newValues, true);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll',\n    right: 50\n  },\n  series: [\n    {\n      name: title,\n      radius: \"70%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -2782,9 +2894,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
-      "pluginVersion": "10.2.0-133119",
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -2853,11 +2970,12 @@
           "format": "auto",
           "height": 600
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const title = \"# comments length\"\nconst names = {\n  \"category\": {\n    \"field\": \"name\",\n    \"name\": \"name\"\n  },\n  \"values\": {\n    \"field\": \"comment_length_sum\",\n    \"name\": \"comment_length_sum\"\n  },\n}\n\nconst serie = data.series[0]\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\nechartsInstance.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  locationService.partial(newValues, true);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll'\n  },\n  series: [\n    {\n      name: title,\n      radius: \"70%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
+        "getOption": "const title = \"# comments length\"\nconst names = {\n  \"category\": {\n    \"field\": \"name\",\n    \"name\": \"name\"\n  },\n  \"values\": {\n    \"field\": \"comment_length_sum\",\n    \"name\": \"comment_length_sum\"\n  },\n}\n\nconst serie = context.panel.data.series[0]\nif (!serie) {\n  return {}\n}\n\nconst values = [...serie.fields.find(({ name }) => name == names[\"values\"][\"field\"]).values]\nconst categories = [...serie.fields.find(({ name }) => name == names[\"category\"][\"field\"]).values]\n\nconst dataset = [\n  {\n    dimensions: [names[\"category\"][\"name\"], names[\"values\"][\"name\"]],\n    source: categories.map((category, index) => {\n      return [category, values[index]]\n    })\n  }\n]\n\ncontext.panel.chart.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (context.grafana.replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  context.grafana.locationService.partial(newValues, true);\n});\n\nreturn {\n  dataset,\n  tooltip: {\n    trigger: 'item'\n  },\n  legend: {\n    orient: 'vertical',\n    left: 'right',\n    type: 'scroll'\n  },\n  series: [\n    {\n      name: title,\n      radius: \"70%\",\n      center: ['30%', '50%'],\n      type: 'pie',\n      label: {\n        formatter: ({ percent }) => Math.round(percent) + \"%\",\n        position: \"inside\"\n      },\n      emphasis: {\n        itemStyle: {\n          shadowBlur: 10,\n          shadowOffsetX: 0,\n          shadowColor: 'rgba(0, 0, 0, 0.5)'\n        }\n      }\n    }\n  ]\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -2868,9 +2986,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
-      "pluginVersion": "10.2.0-133119",
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -2953,7 +3076,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3097,7 +3221,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3116,18 +3241,30 @@
       },
       "id": 60,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "minimize",
+        "emptyValue": false,
         "favorites": true,
         "filter": true,
         "groupSelection": false,
         "header": false,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "created_by"
       },
+      "pluginVersion": "3.1.0",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
     },
@@ -3143,7 +3280,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3162,18 +3300,30 @@
       },
       "id": 36,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "button",
+        "emptyValue": false,
         "favorites": false,
         "filter": false,
         "groupSelection": false,
         "header": true,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": false,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "reviewer_sankey_field"
       },
+      "pluginVersion": "3.1.0",
       "title": "Distribute flow by :",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
@@ -3190,7 +3340,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3209,18 +3360,30 @@
       },
       "id": 61,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": true,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "minimize",
+        "emptyValue": false,
         "favorites": true,
         "filter": true,
         "groupSelection": false,
         "header": false,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": true,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "commented_by"
       },
+      "pluginVersion": "3.1.0",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
     },
@@ -3246,11 +3409,12 @@
           "format": "auto",
           "height": 1125
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "const indicatorField = replaceVariables(\"$reviewer_sankey_field\")\n\nconst fields = data?.series[0]?.fields ?? []\nif(fields.length == 0) return {}\n\nconst commenter = [...fields.find(({ name }) => name == \"commenter_name\").values]\nconst creator = [...fields.find(({ name }) => name == \"created_by_name\").values].map((name) => name + \" \")\nconst indicator = [...fields.find(({ name }) => name == indicatorField).values]\n\nconst developers = [...new Set([...commenter, ...creator])].filter((v) => !!v).map((name) => ({ name }))\n\nconst links = indicator.map((value, index) => {\n  return {\n    source: commenter[index],\n    target: creator[index],\n    value: value\n  }\n})\n\nechartsInstance.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = name.endsWith(\" \") ? \"var-created_by\" : \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  locationService.partial(newValues, true);\n  console.log(currentValues, newValues)\n});\n\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    triggerOn: 'mousemove',\n    formatter: ({ data }) => {\n      let { source, name, target, value } = data\n      if (value == undefined) {\n        value = links.reduce((total, { value, source }) => {\n          return total + (source == name ? value : 0)\n        }, 0)\n      }\n      return indicatorField == \"number_pr\" ? `Reviewed ${value} pull requests to` : `Wrote ${value} comments to`\n    }\n  },\n  animation: false,\n  series: {\n    type: 'sankey',\n    draggable: false,\n    emphasis: {\n      focus: 'adjacency'\n    },\n    data: developers,\n    links: links\n  }\n};",
+        "getOption": "const indicatorField = context.grafana.replaceVariables(\"$reviewer_sankey_field\")\n\nconst fields = context.panel.data?.series[0]?.fields ?? []\nif(fields.length == 0) return {}\n\nconst commenter = [...fields.find(({ name }) => name == \"commenter_name\").values]\nconst creator = [...fields.find(({ name }) => name == \"created_by_name\").values].map((name) => name + \" \")\nconst indicator = [...fields.find(({ name }) => name == indicatorField).values]\n\nconst developers = [...new Set([...commenter, ...creator])].filter((v) => !!v).map((name) => ({ name }))\n\nconst links = indicator.map((value, index) => {\n  return {\n    source: commenter[index],\n    target: creator[index],\n    value: value\n  }\n})\n\ncontext.panel.chart.on('click', 'series', function ({ name }) {\n  const developer = name.trim()\n  const varName = name.endsWith(\" \") ? \"var-created_by\" : \"var-commented_by\"\n\n  const newValues = {}\n  const currentValues = (context.grafana.replaceVariables(\"$\" + varName.replace(\"var-\", \"\")) || \"\").toString()\n  const isSelectedValue = currentValues == developer\n\n  newValues[varName] = isSelectedValue ? {} : developer\n  context.grafana.locationService.partial(newValues, true);\n  console.log(currentValues, newValues)\n});\n\n\nreturn {\n  tooltip: {\n    trigger: 'item',\n    triggerOn: 'mousemove',\n    formatter: ({ data }) => {\n      let { source, name, value } = data\n      console.log()\n      if (value == undefined) {\n        value = links.reduce((total, { value, source }) => {\n          return total + (source == name ? value : 0)\n        }, 0)\n      }\n      return indicatorField == \"number_pr\" ? `Reviewed ${value} pull requests to` : `Wrote ${value} comments to`\n    }\n  },\n  animation: false,\n  series: {\n    type: 'sankey',\n    draggable: false,\n    emphasis: {\n      focus: 'adjacency'\n    },\n    data: developers,\n    links: links\n  }\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -3261,8 +3425,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -3318,11 +3488,12 @@
           "format": "auto",
           "height": 1125
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "function generateTimeRanges(startHour, endHour) {\n  const timeRanges = [];\n  const startTime = new Date(`01/01/2022 ${startHour}:00`);\n  const endTime = new Date(`01/01/2022 ${endHour}:00`);\n\n  while (startTime < endTime) {\n    const formattedTime = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });\n    timeRanges.push(formattedTime);\n    startTime.setMinutes(startTime.getMinutes() + 30);\n  }\n\n  return timeRanges;\n}\n\nconst startHour = \"07:00\";\nconst endHour = \"20:00\";\nconst hours = generateTimeRanges(startHour, endHour);\n\nconst fields = data?.series[0]?.fields ?? []\nif (fields.length == 0) return {}\n\nconst serieIndicator = data.series.find(({ refId }) => refId == \"values\")\nconst serieDays = data.series.find(({ refId }) => refId == \"days\")\nconst serieTimeRanges = data.series.find(({ refId }) => refId == \"timeranges\")\n\nconst days = [...serieDays.fields[0].values]\nconst timeranges = [...serieTimeRanges.fields[0].values]\n\nconst ind_count_comments = [...serieIndicator.fields.find(({ name }) => name == \"count_comments\").values]\nconst ind_timeranges = [...serieIndicator.fields.find(({ name }) => name == \"time_range\").values]\nconst ind_days = [...serieIndicator.fields.find(({ name }) => name == \"week_day\").values]\n\nconst max_value = Math.max(...ind_count_comments)\n\nconst title = [];\nconst singleAxis = [];\nconst series = [];\nconst dataset = []\n\ndays.forEach(function (day, idx) {\n  title.push({\n    textStyle: {\n      fontSize: 13,\n      fontWeight: 400,\n    },\n    textBaseline: 'middle',\n    top: ((idx + 0.5) * 100) / days.length + '%',\n    text: day\n  });\n\n  singleAxis.push({\n    left: 100,\n    type: 'category',\n    boundaryGap: false,\n    data: timeranges,\n    top: (idx * 100) / days.length + 5 + '%',\n    height: 100 / days.length - 12 + '%',\n    axisLabel: {\n      interval: 'auto'\n    }\n  });\n\n  series.push({\n    singleAxisIndex: idx,\n    coordinateSystem: 'singleAxis',\n    datasetIndex: idx,\n    type: 'scatter',\n    symbolSize: function (dataItem) {\n      return dataItem[1] * 35 / max_value;\n    }\n  });\n\n  const source = []\n  ind_count_comments.forEach((value, idx) => {\n    if (ind_days[idx] == day) {\n      source.push([ind_timeranges[idx], value])\n    }\n  })\n\n  dataset.push({\n    dimensions: [\"timerange\", \"value\"],\n    source,\n  })\n});\n\nreturn {\n  dataset,\n  singleAxis: singleAxis,\n  title,\n  tooltip: {\n  },\n  series\n};",
+        "getOption": "function generateTimeRanges(startHour, endHour) {\n  const timeRanges = [];\n  const startTime = new Date(`01/01/2022 ${startHour}:00`);\n  const endTime = new Date(`01/01/2022 ${endHour}:00`);\n\n  while (startTime < endTime) {\n    const formattedTime = startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });\n    timeRanges.push(formattedTime);\n    startTime.setMinutes(startTime.getMinutes() + 30);\n  }\n\n  return timeRanges;\n}\n\nconst startHour = \"07:00\";\nconst endHour = \"20:00\";\nconst hours = generateTimeRanges(startHour, endHour);\n\nconst data = context.panel.data\nconst fields = data?.series[0]?.fields ?? []\nif (fields.length == 0) return {}\n\nconst serieIndicator = data.series.find(({ refId }) => refId == \"values\")\nconst serieDays = data.series.find(({ refId }) => refId == \"days\")\nconst serieTimeRanges = data.series.find(({ refId }) => refId == \"timeranges\")\n\nconst days = [...serieDays.fields[0].values]\nconst timeranges = [...serieTimeRanges.fields[0].values]\n\nconst ind_count_comments = [...serieIndicator.fields.find(({ name }) => name == \"count_comments\").values]\nconst ind_timeranges = [...serieIndicator.fields.find(({ name }) => name == \"time_range\").values]\nconst ind_days = [...serieIndicator.fields.find(({ name }) => name == \"week_day\").values]\n\nconst max_value = Math.max(...ind_count_comments)\n\nconst title = [];\nconst singleAxis = [];\nconst series = [];\nconst dataset = []\n\ndays.forEach(function (day, idx) {\n  title.push({\n    textStyle: {\n      fontSize: 13,\n      fontWeight: 400,\n    },\n    textBaseline: 'middle',\n    top: ((idx + 0.5) * 100) / days.length + '%',\n    text: day\n  });\n\n  singleAxis.push({\n    left: 100,\n    type: 'category',\n    boundaryGap: false,\n    data: timeranges,\n    top: (idx * 100) / days.length + 5 + '%',\n    height: 100 / days.length - 12 + '%',\n    axisLabel: {\n      interval: 'auto'\n    }\n  });\n\n  series.push({\n    singleAxisIndex: idx,\n    coordinateSystem: 'singleAxis',\n    datasetIndex: idx,\n    type: 'scatter',\n    symbolSize: function (dataItem) {\n      return dataItem[1] * 35 / max_value;\n    }\n  });\n\n  const source = []\n  ind_count_comments.forEach((value, idx) => {\n    if (ind_days[idx] == day) {\n      source.push([ind_timeranges[idx], value])\n    }\n  })\n\n  dataset.push({\n    dimensions: [\"timerange\", \"value\"],\n    source,\n  })\n});\n\nreturn {\n  dataset,\n  singleAxis: singleAxis,\n  title,\n  tooltip: {\n  },\n  series\n};",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -3333,8 +3504,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -3476,7 +3653,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -3495,19 +3673,31 @@
       },
       "id": 15,
       "options": {
+        "alwaysVisibleFilter": false,
         "autoScroll": false,
+        "collapsedByDefault": false,
+        "customValue": false,
         "displayMode": "button",
+        "emptyValue": false,
         "favorites": false,
         "filter": false,
         "groupSelection": false,
         "groups": [],
         "header": true,
         "padding": 0,
+        "persistent": false,
+        "saveSelectedGroup": false,
+        "saveSelectedGroupKey": "",
+        "showGroupTotal": false,
+        "showLabel": false,
         "showName": false,
+        "showResetButton": false,
+        "showTotal": false,
         "statusSort": false,
         "sticky": false,
         "variable": "merge_time_interval"
       },
+      "pluginVersion": "3.1.0",
       "title": "Merge time",
       "transparent": true,
       "type": "volkovlabs-variable-panel"
@@ -3533,11 +3723,12 @@
           "format": "auto",
           "height": 736
         },
+        "editorMode": "code",
         "gaode": {
           "key": "",
           "plugin": "AMap.Scale,AMap.ToolBar"
         },
-        "getOption": "try {\n\n  function formatNumberWithSuffix(number) {\n    if (number >= 1e9) {\n      return (number / 1e9).toFixed(1) + 'B';\n    } else if (number >= 1e6) {\n      return (number / 1e6).toFixed(1) + 'M';\n    } else if (number >= 1e3) {\n      return (number / 1e3).toFixed(1) + 'k';\n    } else {\n      return number.toFixed(0).toString();\n    }\n  }\n\n  function formatDuration(value) {\n    let hours = parseFloat(value / 60);\n    if (hours >= 24) {\n      return (hours / 24).toFixed(1) + 'd';\n    } else {\n      return hours.toFixed(1) + 'h';\n    }\n  }\n\n  const series = data.series.map((serie, index) => {\n    const merge_time = [...data.series[index].fields.find(({ name }) => name == \"merge_time\").values]\n    const count_changes = [...data.series[index].fields.find(({ name }) => name == \"count_changes\").values]\n\n    const values = merge_time.reduce((values, _, index) => {\n      if (count_changes[index] > 10000 || count_changes[index] > 10000) {\n        return values\n      }\n\n      return [\n        ...values,\n        [count_changes[index], merge_time[index]]\n      ]\n    }, [])\n\n    return {\n      type: 'scatter',\n      emphasis: {\n        scale: 2,\n        focus: 'series',\n      },\n      symbolSize: 3,\n      name: serie.fields[0].labels.created_by_name,\n      data: values\n    }\n  })\n\n  return {\n    legend: {\n      type: 'scroll',\n      orient: 'vertical',\n      left: 10,\n      top: 20,\n      bottom: 20\n    },\n    grid: {\n      top: 30,\n      left: 250,\n      right: 70,\n    },\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'cross'\n      }\n    },\n    dataZoom: [\n      {\n        type: 'slider',\n        xAxisIndex: 0,\n        filterMode: 'none',\n        end: 30\n      },\n      {\n        type: 'slider',\n        yAxisIndex: 0,\n        filterMode: 'none',\n        end: 30\n      },\n      {\n        type: 'inside',\n        xAxisIndex: 0,\n        filterMode: 'none'\n      },\n      {\n        type: 'inside',\n        yAxisIndex: 0,\n        filterMode: 'none'\n      }\n    ],\n    xAxis: [\n      {\n        scale: true,\n        type: 'value',\n        axisLabel: {\n          formatter: (value) => {\n            return formatNumberWithSuffix(value)\n          }\n        }\n      }\n    ],\n    yAxis: [\n      {\n        scale: true,\n        type: 'value',\n        axisLabel: {\n          formatter: (value) => {\n            return formatDuration(value)\n          }\n        }\n      }\n    ],\n    series\n  };\n} catch (e) {\n  return {}\n}\n",
+        "getOption": "try {\n\n  function formatNumberWithSuffix(number) {\n    if (number >= 1e9) {\n      return (number / 1e9).toFixed(1) + 'B';\n    } else if (number >= 1e6) {\n      return (number / 1e6).toFixed(1) + 'M';\n    } else if (number >= 1e3) {\n      return (number / 1e3).toFixed(1) + 'k';\n    } else {\n      return number.toFixed(0).toString();\n    }\n  }\n\n  function formatDuration(value) {\n    let hours = parseFloat(value / 60);\n    if (hours >= 24) {\n      return (hours / 24).toFixed(1) + 'd';\n    } else {\n      return hours.toFixed(1) + 'h';\n    }\n  }\n\n  const series = context.panel.data.series.map((serie, index) => {\n    const merge_time = [...context.panel.data.series[index].fields.find(({ name }) => name == \"merge_time\").values]\n    const count_changes = [...context.panel.data.series[index].fields.find(({ name }) => name == \"count_changes\").values]\n\n    const values = merge_time.reduce((values, _, index) => {\n      if (count_changes[index] > 10000 || count_changes[index] > 10000) {\n        return values\n      }\n\n      return [\n        ...values,\n        [count_changes[index], merge_time[index]]\n      ]\n    }, [])\n\n    return {\n      type: 'scatter',\n      emphasis: {\n        scale: 2,\n        focus: 'series',\n      },\n      symbolSize: 3,\n      name: serie.fields[0].labels.created_by_name,\n      data: values\n    }\n  })\n\n  return {\n    legend: {\n      type: 'scroll',\n      orient: 'vertical',\n      left: 10,\n      top: 20,\n      bottom: 20\n    },\n    grid: {\n      top: 30,\n      left: 250,\n      right: 70,\n    },\n    tooltip: {\n      trigger: 'item',\n      axisPointer: {\n        type: 'cross'\n      }\n    },\n    dataZoom: [\n      {\n        type: 'slider',\n        xAxisIndex: 0,\n        filterMode: 'none',\n        end: 30\n      },\n      {\n        type: 'slider',\n        yAxisIndex: 0,\n        filterMode: 'none',\n        end: 30\n      },\n      {\n        type: 'inside',\n        xAxisIndex: 0,\n        filterMode: 'none'\n      },\n      {\n        type: 'inside',\n        yAxisIndex: 0,\n        filterMode: 'none'\n      }\n    ],\n    xAxis: [\n      {\n        scale: true,\n        type: 'value',\n        axisLabel: {\n          formatter: (value) => {\n            return formatNumberWithSuffix(value)\n          }\n        }\n      }\n    ],\n    yAxis: [\n      {\n        scale: true,\n        type: 'value',\n        axisLabel: {\n          formatter: (value) => {\n            return formatDuration(value)\n          }\n        }\n      }\n    ],\n    series\n  };\n} catch (e) {\n  return {}\n}\n",
         "google": {
           "callback": "gmapReady",
           "key": ""
@@ -3548,8 +3739,14 @@
           "config": "{}",
           "height": 400,
           "name": "default"
+        },
+        "visualEditor": {
+          "code": "return {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
         }
       },
+      "pluginVersion": "6.1.0",
       "targets": [
         {
           "datasource": {
@@ -3599,7 +3796,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": ["All"],
           "value": ["$__all"]
         },
@@ -3624,7 +3821,7 @@
       {
         "allValue": " ",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": ["All"],
           "value": ["$__all"]
         },
@@ -3673,8 +3870,8 @@
       {
         "current": {
           "selected": false,
-          "text": "100d",
-          "value": "100d"
+          "text": "7d",
+          "value": "7d"
         },
         "hide": 2,
         "includeAll": false,
@@ -3708,12 +3905,12 @@
             "value": "2d"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "7d",
             "value": "7d"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "100d",
             "value": "100d"
           }
@@ -3870,7 +4067,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": ["All"],
           "value": ["$__all"]
         },
@@ -3936,7 +4133,7 @@
     ]
   },
   "time": {
-    "from": "now-2y",
+    "from": "now-5y",
     "to": "now"
   },
   "timepicker": {},
