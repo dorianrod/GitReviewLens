@@ -2,6 +2,39 @@ import pytest
 
 
 @pytest.fixture
+def mock_api_comments(mocker_aio):
+    def mock(pr_id, payload, per_page=100, page=1):
+        mocker_aio.get(
+            f"https://api.github.com/repos/orga/myrepo/pulls/{pr_id}/comments?per_page={per_page}&page={page}",
+            payload=payload,
+        )
+
+    return mock
+
+
+@pytest.fixture
+def mock_api_approvers(mocker_aio):
+    def mock(pr_id, payload, per_page=100, page=1):
+        mocker_aio.get(
+            f"https://api.github.com/repos/orga/myrepo/pulls/{pr_id}/reviews?per_page={per_page}&page={page}",
+            payload=payload,
+        )
+
+    return mock
+
+
+@pytest.fixture
+def mock_api_pull_requests(mocker_aio):
+    def mock(payload, per_page=100, page=1):
+        mocker_aio.get(
+            f"https://api.github.com/repos/orga/myrepo/pulls?state=closed&per_page={per_page}&page={page}",
+            payload=payload,
+        )
+
+    return mock
+
+
+@pytest.fixture
 def mock_active_pull_request_in_github():
     return {
         "number": 1347,

@@ -128,7 +128,7 @@ def serialize_commit(commit, options={}):
 #         self.period_index = 0
 #         self.period_index_lock = asyncio.Lock()
 
-#     async def process_data(self, data):
+#     async def process_data(self, data, options=None):
 #         return data, len(data) > 0
 
 #     async def get_commit(self, period_index: int):

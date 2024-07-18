@@ -97,10 +97,6 @@ class ConcurrencyFunction(Protocol):
 
 
 def concurrency_aio(max_concurrency: int):
-    # class ExtractOriginalData(AsyncTransformIterator):
-    #     async def transform(self, data):
-    #         return data[0]
-
     def decorator(func: Callable[..., Any]):
         def get_parameters(parent_self, parameters):
             if parameters is None:

@@ -93,7 +93,7 @@ class PullRequestPaginatorWorker(PaginatorWorker):
         skip = page * self.items_per_page
         return f"{get_base_url(self.git_repository)}/pullRequests?searchCriteria.status=all&$top={self.items_per_page}&$skip={skip}"
 
-    async def process_data(self, data):
+    async def process_data(self, data, options=None):
         rows = data["value"]
         if len(rows) == 0:
             return [], False

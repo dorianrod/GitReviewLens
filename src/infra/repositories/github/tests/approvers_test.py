@@ -1,5 +1,4 @@
 import pytest
-from aioresponses import aioresponses
 
 from src.domain.entities.pull_request import PullRequest
 from src.infra.repositories.github.approvers import ApproversGithubRepository
@@ -9,6 +8,25 @@ from src.infra.repositories.github.approvers import ApproversGithubRepository
 def repository(mock_logger):
     return ApproversGithubRepository(
         logger=mock_logger,
+        pagination={
+            "max_concurrency": 1,
+            "items_per_page": 100,
+        },
+        git_repository={
+            "name": "myrepo",
+            "organisation": "orga",
+        },
+    )
+
+
+@pytest.fixture
+def repository_pagination(mock_logger):
+    return ApproversGithubRepository(
+        logger=mock_logger,
+        pagination={
+            "max_concurrency": 1,
+            "items_per_page": 1,
+        },
         git_repository={
             "name": "myrepo",
             "organisation": "orga",
@@ -23,62 +41,61 @@ def pull_request(fixture_pull_request_dict):
     )
 
 
-async def test_does_approvers(mock_approver_in_github, repository, pull_request):
-    with aioresponses() as mocker:
-        mocker.get(
-            f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=100&page=1",
-            payload=[mock_approver_in_github],
-        )
+async def test_does_approvers(
+    mock_approver_in_github, mock_api_approvers, repository, pull_request
+):
+    mock_api_approvers(pull_request.source_id, [mock_approver_in_github])
 
-        approvers = await repository.find_all({"pull_request": pull_request})
+    approvers_for_pull_requests = await repository.find_all(
+        {"pull_requests": [pull_request]}
+    )
 
-        assert len(approvers) == 1
-        assert approvers[0].to_dict() == {
-            'email': 'approveruser@github.com',
-            'full_name': 'approveruser',
-            'id': 'approveruser@github.com',
-        }
+    assert len(approvers_for_pull_requests) == 1
+
+    approvers, _ = approvers_for_pull_requests[0]
+    assert len(approvers) == 1
+    assert approvers[0].to_dict() == {
+        'email': 'approveruser@github.com',
+        'full_name': 'approveruser',
+        'id': 'approveruser@github.com',
+    }
 
 
 async def test_does_use_pagination(
     mock_approver_in_github,
     mock_approver_2_in_github,
-    repository,
+    repository_pagination,
     pull_request,
+    mock_api_approvers,
 ):
-    with aioresponses() as mocker:
-        mocker.get(
-            f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=1&page=1",
-            payload=[mock_approver_in_github],
-        )
-        mocker.get(
-            f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=1&page=2",
-            payload=[mock_approver_2_in_github],
-        )
-        mocker.get(
-            f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=1&page=3",
-            payload=[],
-        )
+    mock_api_approvers(
+        pull_request.source_id, [mock_approver_in_github], per_page=1, page=1
+    )
+    mock_api_approvers(
+        pull_request.source_id, [mock_approver_2_in_github], per_page=1, page=2
+    )
+    mock_api_approvers(pull_request.source_id, [], per_page=1, page=3)
 
-        repository.max_results = 1
-        pull_requests = await repository.find_all({"pull_request": pull_request})
+    approvers_for_pull_requests = await repository_pagination.find_all(
+        {"pull_requests": [pull_request]}
+    )
 
-        assert len(pull_requests) == 2
+    assert len(approvers_for_pull_requests) == 1
+
+    approvers, pull_request_for_approvers = approvers_for_pull_requests[0]
+    assert len(approvers) == 2
+    assert pull_request_for_approvers == pull_request
 
 
 async def test_filters_out_comments(
-    mock_commenter_in_github,
-    repository,
-    pull_request,
+    mock_commenter_in_github, repository, pull_request, mock_api_approvers
 ):
-    with aioresponses() as mocker:
-        mocker.get(
-            f"https://api.github.com/repos/orga/myrepo/pulls/{pull_request.source_id}/reviews?per_page=100&page=1",
-            payload=[
-                mock_commenter_in_github,
-            ],
-        )
+    mock_api_approvers(pull_request.source_id, [mock_commenter_in_github])
 
-        pull_requests = await repository.find_all({"pull_request": pull_request})
+    approvers_for_pull_requests = await repository.find_all(
+        {"pull_requests": [pull_request]}
+    )
 
-        assert len(pull_requests) == 0
+    assert len(approvers_for_pull_requests) == 1
+    approvers, _ = approvers_for_pull_requests[0]
+    assert len(approvers) == 0
