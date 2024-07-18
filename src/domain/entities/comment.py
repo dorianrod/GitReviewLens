@@ -1,6 +1,6 @@
 from dataclasses import asdict, dataclass
 from datetime import datetime
-from typing import Optional
+from typing import Iterable, Optional
 
 from src.common.utils.date import format_to_iso, parse_date
 from src.common.utils.string import get_hash
@@ -55,8 +55,8 @@ class Comment(BaseEntity):
         return f"<Comment by {repr(self.developer)} - size: {self.size}>"
 
     @staticmethod
-    def get_developers_from_list(comments: list['Comment']) -> list[Developer]:
+    def get_developers_from_list(comments: Iterable['Comment']) -> list[Developer]:
         developers: set[Developer] = set()
         for comment in comments:
             developers.add(comment.developer)
-        return Developer.unduplicate(developers)
+        return list(Developer.unduplicate(developers))

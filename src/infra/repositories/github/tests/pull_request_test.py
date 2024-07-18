@@ -19,7 +19,7 @@ def mock_approvers_repository(mocker):
             **kwargs,
         ):
             super().__init__(
-                git_repository=git_repository, pagination=pagination, *args, **kwargs
+                git_repository=git_repository, pagination=pagination, *args, **kwargs  # type: ignore
             )
 
     mocker.patch(
@@ -42,7 +42,7 @@ def mock_comments_repository(mocker):
             **kwargs,
         ):
             super().__init__(
-                git_repository=git_repository, pagination=pagination, *args, **kwargs
+                git_repository=git_repository, pagination=pagination, *args, **kwargs  # type: ignore
             )
 
     mocker.patch(

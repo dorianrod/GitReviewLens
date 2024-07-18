@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Sequence
+from typing import Iterable
 
 from src.domain.entities.common import BaseEntity
 
@@ -28,7 +28,7 @@ class Developer(BaseEntity):
         return f"<Developer {self.email} - {self.full_name}>"
 
     @staticmethod
-    def unduplicate(developers: Sequence['Developer']) -> set['Developer']:
+    def unduplicate(developers: Iterable['Developer']) -> set['Developer']:
         developers_id_set: set[Developer] = set()
         developers_set: set[Developer] = set()
         for developer in developers:

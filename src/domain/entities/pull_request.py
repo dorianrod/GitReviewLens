@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Iterable
 
 from src.common.settings import settings
 from src.common.utils.date import format_to_iso, get_business_time_diff, parse_date
@@ -72,13 +73,15 @@ class PullRequest(BaseEntity):
         )
 
     @staticmethod
-    def get_developers_from_list(pull_requests: list['PullRequest']) -> list[Developer]:
+    def get_developers_from_list(
+        pull_requests: Iterable['PullRequest'],
+    ) -> list[Developer]:
         developers_set: set[Developer] = set()
         for pull_request in pull_requests:
             developers = pull_request.get_developers()
             developers_set.update(developers)
 
-        return Developer.unduplicate(developers_set)
+        return list(Developer.unduplicate(developers_set))
 
     @staticmethod
     def get_comments_from_list(pull_requests: list['PullRequest']) -> list[Comment]:
@@ -99,7 +102,7 @@ class PullRequest(BaseEntity):
         if len(self.comments):
             developers.update(Comment.get_developers_from_list(self.comments))
 
-        return Developer.unduplicate(developers)
+        return list(Developer.unduplicate(developers))
 
     @classmethod
     def from_dict(cls, data):

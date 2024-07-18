@@ -71,4 +71,4 @@ class Feature(BaseEntity):
         developers = set()
         for feature in features:
             developers.add(feature.developer)
-        return Developer.unduplicate(developers)
+        return list(Developer.unduplicate(developers))
