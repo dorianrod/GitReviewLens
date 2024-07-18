@@ -201,3 +201,22 @@ class TestFirstComment:
         )
         # 1 week - 1 day off
         assert pullrequest.first_comment_delay == ((5 - 1) * (18 - 9)) * 60
+
+
+def test_get_developers_from_list_unduplicates_developer_with_different_names(
+    fixture_pull_request_dict, fixture_developer_dict
+):
+    pullrequest_1 = PullRequest.from_dict(fixture_pull_request_dict)
+    pullrequest_2 = PullRequest.from_dict(
+        {
+            **fixture_pull_request_dict,
+            "created_by": {**fixture_developer_dict, "full_name": "another"},
+        }
+    )
+    devs_from_pull_request = list(
+        PullRequest.get_developers_from_list([pullrequest_1, pullrequest_2])
+    )
+
+    assert len(set({developer.id for developer in devs_from_pull_request})) == len(
+        devs_from_pull_request
+    )

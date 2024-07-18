@@ -72,7 +72,7 @@ def serialize_commit(commit, options={}):
     git_repository = options.get("git_repository", None)
     exclude_files = options.get("exclude_files")
     ddm = options.get("process_ddm", False)
-    get_modified_files = options.get("get_modified_files", True)
+    get_modified_files = options.get("get_modified_files", False)
 
     modified_files = []
     if get_modified_files:

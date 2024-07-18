@@ -78,7 +78,7 @@ class PullRequest(BaseEntity):
             developers = pull_request.get_developers()
             developers_set.update(developers)
 
-        return list(developers_set)
+        return Developer.unduplicate(developers_set)
 
     @staticmethod
     def get_comments_from_list(pull_requests: list['PullRequest']) -> list[Comment]:
@@ -99,7 +99,7 @@ class PullRequest(BaseEntity):
         if len(self.comments):
             developers.update(Comment.get_developers_from_list(self.comments))
 
-        return list(developers)
+        return Developer.unduplicate(developers)
 
     @classmethod
     def from_dict(cls, data):

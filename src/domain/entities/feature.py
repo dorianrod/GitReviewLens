@@ -68,7 +68,7 @@ class Feature(BaseEntity):
 
     @staticmethod
     def get_developers_from_list(features: list['Feature']) -> list[Developer]:
-        developers_set: set[Developer] = set()
+        developers = set()
         for feature in features:
-            developers_set.add(feature.developer)
-        return list(developers_set)
+            developers.add(feature.developer)
+        return Developer.unduplicate(developers)

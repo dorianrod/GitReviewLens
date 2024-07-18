@@ -28,5 +28,3 @@ class TranscodeDevelopersInRepositoryUseCase(BaseUseCase[None]):
         await self.repository.update_all(
             developers_to_update,
         )
-
-        self.logger.info("Updated " + str(len(developers_to_update)) + " developers")

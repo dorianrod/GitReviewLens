@@ -1,5 +1,6 @@
 from sqlalchemy import delete, insert, select
 from sqlalchemy.orm import joinedload, subqueryload
+
 from src.domain.repositories.pull_requests import PullRequestsRepository
 from src.domain.repositories.utils import (
     raise_exception_if_repository_differs_from_entity,
@@ -36,8 +37,6 @@ class PullRequestsDatabaseRepository(
                     approver_mappings.append(
                         {"pull_request_id": entity.id, "approver_id": approver.id}
                     )
-
-            self.logger.info(f"Upserting {len(pull_request_ids)} pull_requests")
 
             # Pull requests
             await self._upsert_entities_in_bulk(session, entities, options)

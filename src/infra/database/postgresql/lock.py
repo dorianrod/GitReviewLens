@@ -15,7 +15,8 @@ class EntityLockManager:
             for entity in entities
         ]
 
-        await asyncio.gather(*[lock.acquire() for lock in locks])
+        acquired_locks = [lock.acquire() for lock in locks]
+        await asyncio.gather(*acquired_locks)
 
         try:
             yield

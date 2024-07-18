@@ -25,11 +25,12 @@ class LoadFeaturesController(BaseController[None, Sequence[Feature]]):
 
         self.logger.info(f"Loading features from repository {repository.name}...")
         max_date = options.get("from_date", None)
+        reload_all = options.get("reload_all", False)
 
         db_features_repository = FeaturesDatabaseRepository(
             logger=self.logger, git_repository=repository
         )
-        if not max_date:
+        if not reload_all and max_date is None:
             features_in_db = await db_features_repository.find_all()
             # TODO Not optimized, implements optimized operations within repositories
             for feature in features_in_db:

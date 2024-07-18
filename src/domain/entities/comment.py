@@ -56,7 +56,7 @@ class Comment(BaseEntity):
 
     @staticmethod
     def get_developers_from_list(comments: list['Comment']) -> list[Developer]:
-        developers_set: set[Developer] = set()
+        developers: set[Developer] = set()
         for comment in comments:
-            developers_set.add(comment.developer)
-        return list(developers_set)
+            developers.add(comment.developer)
+        return Developer.unduplicate(developers)

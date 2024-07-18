@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 5,
   "links": [
     {
       "asDropdown": false,
@@ -683,6 +682,7 @@
         "type": "datasource",
         "uid": "-- Dashboard --"
       },
+      "description": "Does the pull request contain too many changes?",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -3221,8 +3221,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3280,8 +3279,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3340,8 +3338,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3653,8 +3650,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3796,7 +3792,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": ["All"],
           "value": ["$__all"]
         },
@@ -3821,7 +3817,7 @@
       {
         "allValue": " ",
         "current": {
-          "selected": false,
+          "selected": true,
           "text": ["All"],
           "value": ["$__all"]
         },
@@ -4067,7 +4063,7 @@
       },
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": ["All"],
           "value": ["$__all"]
         },
@@ -4133,7 +4129,7 @@
     ]
   },
   "time": {
-    "from": "now-5y",
+    "from": "now-2y",
     "to": "now"
   },
   "timepicker": {},

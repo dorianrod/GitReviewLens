@@ -80,3 +80,18 @@ def test_feature_comparison(fixture_feature_dict):
     feature_3.commit = "other_commit"
     assert feature_1 == feature_2
     assert feature_1 != feature_3
+
+
+def test_get_developers_from_list_unduplicates_developer_with_different_names(
+    fixture_feature_dict, fixture_developer_dict
+):
+    feature_1 = Feature.from_dict(fixture_feature_dict)
+    feature_2 = Feature.from_dict(
+        {
+            **fixture_feature_dict,
+            "developer": {**fixture_developer_dict, "full_name": "another"},
+        }
+    )
+    developers = list(Feature.get_developers_from_list([feature_1, feature_2]))
+    assert len(developers) == 1
+    assert list(developers)[0].id == feature_1.developer.id

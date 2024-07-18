@@ -27,12 +27,8 @@ setup_db:
 	docker exec -it gitreviewlens_server python /src/presentation/commands/init_database.py --drop_db --no-load_features --no-load_pull_requests
 	docker exec -it -e PGPASSWORD=${DATABASE_USER_PASSWORD} gitreviewlens_postgresql psql -h ${DATABASE_HOST} -U ${DATABASE_USER} -d ${DATABASE_NAME} -f ./indicators.sql
 
-load_features_from_repositories:
-	make command script=load_features_from_repositories
-
-load_pull_requests_review_informations:
-	make command script=load_pull_requests_review_informations
-	make transcode_into_database
+load:
+	make command script=load
 
 transcode_into_database:
 	make command script=transcode_developers_into_database
