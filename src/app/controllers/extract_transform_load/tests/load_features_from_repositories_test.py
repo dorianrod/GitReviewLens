@@ -1,6 +1,6 @@
 import os
 import zipfile
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
@@ -10,7 +10,6 @@ from src.app.controllers.extract_transform_load.load_features_from_repositories 
 )
 from src.common.utils.date import parse_date
 from src.domain.entities.feature import Feature
-from src.infra.database.postgresql.lock import EntityLockManager
 from src.infra.repositories.postgresql.features import FeaturesDatabaseRepository
 
 
@@ -82,7 +81,9 @@ async def test_works_when_already_loaded_features(mock_logger, mock_settings):
         assert len(initial_features_in_db) == 2
 
         controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
-        await controller.execute({"from_date": parse_date("2022-01-01")})
+        await controller.execute(
+            {"from_date": parse_date("2022-01-01"), "get_modified_files": True}
+        )
 
         features_in_db = await db_features_repository.find_all()
         assert_features_equal(
@@ -97,7 +98,7 @@ async def test_extract_features_from_local_repo(mock_logger, mock_settings):
         return_value=[],
     ):
         controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
-        await controller.execute()
+        await controller.execute({"get_modified_files": True})
 
         db_features_repository = FeaturesDatabaseRepository(
             logger=mock_logger,
