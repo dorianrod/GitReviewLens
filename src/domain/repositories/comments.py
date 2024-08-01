@@ -24,7 +24,7 @@ class CommentsRepository(BaseRepository[Comment, dict, CommentUpsertOptions]):
         self.logger = logger
         self.git_repository = Repository.parse(git_repository)
 
-    async def upsert(self, entity, options):
+    async def upsert(self, entity, options=None):
         options = options or {}
         pull_request: PullRequest = options["pull_request"]
 
