@@ -1,30 +1,32 @@
-import requests
+import itertools
 
+import aiohttp
+
+from src.common.utils.worker import concurrency_aio
 from src.domain.entities.comment import Comment
 from src.domain.repositories.comments import CommentsRepository
 from src.infra.repositories.azure.utils import get_base_url, get_header
+from src.infra.requests.fetch import async_fetch
 
 
 class CommentsAzureRepository(CommentsRepository):
-    def find_all(self, filters=None):
+    @concurrency_aio(max_concurrency=50)
+    async def __fetch_comments_for_pull_requests(self, pr_ids, filters):
         filters = filters or {}
 
-        pull_request = filters.get("pull_request")
-        if not pull_request:
-            raise Exception("No pull request provided")
+        pull_request_source_id, pull_request_id = pr_ids
 
-        url = f"{get_base_url(self.git_repository)}/pullRequests/{pull_request.source_id}/threads"
+        url = f"{get_base_url(self.git_repository)}/pullRequests/{pull_request_source_id}/threads"
 
-        response = requests.get(url, headers=get_header(self.git_repository))
-        if response.status_code != 200:
-            raise Exception(
-                f"Unable to get pull requests in Azure: {str(response.content)}"
-            )
+        self.logger.info(f"Getting comments for {pull_request_source_id}")
+        data = await async_fetch(
+            url,
+            client=self.client,  # headers=get_header(self.git_repository), timeout=None
+        )
 
         authors_to_exclude = filters.get("authors_to_exclude", [])
         comments = []
 
-        data = response.json()
         for thread in data["value"]:
             for comment in thread["comments"]:
                 if comment["commentType"] == "text":
@@ -36,6 +38,7 @@ class CommentsAzureRepository(CommentsRepository):
                     comments.append(
                         Comment.from_dict(
                             {
+                                "pull_request_id": pull_request_id,
                                 "creation_date": comment.get("publishedDate"),
                                 "content": comment.get("content"),
                                 "developer": {
@@ -47,3 +50,16 @@ class CommentsAzureRepository(CommentsRepository):
                     )
 
         return comments
+
+    async def find_all(self, filters=None):
+        pull_requests_ids = self._get_pull_requests_from_options(filters)
+
+        async with aiohttp.ClientSession(
+            headers=get_header(self.git_repository),
+        ) as client:
+            self.client = client
+            result = await self.__fetch_comments_for_pull_requests.run_all(
+                self, [(ids, filters) for ids in pull_requests_ids]
+            )
+
+        return list(itertools.chain.from_iterable(result))

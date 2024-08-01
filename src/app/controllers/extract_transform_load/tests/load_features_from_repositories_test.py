@@ -8,8 +8,109 @@ from src.app.controllers.extract_transform_load.load_features_from_repositories 
     GitRepoLocal,
     LoadFeaturesController,
 )
+from src.common.utils.date import parse_date
 from src.domain.entities.feature import Feature
 from src.infra.repositories.postgresql.features import FeaturesDatabaseRepository
+
+
+def assert_features_equal(feat1, feat2):
+    assert (
+        sorted(feat1, key=lambda x: x['commit'])[0]
+        == sorted(feat2, key=lambda x: x['commit'])[0]
+    )
+    assert sorted(feat1, key=lambda x: x['commit']) == sorted(
+        feat2, key=lambda x: x['commit']
+    )
+
+
+async def test_works_when_already_loaded_features(mock_logger, mock_settings):
+    with patch.object(
+        GitRepoLocal,
+        'checkout',
+        return_value=[],
+    ):
+        db_features_repository = FeaturesDatabaseRepository(
+            logger=mock_logger,
+            git_repository=mock_settings.get_branches()[0].repository,
+        )
+
+        feature_1 = Feature.from_dict(
+            {
+                "count_deleted_lines": 0,
+                "count_inserted_lines": 1,
+                "dmm_unit_complexity": 0.0,
+                "dmm_unit_interfacing": 0.0,
+                "dmm_unit_size": 0.0,
+                "modified_files": ["__init..py"],
+                "developer": {
+                    "full_name": "Newname",
+                    "email": "new@email",
+                    "id": "new@email",
+                },
+                "commit": "b2ea326a578d8e2aecf72ece9a0b14ec898d9cf8",
+                "date": "2023-12-23T09:29:45Z",
+                "git_repository": "orga/myrepo",
+                "count_modified_lines": 1,
+                "count_modified_files": 1,
+            }
+        )
+
+        feature_2 = Feature.from_dict(
+            {
+                "count_deleted_lines": 0,
+                "count_inserted_lines": 1,
+                "dmm_unit_complexity": 0.0,
+                "dmm_unit_interfacing": 0.0,
+                "dmm_unit_size": 0.0,
+                "modified_files": ["add_file.py"],
+                "developer": {
+                    "full_name": "Newname",
+                    "email": "new@email",
+                    "id": "new@email",
+                },
+                "commit": "97b49bad5cfc535d1d5d85a301d218faf7570e37",
+                "date": "2023-12-23T09:30:08Z",
+                "git_repository": "orga/myrepo",
+                "count_modified_lines": 1,
+                "count_modified_files": 1,
+            }
+        )
+
+        await db_features_repository.upsert_all([feature_1, feature_2])
+        initial_features_in_db = await db_features_repository.find_all()
+        assert len(initial_features_in_db) == 2
+
+        controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
+        await controller.execute(
+            {"from_date": parse_date("2022-01-01"), "get_modified_files": True}
+        )
+
+        features_in_db = await db_features_repository.find_all()
+        assert_features_equal(
+            [feature.to_dict() for feature in features_in_db], expected_result
+        )
+
+
+async def test_extract_features_from_local_repo(mock_logger, mock_settings):
+    with patch.object(
+        GitRepoLocal,
+        'checkout',
+        return_value=[],
+    ):
+        controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
+        await controller.execute({"get_modified_files": True})
+
+        db_features_repository = FeaturesDatabaseRepository(
+            logger=mock_logger,
+            git_repository=mock_settings.get_branches()[0].repository,
+        )
+
+        features_in_db = await db_features_repository.find_all()
+
+        assert_features_equal(
+            [feature.to_dict() for feature in features_in_db], expected_result
+        )
+
 
 current_file_path = os.path.abspath(__file__)
 directory_of_file = os.path.dirname(current_file_path)
@@ -115,84 +216,3 @@ expected_result = [
         "count_modified_files": 1,
     },
 ]
-
-
-def test_extract_features_from_local_repo(mock_logger, mock_settings):
-    with patch.object(
-        GitRepoLocal,
-        'checkout',
-        return_value=[],
-    ):
-        controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
-        controller.execute()
-
-        db_features_repository = FeaturesDatabaseRepository(
-            logger=mock_logger,
-            git_repository=mock_settings.get_branches()[0].repository,
-        )
-
-        features_in_db = db_features_repository.find_all()
-
-        assert [feature.to_dict() for feature in features_in_db] == expected_result
-
-
-def test_works_when_already_loaded_features(mock_logger, mock_settings):
-    with patch.object(
-        GitRepoLocal,
-        'checkout',
-        return_value=[],
-    ):
-        db_features_repository = FeaturesDatabaseRepository(
-            logger=mock_logger,
-            git_repository=mock_settings.get_branches()[0].repository,
-        )
-
-        feature_1 = Feature.from_dict(
-            {
-                "count_deleted_lines": 0,
-                "count_inserted_lines": 1,
-                "dmm_unit_complexity": 0.0,
-                "dmm_unit_interfacing": 0.0,
-                "dmm_unit_size": 0.0,
-                "modified_files": ["__init..py"],
-                "developer": {
-                    "full_name": "Newname",
-                    "email": "new@email",
-                    "id": "new@email",
-                },
-                "commit": "b2ea326a578d8e2aecf72ece9a0b14ec898d9cf8",
-                "date": "2023-12-23T09:29:45Z",
-                "git_repository": "orga/myrepo",
-                "count_modified_lines": 1,
-                "count_modified_files": 1,
-            }
-        )
-
-        feature_2 = Feature.from_dict(
-            {
-                "count_deleted_lines": 0,
-                "count_inserted_lines": 1,
-                "dmm_unit_complexity": 0.0,
-                "dmm_unit_interfacing": 0.0,
-                "dmm_unit_size": 0.0,
-                "modified_files": ["add_file.py"],
-                "developer": {
-                    "full_name": "Newname",
-                    "email": "new@email",
-                    "id": "new@email",
-                },
-                "commit": "97b49bad5cfc535d1d5d85a301d218faf7570e37",
-                "date": "2023-12-23T09:30:08Z",
-                "git_repository": "orga/myrepo",
-                "count_modified_lines": 1,
-                "count_modified_files": 1,
-            }
-        )
-
-        db_features_repository.upsert_all([feature_1, feature_2])
-
-        controller = LoadFeaturesController(logger=mock_logger, path=repo_path)
-        controller.execute()
-
-        features_in_db = db_features_repository.find_all()
-        assert [feature.to_dict() for feature in features_in_db] == expected_result

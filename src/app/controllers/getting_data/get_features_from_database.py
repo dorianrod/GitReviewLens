@@ -20,8 +20,8 @@ class GetFeaturesController(BaseController[None, Sequence[Feature]]):
         self.git_repository = Repository.parse(git_repository)
 
     @monitor("Getting features")
-    def execute(self) -> Sequence[Feature]:
+    async def execute(self) -> Sequence[Feature]:
         repository = FeaturesDatabaseRepository(
             logger=self.logger, git_repository=self.git_repository
         )
-        return GetAllUseCase(repository=repository).execute()
+        return await GetAllUseCase(repository=repository).execute()

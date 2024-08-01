@@ -1,75 +1,45 @@
+from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 
-from src.domain.entities.feature import Feature
 from src.domain.repositories.features import FeaturesRepository
-from src.infra.database.postgresql.database import get_db_session
-from src.infra.database.postgresql.models.models import Developer as DeveloperModel
+from src.domain.repositories.utils import (
+    raise_exception_if_repository_differs_from_entity,
+)
 from src.infra.database.postgresql.models.models import Feature as FeatureModel
-from src.infra.repositories.postgresql.developers import DeveloperDatabaseRepository
-from src.infra.repositories.postgresql.utils import (
-    raise_exception_if_upsert_cannot_be_done,
+from src.infra.repositories.postgresql.generic_db import GenericDatabaseRepository
+from src.infra.repositories.postgresql.upsert_all_developers import (
+    UpsertAllDevelopersMixin,
 )
 
 
-class FeaturesDatabaseRepository(FeaturesRepository):
-    def upsert(self, entity, options=None):
-        options = options or {}
+class FeaturesDatabaseRepository(
+    FeaturesRepository, GenericDatabaseRepository, UpsertAllDevelopersMixin
+):
+    Model = FeatureModel
 
-        super().upsert(entity, options)
+    async def upsert_all(self, entities, options=None) -> None:
+        if not entities:
+            return
 
-        session = get_db_session()
-        feature = (
-            session.query(FeatureModel).filter(FeatureModel.id == entity.id).first()
-        )
-        raise_exception_if_upsert_cannot_be_done(options, feature)
+        try:
+            related_objects_options = options or {}
+            related_objects_options.pop("is_new")
+        except KeyError:
+            pass
 
-        upsert_developer = options.get("upsert_developer", True)
-        if upsert_developer:
-            developer_repository = DeveloperDatabaseRepository(logger=self.logger)
-            developer_repository.upsert(entity.developer)
-
-        columns = FeatureModel.from_entity(entity)
-        if feature is None:
-            self.logger.info(f"Creating {repr(entity)}")
-            feature = FeatureModel(**columns)
-        else:
-            self.logger.info(f"Updating {repr(entity)}")
-            for key in columns:
-                setattr(feature, key, columns[key])
-
-        session.add(feature)
-        session.commit()
-
-    def find_all(self, options=None):
-        session = get_db_session()
-        results = session.query(FeatureModel).all()
-
-        results = (
-            session.query(FeatureModel)
-            .options(
-                joinedload(FeatureModel.developer),
-            )
-            .filter(FeatureModel.repository == self.git_repository.path)
-            .all()
+        raise_exception_if_repository_differs_from_entity(
+            self.git_repository, entities[0]
         )
 
-        features: list[Feature] = []
-        for feature in results:
-            feature_entity = Feature.from_dict(
-                {
-                    "id": feature.id,
-                    "commit": feature.commit,
-                    "count_deleted_lines": feature.count_deleted_lines,
-                    "count_inserted_lines": feature.count_inserted_lines,
-                    "dmm_unit_complexity": feature.dmm_unit_complexity,
-                    "dmm_unit_interfacing": feature.dmm_unit_interfacing,
-                    "dmm_unit_size": feature.dmm_unit_size,
-                    "date": feature.date,
-                    "modified_files": feature.modified_files,
-                    "git_repository": feature.repository,
-                    "developer": DeveloperModel.to_entity(feature.developer),
-                }
-            )
-            features.append(feature_entity)
+        await self.upsert_all_developers(entities, related_objects_options)
+        await self._upsert_all_entities_within_transaction(entities, options)
 
-        return features
+    async def _select_find_all(self, session, options=None):
+        Model = self.Model
+
+        query = (
+            select(Model)
+            .options(joinedload(Model.developer))
+            .filter(Model.repository == self.git_repository.path)
+        )
+        return query

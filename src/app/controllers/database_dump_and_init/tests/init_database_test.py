@@ -20,8 +20,9 @@ path = os.path.join(directory_of_file, "temp")
 
 
 @pytest.fixture(scope="function", autouse=True)
-def mock_settings(mocker, mock_git_settings):
+def mock_settings(mocker, mock_git_settings, db_schema):
     mock_git_settings.git_branches = '[{"name":"master","repository":{"organisation":"orga","project":"", "name": "myrepo", "url": "", "token": ""}}]'
+    mock_git_settings.db_schema = db_schema
 
     mocker.patch(
         "src.app.controllers.database_dump_and_init.init_database.settings",
@@ -35,7 +36,7 @@ def clean_temp_files():
 
 
 @pytest.fixture(scope="function")
-def create_remote_repositories(
+async def create_remote_repositories(
     pull_request_repository,
     feature_repository,
     fixture_feature_dict,
@@ -46,12 +47,12 @@ def create_remote_repositories(
     pull_request_repository.git_repository = git_repository
     feature_repository.git_repository = git_repository
 
-    pull_request_repository.upsert(
+    await pull_request_repository.upsert(
         PullRequest.from_dict(
             {**fixture_pull_request_dict, "git_repository": git_repository}
         )
     )
-    feature_repository.upsert(
+    await feature_repository.upsert(
         Feature.from_dict({**fixture_feature_dict, "git_repository": git_repository})
     )
 
@@ -70,7 +71,7 @@ def create_remote_repositories(
     )
 
 
-def test_init_database(
+async def test_init_database(
     mock_logger,
     get_temp_directory,
     create_remote_repositories,
@@ -82,13 +83,16 @@ def test_init_database(
         db_pull_request_repository,
     ) = create_remote_repositories
 
-    InitDatabaseController(logger=mock_logger).execute(path=get_temp_directory)
+    await InitDatabaseController(logger=mock_logger).execute(path=get_temp_directory)
 
-    assert db_pull_request_repository.find_all() == pull_request_repository.find_all()
-    assert db_feature_repository.find_all() == feature_repository.find_all()
+    assert (
+        await db_pull_request_repository.find_all()
+        == await pull_request_repository.find_all()
+    )
+    assert await db_feature_repository.find_all() == await feature_repository.find_all()
 
 
-def test_does_not_load_features(
+async def test_does_not_load_features(
     mock_logger,
     get_temp_directory,
     create_remote_repositories,
@@ -100,15 +104,18 @@ def test_does_not_load_features(
         db_pull_request_repository,
     ) = create_remote_repositories
 
-    InitDatabaseController(logger=mock_logger).execute(
+    await InitDatabaseController(logger=mock_logger).execute(
         load_features=False, path=get_temp_directory
     )
 
-    assert db_pull_request_repository.find_all() == pull_request_repository.find_all()
-    assert db_feature_repository.find_all() == []
+    assert (
+        await db_pull_request_repository.find_all()
+        == await pull_request_repository.find_all()
+    )
+    assert await db_feature_repository.find_all() == []
 
 
-def test_does_not_load_pull_requests(
+async def test_does_not_load_pull_requests(
     mock_logger,
     get_temp_directory,
     create_remote_repositories,
@@ -120,15 +127,15 @@ def test_does_not_load_pull_requests(
         db_pull_request_repository,
     ) = create_remote_repositories
 
-    InitDatabaseController(logger=mock_logger).execute(
+    await InitDatabaseController(logger=mock_logger).execute(
         load_pull_requests=False, path=get_temp_directory
     )
 
-    assert db_pull_request_repository.find_all() == []
-    assert db_feature_repository.find_all() == feature_repository.find_all()
+    assert await db_pull_request_repository.find_all() == []
+    assert await db_feature_repository.find_all() == await feature_repository.find_all()
 
 
-def test_does_not_drop_database(
+async def test_does_not_drop_database(
     mock_logger,
     get_temp_directory,
     create_remote_repositories,
@@ -149,7 +156,7 @@ def test_does_not_drop_database(
             "git_repository": db_feature_repository.git_repository,
         }
     )
-    db_pull_request_repository.upsert(pull_request)
+    await db_pull_request_repository.upsert(pull_request)
 
     feature = Feature.from_dict(
         {
@@ -158,14 +165,14 @@ def test_does_not_drop_database(
             "git_repository": db_feature_repository.git_repository,
         }
     )
-    db_feature_repository.upsert(feature)
+    await db_feature_repository.upsert(feature)
 
-    InitDatabaseController(logger=mock_logger).execute(
+    await InitDatabaseController(logger=mock_logger).execute(
         drop_db=False, path=get_temp_directory
     )
 
-    db_pr = db_pull_request_repository.find_all()
-    db_feature = db_feature_repository.find_all()
+    db_pr = await db_pull_request_repository.find_all()
+    db_feature = await db_feature_repository.find_all()
 
     assert len(db_pr) == 2
     assert len(db_feature) == 2

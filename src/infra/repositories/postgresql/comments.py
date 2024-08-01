@@ -1,80 +1,45 @@
-from src.domain.entities.comment import Comment
-from src.domain.entities.pull_request import PullRequest
+from sqlalchemy import select
+from sqlalchemy.orm import joinedload
+
 from src.domain.repositories.comments import CommentsRepository
-from src.infra.database.postgresql.database import get_db_session
 from src.infra.database.postgresql.models.models import Comment as CommentModel
-from src.infra.repositories.postgresql.utils import (
-    raise_exception_if_upsert_cannot_be_done,
+from src.infra.repositories.postgresql.generic_db import GenericDatabaseRepository
+from src.infra.repositories.postgresql.upsert_all_developers import (
+    UpsertAllDevelopersMixin,
 )
 
 
-class CommentsDatabaseRepository(CommentsRepository):
-    def upsert(self, entity: Comment, options=None) -> None:
-        options = options or {}
+class CommentsDatabaseRepository(
+    GenericDatabaseRepository, CommentsRepository, UpsertAllDevelopersMixin
+):
+    Model = CommentModel
 
-        pull_request: PullRequest = options.get("pull_request")
+    async def upsert_all(self, entities, options=None) -> None:
+        if not entities:
+            return
 
-        super().upsert(entity, options)
+        try:
+            is_new = options.pop("is_new")
+        except KeyError:
+            is_new = None
 
-        from src.infra.repositories.postgresql.developers import (
-            DeveloperDatabaseRepository,
-        )
-        from src.infra.repositories.postgresql.pull_requests import (
-            PullRequestsDatabaseRepository,
-        )
+        await self.upsert_all_developers(entities, options)
 
-        upsert_developer = options.get("upsert_developer", True)
-        upsert_pull_request = options.get("upsert_pull_request", True)
-
-        session = get_db_session()
-
-        columns = CommentModel.from_entity(entity, pull_request)
-
-        comment = (
-            session.query(CommentModel)
-            .filter(
-                CommentModel.id == columns["id"],
-            )
-            .first()
+        await self._upsert_all_entities_within_transaction(
+            entities, {**options, "is_new": is_new}
         )
 
-        raise_exception_if_upsert_cannot_be_done(options, comment)
+    async def _select_find_all(self, session, filters=None):
+        Model = self.Model
 
-        if upsert_developer:
-            repository_developer = DeveloperDatabaseRepository(logger=self.logger)
-            repository_developer.upsert(entity.developer)
-
-        if upsert_pull_request:
-            repository_pull_request = PullRequestsDatabaseRepository(
-                logger=self.logger,
-                git_repository=self.git_repository,
-            )
-            repository_pull_request.upsert(pull_request, {"upsert_comments": False})
-
-        self.logger.info(f"Creating {repr(entity)}")
-
-        if comment is not None:
-            for key in columns:
-                setattr(comment, key, columns[key])
-        else:
-            comment = CommentModel(**columns)
-
-        session.add(comment)
-        session.commit()
-
-    def find_all(self, filters=None):
         filters = filters or {}
 
         pull_request = filters.get("pull_request")
         if not pull_request:
             raise NotImplementedError()
 
-        session = get_db_session()
-        entities = (
-            session.query(CommentModel)
-            .filter(
-                CommentModel.pull_request_id == pull_request.id,
-            )
-            .all()
+        return (
+            select(Model)
+            .options(joinedload(Model.developer))
+            .filter(Model.pull_request_id == pull_request.id)
         )
-        return [CommentModel.to_entity(entity) for entity in entities]

@@ -2,6 +2,19 @@ import pytest
 
 
 @pytest.fixture
+def mock_thread_comments():
+    def mock(mocker, pull_request_id, comments):
+        mocker.get(
+            f"https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests/{pull_request_id}/threads",
+            payload={
+                "value": comments,
+            },
+        )
+
+    return mock
+
+
+@pytest.fixture
 def mock_active_pull_request_in_azure():
     return {
         "pullRequestId": 1,
@@ -14,6 +27,7 @@ def mock_active_pull_request_in_azure():
         "creationDate": "2023-10-16T17:14:08.5301728Z",
         "title": "feat: top feature",
         "reviewers": [],
+        "sourceRefName": "feat/add-button",
     }
 
 

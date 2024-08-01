@@ -3,7 +3,7 @@ import os
 
 from pydantic_settings import BaseSettings
 
-from .domain.entities.branch import Branch
+from ..domain.entities.branch import Branch
 
 
 class __Settings(BaseSettings):
@@ -24,6 +24,7 @@ class __Settings(BaseSettings):
     db_user: str = os.getenv("DATABASE_USER", "")
     db_pass: str = os.getenv("DATABASE_USER_PASSWORD", "")
     db_name: str = os.getenv("DATABASE_NAME", "")
+    db_schema: str = os.getenv("DATABASE_SCHEMA", "public")
 
     init_sql: str = os.getenv("INIT_SQL", "/indicators.sql")
 

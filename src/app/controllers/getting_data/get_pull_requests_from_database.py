@@ -22,8 +22,8 @@ class GetPullRequestsController(BaseController[None, Sequence[PullRequest]]):
         self.git_repository = Repository.parse(git_repository)
 
     @monitor("Getting pull requests")
-    def execute(self) -> Sequence[PullRequest]:
+    async def execute(self) -> Sequence[PullRequest]:
         repository = PullRequestsDatabaseRepository(
             logger=self.logger, git_repository=self.git_repository
         )
-        return GetAllUseCase(repository=repository).execute()
+        return await GetAllUseCase(repository=repository).execute()

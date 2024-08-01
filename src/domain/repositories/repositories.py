@@ -1,5 +1,5 @@
 from src.common.monitoring.logger import LoggerInterface
 
 
-class GitRepoRepository:
+class GitRepoRepository(object):
     logger: LoggerInterface

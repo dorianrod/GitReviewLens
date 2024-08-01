@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify, request
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse
 
 from src.app.controllers.getting_data.get_features_from_database import (
     GetFeaturesController,
@@ -6,20 +7,16 @@ from src.app.controllers.getting_data.get_features_from_database import (
 from src.domain.entities.repository import Repository
 from src.infra.monitoring.logger import logger
 
-blueprint_get_features = Blueprint("get_features", __name__)
+router = APIRouter()
 
 
-@blueprint_get_features.route("/features", methods=["GET"])
-def get_features():
+@router.get("/features", response_class=JSONResponse)
+async def get_features(repository: str):
     try:
-        controller = GetFeaturesController(
-            logger=logger, git_repository=Repository.parse(request.args["repository"])
-        )
-        features = controller.execute()
-        return jsonify([feature.to_dict() for feature in features])
-
+        repo = Repository.parse(repository)
+        controller = GetFeaturesController(logger=logger, git_repository=repo)
+        features = await controller.execute()
+        return [feature.to_dict() for feature in features]
     except Exception as e:
-        return (
-            jsonify({"error": str(e)}),
-            500,
-        )
+        logger.error(f"Error fetching features: {str(e)}")
+        raise HTTPException(status_code=500, detail={"error": str(e)})

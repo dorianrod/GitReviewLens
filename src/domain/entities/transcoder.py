@@ -9,6 +9,10 @@ class Transcoder(BaseEntity):
     name: str | None
     values: dict[str, str]
 
+    @property
+    def id(self):
+        return self.name
+
     @classmethod
     def from_dict(cls, data):
         return cls(name=data["name"], values=(data.get("values") or {}).copy())

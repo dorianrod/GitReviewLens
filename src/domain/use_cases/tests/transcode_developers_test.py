@@ -3,7 +3,7 @@ from src.domain.entities.transcoder import Transcoder
 from src.domain.use_cases.transcode_developers import TranscodeDevelopersUseCase
 
 
-def test_transcode_developer_name(fixture_developer_dict, mock_logger):
+async def test_transcode_developer_name(fixture_developer_dict, mock_logger):
     developer = Developer.from_dict(fixture_developer_dict)
     transcoder = TranscodeDevelopersUseCase(
         transcoder=Transcoder(
@@ -16,5 +16,5 @@ def test_transcode_developer_name(fixture_developer_dict, mock_logger):
         ),
         logger=mock_logger,
     )
-    developers = transcoder.execute([developer])
+    developers = await transcoder.execute([developer])
     assert developers[0].full_name == "JEAN"

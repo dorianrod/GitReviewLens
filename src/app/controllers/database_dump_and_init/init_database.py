@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from src.app.controllers.base_controller import BaseController
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.infra.database.postgresql.database import drop_db as drop_database
 from src.infra.database.postgresql.database import init_db
 from src.infra.repositories.json.features import FeaturesJsonRepository
@@ -11,7 +12,6 @@ from src.infra.repositories.postgresql.features import FeaturesDatabaseRepositor
 from src.infra.repositories.postgresql.pull_requests import (
     PullRequestsDatabaseRepository,
 )
-from src.settings import settings
 
 
 @dataclass
@@ -19,7 +19,7 @@ class InitDatabaseController(BaseController[None, None]):
     logger: LoggerInterface
 
     @monitor("initializing database")
-    def execute(
+    async def execute(
         self,
         load_pull_requests=True,
         load_features=True,
@@ -29,8 +29,8 @@ class InitDatabaseController(BaseController[None, None]):
         self.logger.info("Droping database...")
 
         if drop_db:
-            drop_database()
-            init_db()
+            await drop_database()
+            await init_db(settings.db_schema)
 
         branches = settings.get_branches()
         for branch in branches:
@@ -45,7 +45,7 @@ class InitDatabaseController(BaseController[None, None]):
                 self.logger.info(
                     f"Loading pull requests from {pull_request_json_repository.path}..."
                 )
-                pull_requests = pull_request_json_repository.find_all()
+                pull_requests = await pull_request_json_repository.find_all()
 
                 self.logger.info(
                     f"Loading {len(pull_requests)} pull_requests into database. Please wait..."
@@ -53,7 +53,7 @@ class InitDatabaseController(BaseController[None, None]):
                 db_pull_request_repository = PullRequestsDatabaseRepository(
                     logger=self.logger, git_repository=repository
                 )
-                db_pull_request_repository.upsert_all(
+                await db_pull_request_repository.upsert_all(
                     pull_requests, {"upsert_comments": True}
                 )
                 self.logger.info(
@@ -69,9 +69,9 @@ class InitDatabaseController(BaseController[None, None]):
                 self.logger.info(
                     f"Loading features from {feature_json_repository.path}..."
                 )
-                features = feature_json_repository.find_all()
+                features = await feature_json_repository.find_all()
                 db_feature_repository = FeaturesDatabaseRepository(
                     logger=self.logger, git_repository=repository
                 )
-                db_feature_repository.create_all(features)
+                await db_feature_repository.create_all(features)
                 self.logger.info(f"Loaded {len(features)} features into database.")

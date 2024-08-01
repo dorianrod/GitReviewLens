@@ -2,8 +2,8 @@ import argparse
 
 from dotenv import load_dotenv
 
+from src.common.settings import reload
 from src.infra.monitoring.logger import LoggerDefault
-from src.settings import reload
 
 logger = LoggerDefault()
 

@@ -1,9 +1,10 @@
 from dataclasses import dataclass
+from typing import Iterable
 
 from src.domain.entities.common import BaseEntity
 
 
-@dataclass
+@dataclass(frozen=True)
 class Developer(BaseEntity):
     full_name: str
     email: str
@@ -25,3 +26,13 @@ class Developer(BaseEntity):
 
     def __repr__(self):
         return f"<Developer {self.email} - {self.full_name}>"
+
+    @staticmethod
+    def unduplicate(developers: Iterable['Developer']) -> set['Developer']:
+        developers_id_set: set[Developer] = set()
+        developers_set: set[Developer] = set()
+        for developer in developers:
+            if developer.id not in developers_id_set:
+                developers_id_set.add(developer.id)
+                developers_set.add(developer)
+        return developers_set

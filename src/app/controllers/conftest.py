@@ -1,4 +1,9 @@
-from src.infra.conftest import clean_database, db_session, mock_db
+from src.infra.database.conftest import (
+    create_test_schema,
+    db_schema,
+    mock_get_async_engine,
+    mock_get_db_session,
+)
 from src.infra.repositories.json.tests.conftest import (
     comment_repository,
     developer_repository,
@@ -8,9 +13,10 @@ from src.infra.repositories.json.tests.conftest import (
 )
 
 __all__ = [
-    "mock_db",
-    "clean_database",
-    "db_session",
+    "create_test_schema",
+    "db_schema",
+    "mock_get_db_session",
+    "mock_get_async_engine",
     "comment_repository",
     "developer_repository",
     "feature_repository",

@@ -1,12 +1,15 @@
+import asyncio
 import os
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import pytest
+
+from src.infra.database.postgresql.lock import EntityLockManager
 
 
 @pytest.fixture
 def mock_git_settings():
-    from src.settings import __Settings
+    from src.common.settings import __Settings
 
     class TestSettings(__Settings):
         app_name: str = "Pull requests"
@@ -20,6 +23,8 @@ def mock_git_settings():
         db_host: str = "localhost"
         db_pass: str = "test"
         db_user: str = "test"
+
+        db_schema: str = "test"
 
         init_sql: str = os.getenv("INIT_SQL_PATH", "../postgres/indicators.sql")
 
@@ -64,6 +69,7 @@ def fixture_developer_3_dict():
 @pytest.fixture
 def fixture_comment_dict(fixture_developer_dict):
     return {
+        "pull_request_id": None,
         "content": "Please review this point",
         "developer": fixture_developer_dict,
         "creation_date": "2023-10-25T11:11:13",
@@ -119,3 +125,19 @@ def mock_logger():
     from src.infra.monitoring.logger import LoggerDefault
 
     return Mock(spec=LoggerDefault)()
+
+
+@pytest.fixture(autouse=True)
+def patch_lock_manager():
+    with patch(
+        'src.infra.database.postgresql.lock.lock_manager',
+        new=EntityLockManager(),
+    ):
+        yield
+
+
+@pytest.fixture(scope='module')
+def event_loop():
+    loop = asyncio.new_event_loop()
+    yield loop
+    loop.close()

@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from src.common.utils.date import parse_date
 
 from ..comment import Comment
@@ -53,3 +51,18 @@ def test_comment_comparison(fixture_comment_dict, fixture_comment_2_dict):
 
     assert comment_1 == comment_2
     assert comment_1 != comment_3
+
+
+def test_get_developers_from_list_unduplicates_developer_with_different_names(
+    fixture_comment_dict, fixture_developer_dict
+):
+    comment_1 = Comment.from_dict(fixture_comment_dict)
+    comment_2 = Comment.from_dict(
+        {
+            **fixture_comment_dict,
+            "developer": {**fixture_developer_dict, "full_name": "another"},
+        }
+    )
+    developers = Comment.get_developers_from_list([comment_1, comment_2])
+    assert len(developers) == 1
+    assert list(developers)[0].id == comment_1.developer.id

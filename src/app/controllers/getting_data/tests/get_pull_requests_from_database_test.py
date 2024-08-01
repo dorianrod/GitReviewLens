@@ -7,7 +7,7 @@ from src.infra.repositories.postgresql.pull_requests import (
 )
 
 
-def test_get_pull_requests(mock_logger, fixture_pull_request_dict):
+async def test_get_pull_requests(mock_logger, fixture_pull_request_dict):
     controller = GetPullRequestsController(
         logger=mock_logger, git_repository="orga/project/Backend"
     )
@@ -18,10 +18,11 @@ def test_get_pull_requests(mock_logger, fixture_pull_request_dict):
     pull_request = PullRequest.from_dict(
         {**fixture_pull_request_dict, "git_repository": "orga/project/Backend"}
     )
-    db_repo.upsert(
+    await db_repo.upsert(
         PullRequest.from_dict(
             {**fixture_pull_request_dict, "git_repository": "orga/project/Backend"}
         )
     )
 
-    assert controller.execute() == [pull_request]
+    result = await controller.execute()
+    assert result == [pull_request]

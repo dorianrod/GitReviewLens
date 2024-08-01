@@ -7,13 +7,13 @@ from src.app.controllers.extract_transform_load.clone_repository import (
 )
 from src.app.utils.monitor import monitor
 from src.common.monitoring.logger import LoggerInterface
+from src.common.settings import settings
 from src.common.utils.date import parse_date
 from src.domain.entities.types import RepositoryTypes
 from src.domain.repositories.pull_requests import PullRequestsRepository
 from src.infra.monitoring.logger import MutedLogger
 from src.infra.repositories.azure.pull_requests import PullRequestsAzureRepository
 from src.infra.repositories.github.pull_requests import PullRequestsGithubRepository
-from src.settings import settings
 
 
 @dataclass
@@ -21,7 +21,7 @@ class CheckSettings(BaseController[None, None]):
     logger: LoggerInterface
 
     @monitor("Checking settings")
-    def execute(self):
+    async def execute(self):
         error = False
         branches = settings.get_branches()
 
@@ -42,9 +42,12 @@ class CheckSettings(BaseController[None, None]):
                 remote_repository = PullRequestsAzureRepository(**options)
             elif repository.type == RepositoryTypes.GITHUB:
                 remote_repository = PullRequestsGithubRepository(**options)  # type: ignore
+            else:
+                self.logger.error(f"Repository type for {repository} is unknown")
+                error = True
 
             try:
-                remote_repository.find_all(
+                await remote_repository.find_all(
                     {
                         "start_date": parse_date(datetime.now()),
                         "end_date": parse_date(datetime.now()),
@@ -60,7 +63,8 @@ class CheckSettings(BaseController[None, None]):
                 error = True
 
         try:
-            CloneRepositoriesController(logger=MutedLogger()).execute()
+            self.logger.info("Cloning repositories...")
+            await CloneRepositoriesController(logger=MutedLogger()).execute()
             self.logger.info("Repositories cloned successfully")
         except Exception as e:
             self.logger.error(f"Unable to clone some repositories: {str(e)}")

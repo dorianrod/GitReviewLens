@@ -1,7 +1,8 @@
 from datetime import datetime, timedelta, timezone
 
-import holidays
+import pandas as pd
 import pytz
+from holidays.utils import country_holidays as get_country_holidays
 
 
 def extract_hours_and_minutes(text):
@@ -114,7 +115,7 @@ def parse_date(date_str):
 def get_business_time_diff(
     start, end, calendar="FR", business_time_range="09:00-18:00"
 ):
-    country_holidays = holidays.country_holidays(calendar)
+    country_holidays = get_country_holidays(calendar)
 
     total_minutes = 0.0
 
@@ -166,3 +167,16 @@ def set_tz_if_not_set(date):
         return date.replace(tzinfo=timezone.utc)
 
     return date
+
+
+def remove_tz(date):
+    if date and date.tzinfo:
+        return date.astimezone().replace(tzinfo=None)
+    return date
+
+
+def add_delta_to_date(date: datetime, period: str, n: int = 1) -> datetime:
+    pd_date = pd.Timestamp(date)
+    delta = pd.Timedelta(period)
+    new_pd_date = pd_date + n * delta
+    return new_pd_date.to_pydatetime()

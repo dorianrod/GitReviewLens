@@ -1,31 +1,35 @@
+import itertools
+from collections import defaultdict
+
 from src.common.monitoring.logger import LoggerInterface
 from src.domain.entities.comment import Comment
-from src.domain.entities.pull_request import PullRequest
 from src.domain.entities.repository import Repository
 from src.domain.repositories.comments import CommentsRepository
+from src.infra.repositories.in_memory.base import BaseInMemoryRepositoryMixin
 
 
-class CommentsInMemoryRepository(CommentsRepository):
-    comments_by_pr: dict[str, Comment]
+class CommentsInMemoryRepository(
+    BaseInMemoryRepositoryMixin[Comment], CommentsRepository
+):
+    comments_by_pr: dict[str, list[Comment]]
 
     def __init__(self, logger: LoggerInterface, git_repository: str | Repository):
         super().__init__(logger, git_repository)
-        self.comments_by_pr = {}
+        self.comments_by_pr = defaultdict(list)
 
-    def upsert(self, entity, options=None):
-        super().upsert(entity, options)
+    async def upsert(self, entity, options=None):
+        await super().upsert(entity, options)
 
-        options = options or {}
-        pull_request: PullRequest = options.get("pull_request")
+        if not entity.pull_request_id:
+            raise Exception("No pull request id provided for comment")
 
-        self.comments_by_pr[pull_request.id] = entity
+        self.comments_by_pr[entity.pull_request_id].append(entity)
 
-    def find_all(self, filters=None):
-        filters = filters or {}
+    async def find_all(self, filters=None):
+        pull_requests_ids = self._get_pull_requests_from_options(filters)
 
-        pull_request = filters.get("pull_request")
-        if not pull_request:
-            raise NotImplementedError()
+        comments: list[list[Comment]] = [
+            self.comments_by_pr.get(id, []) for (_source_id, id) in pull_requests_ids
+        ]
 
-        comment = self.comments_by_pr.get(pull_request.id)
-        return [comment] if comment else []
+        return list(itertools.chain.from_iterable(comments))

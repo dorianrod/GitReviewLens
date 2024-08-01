@@ -6,11 +6,11 @@ _R = TypeVar("_R")
 
 class BaseUseCaseWithParameters(ABC, Generic[_R]):
     @abstractmethod
-    def execute(self, *args: Any, **kwargs: Any) -> _R:
+    async def execute(self, *args: Any, **kwargs: Any) -> _R:
         raise NotImplementedError()
 
 
 class BaseUseCase(ABC, Generic[_R]):
     @abstractmethod
-    def execute(self) -> _R:
+    async def execute(self) -> _R:
         raise NotImplementedError()

@@ -16,6 +16,8 @@ def get_repositories_for_git_repository(
     elif type == RepositoryTypes.AZURE:
         RemoteCommentRepository = CommentsAzureRepository  # type: ignore
         RemotePullRequestRepository = PullRequestsAzureRepository  # type: ignore
+    else:
+        raise Exception("Repository type is unknown. Check you .env")
 
     return {
         "comments": RemoteCommentRepository,

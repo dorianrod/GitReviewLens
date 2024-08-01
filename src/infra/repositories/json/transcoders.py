@@ -14,7 +14,7 @@ class TranscodersJsonRepository(TranscodersRepository):
         super().__init__(logger)
         self.path = path
 
-    def find_all(self, options=None):
+    async def find_all(self, options=None):
         transcoders: dict[str, Transcoder] = {}
         try:
             with open(self.path, "r") as file:
@@ -30,17 +30,17 @@ class TranscodersJsonRepository(TranscodersRepository):
 
         return list(transcoders.values())
 
-    def get_by_id(self, id: str):
+    async def get_by_id(self, id: str):
         try:
-            transcoders = self.find_all()
+            transcoders = await self.find_all()
             items = [transcoder for transcoder in transcoders if transcoder.name == id]
             return items[0] if len(items) > 0 else Transcoder(None, {})
         except Exception as e:
             self.logger.exception(str(e))
             return Transcoder(None, {})
 
-    def upsert(self, entity: Transcoder, options=None):
-        transcoders = self.find_all()
+    async def upsert(self, entity: Transcoder, options=None):
+        transcoders = await self.find_all()
 
         transcoders_by_name = {
             transcoder.name: transcoder for transcoder in transcoders

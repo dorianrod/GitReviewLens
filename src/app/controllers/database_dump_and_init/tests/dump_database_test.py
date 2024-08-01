@@ -39,18 +39,18 @@ def clean_temp_files():
     delete_directory(path)
 
 
-def test_dump_database(
+async def test_dump_database(
     mock_logger, fixture_developer_dict, fixture_pull_request_dict, fixture_feature_dict
 ):
     git_repository = Repository.parse(fixture_feature_dict['git_repository'])
 
     dev_repo = DeveloperDatabaseRepository(logger=mock_logger)
-    dev_repo.upsert(Developer.from_dict(fixture_developer_dict))
+    await dev_repo.upsert(Developer.from_dict(fixture_developer_dict))
 
     pr_repo = PullRequestsDatabaseRepository(
         logger=mock_logger, git_repository=git_repository
     )
-    pr_repo.upsert(
+    await pr_repo.upsert(
         PullRequest.from_dict(
             {**fixture_pull_request_dict, "git_repository": git_repository}
         )
@@ -59,28 +59,28 @@ def test_dump_database(
     feat_repo = FeaturesDatabaseRepository(
         logger=mock_logger, git_repository=git_repository
     )
-    feat_repo.upsert(
+    await feat_repo.upsert(
         Feature.from_dict({**fixture_feature_dict, "git_repository": git_repository})
     )
 
-    DumpDatabaseController(logger=mock_logger, path=path).execute()
+    controller = DumpDatabaseController(logger=mock_logger, path=path)
+    await controller.execute()
 
-    developers = DevelopersJsonRepository(
+    developers = await DevelopersJsonRepository(
         logger=mock_logger,
         path=f"{path}/developers.json",
     ).find_all()
     assert len(developers) == 3
-    assert developers[0] == Developer.from_dict(fixture_developer_dict)
+    assert Developer.from_dict(fixture_developer_dict) in developers
 
-    features = FeaturesJsonRepository(
+    features = await FeaturesJsonRepository(
         logger=mock_logger,
         path=f"{path}/features.json",
         git_repository=git_repository,
     ).find_all()
-    assert features[0].to_dict() == Feature.from_dict(fixture_feature_dict).to_dict()
     assert features == [Feature.from_dict(fixture_feature_dict)]
 
-    pull_requets = PullRequestsJsonRepository(
+    pull_requets = await PullRequestsJsonRepository(
         logger=mock_logger,
         path=f"{path}/pull_requests.json",
         git_repository=git_repository,
@@ -88,7 +88,7 @@ def test_dump_database(
     assert pull_requets == [PullRequest.from_dict(fixture_pull_request_dict)]
 
 
-def test_does_not_dump_other_repos(
+async def test_does_not_dump_other_repos(
     mock_logger, fixture_pull_request_dict, fixture_feature_dict
 ):
     git_repository = Repository.parse("orga/anotherrepo")
@@ -96,7 +96,7 @@ def test_does_not_dump_other_repos(
     pr_repo = PullRequestsDatabaseRepository(
         logger=mock_logger, git_repository=git_repository
     )
-    pr_repo.upsert(
+    await pr_repo.upsert(
         PullRequest.from_dict(
             {**fixture_pull_request_dict, "git_repository": git_repository}
         )
@@ -105,20 +105,20 @@ def test_does_not_dump_other_repos(
     feat_repo = FeaturesDatabaseRepository(
         logger=mock_logger, git_repository=git_repository
     )
-    feat_repo.upsert(
+    await feat_repo.upsert(
         Feature.from_dict({**fixture_feature_dict, "git_repository": git_repository})
     )
 
-    DumpDatabaseController(logger=mock_logger, path=path).execute()
+    await DumpDatabaseController(logger=mock_logger, path=path).execute()
 
-    features = FeaturesJsonRepository(
+    features = await FeaturesJsonRepository(
         logger=mock_logger,
         path=f"{path}/features.json",
         git_repository=git_repository,
     ).find_all()
     assert features == []
 
-    pull_requets = PullRequestsJsonRepository(
+    pull_requets = await PullRequestsJsonRepository(
         logger=mock_logger,
         path=f"{path}/pull_requests.json",
         git_repository=git_repository,

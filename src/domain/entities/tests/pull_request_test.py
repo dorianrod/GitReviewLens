@@ -74,8 +74,18 @@ def test_pullrequest_from_dict(fixture_pull_request_dict):
         Developer.from_dict(fixture_pull_request_dict["approvers"][1]),
     ]
     assert pullrequest.comments == [
-        Comment.from_dict(fixture_pull_request_dict["comments"][0]),
-        Comment.from_dict(fixture_pull_request_dict["comments"][1]),
+        Comment.from_dict(
+            {
+                **fixture_pull_request_dict["comments"][0],
+                "pull_request_id": pullrequest.id,
+            }
+        ),
+        Comment.from_dict(
+            {
+                **fixture_pull_request_dict["comments"][1],
+                "pull_request_id": pullrequest.id,
+            }
+        ),
     ]
 
 
@@ -84,7 +94,7 @@ def test_pullrequest_to_dict(fixture_pull_request_dict):
     assert pullrequest.to_dict() == {
         **fixture_pull_request_dict,
         "comments": [
-            Comment.from_dict(c).to_dict()
+            Comment.from_dict({**c, "pull_request_id": pullrequest.id}).to_dict()
             for c in fixture_pull_request_dict["comments"]
         ],
         "approvers": [
@@ -191,3 +201,22 @@ class TestFirstComment:
         )
         # 1 week - 1 day off
         assert pullrequest.first_comment_delay == ((5 - 1) * (18 - 9)) * 60
+
+
+def test_get_developers_from_list_unduplicates_developer_with_different_names(
+    fixture_pull_request_dict, fixture_developer_dict
+):
+    pullrequest_1 = PullRequest.from_dict(fixture_pull_request_dict)
+    pullrequest_2 = PullRequest.from_dict(
+        {
+            **fixture_pull_request_dict,
+            "created_by": {**fixture_developer_dict, "full_name": "another"},
+        }
+    )
+    devs_from_pull_request = list(
+        PullRequest.get_developers_from_list([pullrequest_1, pullrequest_2])
+    )
+
+    assert len(set({developer.id for developer in devs_from_pull_request})) == len(
+        devs_from_pull_request
+    )

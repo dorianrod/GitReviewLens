@@ -13,21 +13,24 @@ class TranscodePullRequestsInRepositoryUsecase(BaseUseCase[None]):
     repository: PullRequestsRepository
     transcoder: Transcoder
 
-    def execute(self):
+    async def execute(self):
         repository = self.repository
-        pull_requests = repository.find_all()
+        pull_requests = await repository.find_all()
         transcoder_usecase = TranscodePullRequestsUseCase(
             logger=self.logger, transcoder=self.transcoder
         )
-        transcoded_pull_requests = transcoder_usecase.execute(pull_requests)
+        transcoded_pull_requests = await transcoder_usecase.execute(pull_requests)
 
-        nb_updated = 0
+        pull_requests_to_update = []
         for i in range(len(transcoded_pull_requests)):
             if transcoded_pull_requests[i].type != pull_requests[i].type:
-                nb_updated += 1
-                repository.update(
-                    transcoded_pull_requests[i],
-                    {"upsert_comments": False, "upsert_developers": False},
-                )
+                pull_requests_to_update.append(transcoded_pull_requests[i])
 
-        self.logger.info("Updated " + str(nb_updated) + " pull requests")
+        await repository.update_all(
+            pull_requests_to_update,
+            {"upsert_comments": False, "upsert_developers": False},
+        )
+
+        self.logger.info(
+            "Updated " + str(len(pull_requests_to_update)) + " pull requests"
+        )

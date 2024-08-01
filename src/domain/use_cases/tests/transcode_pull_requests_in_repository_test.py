@@ -22,14 +22,16 @@ def use_case(mock_logger, fixture_pull_request_dict):
     )
 
 
-def test_it_transcodes_pull_requests_in_repository(fixture_pull_request_dict, use_case):
+async def test_it_transcodes_pull_requests_in_repository(
+    fixture_pull_request_dict, use_case
+):
     pull_request = PullRequest.from_dict(fixture_pull_request_dict)
     repository = use_case.repository
 
-    repository.create(pull_request)
+    await repository.create(pull_request)
 
-    use_case.execute()
+    await use_case.execute()
 
-    transcoded_pull_request = repository.get_by_id(pull_request.id)
+    transcoded_pull_request = await repository.get_by_id(pull_request.id)
     assert transcoded_pull_request.type == "feature"
     assert pull_request.type != transcoded_pull_request.type

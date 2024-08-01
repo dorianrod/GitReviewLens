@@ -1,5 +1,6 @@
 from dataclasses import asdict, dataclass
 from datetime import datetime
+from typing import Iterable, Optional
 
 from src.common.utils.date import format_to_iso, parse_date
 from src.common.utils.string import get_hash
@@ -13,6 +14,7 @@ class Comment(BaseEntity):
     developer: Developer
     content: str
     creation_date: datetime
+    pull_request_id: Optional[str] = None
 
     def clone(self):
         return Comment.from_dict(self.to_dict())
@@ -35,6 +37,7 @@ class Comment(BaseEntity):
             developer = Developer.from_dict(developer_data.to_dict())
 
         return cls(
+            pull_request_id=data.get("pull_request_id"),
             developer=developer,
             content=data.get("content") or "",
             creation_date=parse_date(data.get("creation_date")),
@@ -45,7 +48,15 @@ class Comment(BaseEntity):
         comment_dict["id"] = self.id
         comment_dict["size"] = self.size
         comment_dict["creation_date"] = format_to_iso(self.creation_date)
+        comment_dict["pull_request_id"] = self.pull_request_id
         return comment_dict
 
     def __repr__(self):
         return f"<Comment by {repr(self.developer)} - size: {self.size}>"
+
+    @staticmethod
+    def get_developers_from_list(comments: Iterable['Comment']) -> list[Developer]:
+        developers: set[Developer] = set()
+        for comment in comments:
+            developers.add(comment.developer)
+        return list(Developer.unduplicate(developers))

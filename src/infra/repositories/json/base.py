@@ -3,9 +3,10 @@ import os
 from typing import Generic, Sequence, TypeVar
 
 from src.common.utils.file import create_path_if_needed
+from src.domain.entities.common import BaseEntity
 from src.domain.entities.repository import Repository
 
-_T = TypeVar("_T")
+_T = TypeVar("_T", bound=BaseEntity)
 
 
 class BaseJsonRepositoryMixin(Generic[_T]):
@@ -21,29 +22,29 @@ class BaseJsonRepositoryMixin(Generic[_T]):
             json_entities = [entity.to_dict() for entity in entities]  # type: ignore
             json.dump(json_entities, file, indent=4)
 
-    def upsert(self, entity: _T, options: dict | None = None):
-        super().upsert(entity, options)  # type: ignore
+    async def upsert(self, entity: _T, options: dict | None = None):
+        await self.upsert_all([entity], options)
 
-        entities: list[_T] = self.find_all(options)  # type: ignore
+    async def upsert_all(self, entities: Sequence[_T], options=None):
+        current_entities: list[_T] = await self.find_all(options)  # type: ignore
+
+        entities_to_update_by_id = {entity.id: entity for entity in entities}
+        ids_to_create = set(entities_to_update_by_id.keys())
 
         i = 0
-        found = False
-        for old_entity in entities:
-            if old_entity.id == entity.id:  # type: ignore
-                found = True
-                entities[i] = entity
+        for old_entity in current_entities:
+            if entities_to_update_by_id.get(old_entity.id):  # type: ignore
+                ids_to_create.remove(old_entity.id)
+                current_entities[i] = entities_to_update_by_id[old_entity.id]
                 break
             i += 1
 
-        if not found:
-            entities.append(entity)
+        for id in ids_to_create:
+            current_entities.append(entities_to_update_by_id[id])
 
-        self.__dump_json(entities)
+        self.__dump_json(current_entities)
 
-    def upsert_all(self, entities: Sequence[_T], options=None):
-        self.__dump_json(entities)
-
-    def find_all(self, options=None) -> Sequence[_T]:
+    async def find_all(self, options=None) -> list[_T]:
         if not os.path.isfile(self.path):
             return []
 

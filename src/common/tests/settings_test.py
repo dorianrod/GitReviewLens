@@ -1,6 +1,6 @@
 import json
 
-from src.settings import settings
+from src.common.settings import settings
 
 
 def test_get_branches_azure():

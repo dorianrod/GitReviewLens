@@ -16,6 +16,7 @@ services:
       - ./postgres/demo/:/demo
       - ./postgres/transco/:/transco
       - ./git/repositories:/repos
+      - ./postgres/indicators.sql:/indicators.sql
       - ./git/.ssh:/root/.ssh
       - ./.env.example:/.env.example
     env_file:
@@ -43,7 +44,7 @@ services:
         ipv4_address: ${DATABASE_HOST}
 
   dashboards:
-    image: grafana/grafana:latest
+    image: grafana/grafana:10.2.0-133119
     container_name: gitreviewlens_dashboards
     build:
       context: ./dashboards

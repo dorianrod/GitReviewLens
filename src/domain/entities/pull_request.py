@@ -1,12 +1,13 @@
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Iterable
 
+from src.common.settings import settings
 from src.common.utils.date import format_to_iso, get_business_time_diff, parse_date
 from src.common.utils.json import recursive_asdict
 from src.common.utils.string import get_hash
-from src.domain.entities.common import BaseEntity
+from src.domain.entities.common import BaseEntity, eq
 from src.domain.entities.repository import Repository
-from src.settings import settings
 
 from .comment import Comment
 from .developer import Developer
@@ -71,15 +72,37 @@ class PullRequest(BaseEntity):
             ),
         )
 
+    @staticmethod
+    def get_developers_from_list(
+        pull_requests: Iterable['PullRequest'],
+    ) -> list[Developer]:
+        developers_set: set[Developer] = set()
+        for pull_request in pull_requests:
+            developers = pull_request.get_developers()
+            developers_set.update(developers)
+
+        return list(Developer.unduplicate(developers_set))
+
+    @staticmethod
+    def get_comments_from_list(pull_requests: list['PullRequest']) -> list[Comment]:
+        all_comments: list[Comment] = []
+        for pull_request in pull_requests:
+            for c in pull_request.comments:
+                c.pull_request_id = pull_request.id
+            all_comments = all_comments + pull_request.comments
+
+        return all_comments
+
     def get_developers(self) -> list[Developer]:
-        developers = {}
-        developers[self.created_by.id] = self.created_by
+        developers = set()
+        developers.add(self.created_by)
         for approver in self.approvers:
-            developers[approver.id] = approver
-        for comment in self.comments:
-            commenter = comment.developer
-            developers[commenter.id] = commenter
-        return list(developers.values())
+            developers.add(approver)
+
+        if len(self.comments):
+            developers.update(Comment.get_developers_from_list(self.comments))
+
+        return list(Developer.unduplicate(developers))
 
     @classmethod
     def from_dict(cls, data):
@@ -91,17 +114,14 @@ class PullRequest(BaseEntity):
             else data.get("created_by").clone()
         )
 
-        return cls(
+        pull_request = cls(
             source_id=str(data["source_id"]),
             type=data.get("type") or "feature",
             approvers=[
                 Developer.from_dict(d) if not isinstance(d, Developer) else d.clone()
                 for d in data.get("approvers", [])
             ],
-            comments=[
-                Comment.from_dict(c) if not isinstance(c, Comment) else c.clone()
-                for c in data.get("comments", [])
-            ],
+            comments=[],
             created_by=created_by,
             creation_date=creation_date,
             completion_date=completion_date,
@@ -113,8 +133,25 @@ class PullRequest(BaseEntity):
             previous_commit=data.get("previous_commit"),
         )
 
+        pull_request.comments = [
+            (
+                Comment.from_dict({**c, "pull_request_id": pull_request.id})
+                if not isinstance(c, Comment)
+                else c.clone()
+            )
+            for c in data.get("comments", [])
+        ]
+
+        return pull_request
+
     def to_dict(self):
         pull_request_dict = recursive_asdict(self)
+        pull_request_dict["approvers"] = sorted(
+            pull_request_dict["approvers"], key=lambda x: x["email"]
+        )
+        pull_request_dict["comments"] = sorted(
+            pull_request_dict["comments"], key=lambda x: x["creation_date"]
+        )
         pull_request_dict["merge_time"] = self.merge_time
         pull_request_dict["first_comment_delay"] = self.first_comment_delay
         pull_request_dict["completion_date"] = format_to_iso(self.completion_date)
@@ -124,3 +161,7 @@ class PullRequest(BaseEntity):
 
     def __repr__(self):
         return f"<PullRequest {str(self.git_repository)} - {self.source_id} - {self.title}>"
+
+    def __eq__(self, obj):
+        # For unknown reason : tests fails if not override
+        return eq(self, obj)
