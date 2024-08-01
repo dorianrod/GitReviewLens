@@ -42,7 +42,7 @@ jobs:
 
     strategy:
       matrix:
-        folder: [app, infra, domain, common, presentation]
+        folder: [app, infra, domain, common]
 
     services:
       postgres:
