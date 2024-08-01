@@ -1,6 +1,7 @@
 from typing import Type
 
 from sqlalchemy import select
+
 from src.common.repositories.base_repository import BaseRepository
 from src.domain.exceptions import NotExistsException
 from src.infra.database.postgresql.database import get_db_session

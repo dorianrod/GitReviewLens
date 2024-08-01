@@ -1,5 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
+
 from src.domain.repositories.features import FeaturesRepository
 from src.domain.repositories.utils import (
     raise_exception_if_repository_differs_from_entity,
