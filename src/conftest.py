@@ -130,7 +130,7 @@ def mock_logger():
 @pytest.fixture(autouse=True)
 def patch_lock_manager():
     with patch(
-        'src.infra.repositories.postgresql.generic_db.lock_manager',
+        'src.infra.database.postgresql.lock.lock_manager',
         new=EntityLockManager(),
     ):
         yield
