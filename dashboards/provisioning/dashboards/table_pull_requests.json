@@ -91,7 +91,7 @@
                 "value": [
                   {
                     "title": "Display comments",
-                    "url": "/d/e1af86ef-0235-408a-9476-385c460b0089?${__all_variables}&var-pr_id=${__data.fields.pr_id}&${__url_time_range}"
+                    "url": "/d/e1af86ef-0235-408a-9476-385c46/details3a-comments?${__all_variables}&var-pr_id=${__data.fields.pr_id}&${__url_time_range}"
                   }
                 ]
               }
@@ -379,6 +379,6 @@
   "timezone": "",
   "title": "Details: Pull Requests",
   "uid": "a941e1ee-5af5-44e3-b8ab-e729b06cabaa",
-  "version": 3,
+  "version": 1,
   "weekStart": ""
 }
