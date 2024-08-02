@@ -13,7 +13,7 @@ class PullRequestsGithubRepository(PullRequestsRepository):
     def __init__(self, pagination={}, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.pagination = {
-            "max_concurrency": 3,
+            "max_concurrency": 20,
             "items_per_page": 100,
             **pagination,
         }

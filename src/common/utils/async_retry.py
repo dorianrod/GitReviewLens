@@ -15,6 +15,7 @@ def async_retry(
     min_retry_delay: float = 0.1,
     max_retry_delay: float = 3.0,
     exceptions: tuple = (Exception,),
+    raise_original_exception=True,
 ):
     def decorator(func: Callable[..., Awaitable[T]]) -> Callable[..., Awaitable[T]]:
         @wraps(func)
@@ -24,6 +25,8 @@ def async_retry(
                     return await func(*args, **kwargs)
                 except exceptions as e:
                     if attempt == max_retries - 1:
+                        if raise_original_exception:
+                            raise e
                         raise MaxRetry() from e
                     retry_delay = random.uniform(min_retry_delay, max_retry_delay)
                     await asyncio.sleep(retry_delay)

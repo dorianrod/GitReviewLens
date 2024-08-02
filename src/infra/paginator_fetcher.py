@@ -2,6 +2,8 @@ import asyncio
 from abc import ABC, abstractmethod
 from typing import Any, Optional, Tuple
 
+import aiohttp
+
 from src.common.utils.async_iterator_filter import AsyncFilterEmptyIterator
 from src.common.utils.worker import Worker
 from src.infra.requests.fetch import async_fetch
@@ -19,6 +21,7 @@ class PaginatorWorker(Worker, ABC):
         headers: Optional[dict[str, str]] = None,
         max_concurrency: int = 10,
         timeout: Optional[int] = None,
+        non_blocking_error_codes=None,
     ):
         super().__init__(max_concurrency)
         assert max_concurrency is not None, "max_concurrency is mandatory"
@@ -28,6 +31,7 @@ class PaginatorWorker(Worker, ABC):
         self.items_per_page = items_per_page
         self.page = 0
         self.page_lock = asyncio.Lock()
+        self.non_blocking_error_codes = non_blocking_error_codes or []
 
     @abstractmethod
     async def get_url(self, page: int) -> str:
@@ -44,7 +48,15 @@ class PaginatorWorker(Worker, ABC):
         """Fetch data from the given URL and process it."""
         self.logger.info(f"Fetching {url}")
 
-        data = await async_fetch(url, headers=self.headers, timeout=self.timeout)
+        try:
+            data = await async_fetch(url, headers=self.headers, timeout=self.timeout)
+        except aiohttp.ClientResponseError as e:
+            if e.status in self.non_blocking_error_codes:
+                self.logger.info(f"Non blocking error for {url}")
+                data = []
+            else:
+                raise e
+
         return await self.process_data(data, options)
 
     async def add_url_to_queue(

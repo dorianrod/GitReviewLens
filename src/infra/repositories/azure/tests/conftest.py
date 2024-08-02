@@ -2,13 +2,26 @@ import pytest
 
 
 @pytest.fixture
-def mock_thread_comments():
-    def mock(mocker, pull_request_id, comments):
-        mocker.get(
+def mock_thread_comments(mocker_aio):
+    def mock(pull_request_id, comments):
+        mocker_aio.get(
             f"https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests/{pull_request_id}/threads",
             payload={
                 "value": comments,
             },
+        )
+
+    return mock
+
+
+@pytest.fixture
+def mock_api_pull_requests(mocker_aio):
+    def mock(pull_requests, per_page=1000, page=1):
+        top = per_page
+        skip = (page - 1) * per_page
+        mocker_aio.get(
+            f"https://dev.azure.com/orga/testproject/_apis/git/repositories/myrepo/pullRequests?searchCriteria.status=all&$top={top}&$skip={skip}",
+            payload={"value": pull_requests},
         )
 
     return mock
@@ -76,13 +89,17 @@ def mock_completed_pull_request_2_in_azure(
     return {**mock_completed_pull_request_in_azure, "pullRequestId": 3}
 
 
-def mock_pull_request_comments_thread(comments):
-    return {
-        "id": 1,
-        "publishedDate": "2023-10-09T12:04:49.927Z",
-        "lastUpdatedDate": "2023-10-09T12:04:49.927Z",
-        "comments": comments,
-    }
+@pytest.fixture
+def mock_pull_request_comments_thread():
+    def mock(comments):
+        return {
+            "id": 1,
+            "publishedDate": "2023-10-09T12:04:49.927Z",
+            "lastUpdatedDate": "2023-10-09T12:04:49.927Z",
+            "comments": comments,
+        }
+
+    return mock
 
 
 @pytest.fixture

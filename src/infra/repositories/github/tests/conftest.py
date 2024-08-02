@@ -14,10 +14,12 @@ def mock_api_comments(mocker_aio):
 
 @pytest.fixture
 def mock_api_approvers(mocker_aio):
-    def mock(pr_id, payload, per_page=100, page=1):
+
+    def mock(pr_id, payload=[], per_page=100, page=1, status=200):
         mocker_aio.get(
             f"https://api.github.com/repos/orga/myrepo/pulls/{pr_id}/reviews?per_page={per_page}&page={page}",
             payload=payload,
+            status=status,
         )
 
     return mock
