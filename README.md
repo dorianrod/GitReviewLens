@@ -50,12 +50,10 @@ To quickly try the tool, load the test dataset with the following steps:
 
    - This command copies SSH keys into `./git/.ssh` and clones repositories into `./git/repositories/*`.
 
-7. Collect data:
+7. Collect data using command `make load` to load information into the local database:
 
-   - Load information about reviews into the local database using `make load_pull_requests_review_informations`.
-   - Load information about features added over time with `make load_features_from_repositories`.
-
-   **Note:** Be patient, as it may take several minutes to retrieve all the data. Subsequent launches will be quicker as only changes are loaded.
+   - Reviews information (pull requests, reviewers, approvers, ...) from Azure/GitHub APIs
+   - Features added to the main branch (`GIT_BRANCHES[*].name` in .env) from git stats
 
 8. Access the main dashboard at [http://localhost:3000/dashboards](http://localhost:3000/dashboards) with the following credentials:
    - User: admin
