@@ -38,7 +38,9 @@ async def test_retry_success():
 
 
 async def test_max_retries_reached():
-    decorated_func = async_retry(max_retries=3)(always_failing_func)
+    decorated_func = async_retry(max_retries=3, raise_original_exception=False)(
+        always_failing_func
+    )
     with pytest.raises(MaxRetry):
         await decorated_func()
 
@@ -47,9 +49,9 @@ async def test_custom_exceptions():
     async def custom_exception_func():
         raise KeyError("Custom exception")
 
-    decorated_func = async_retry(max_retries=2, exceptions=(KeyError,))(
-        custom_exception_func
-    )
+    decorated_func = async_retry(
+        max_retries=2, raise_original_exception=False, exceptions=(KeyError,)
+    )(custom_exception_func)
     with pytest.raises(MaxRetry):
         await decorated_func()
 

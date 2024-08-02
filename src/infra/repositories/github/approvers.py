@@ -3,7 +3,12 @@ from src.domain.entities.developer import Developer
 from src.domain.entities.repository import Repository
 from src.domain.repositories.developers import DeveloperRepository
 from src.infra.paginator_fetcher import PaginatorWorker
-from src.infra.repositories.github.utils import get_base_url, get_email, get_header
+from src.infra.repositories.github.utils import (
+    get_base_url,
+    get_email,
+    get_header,
+    non_blocking_error_codes,
+)
 
 
 class ApproversGithubRepository(DeveloperRepository):
@@ -25,6 +30,7 @@ class ApproversGithubRepository(DeveloperRepository):
             git_repository=self.git_repository,
             headers=get_header(self.git_repository),
             logger=self.logger,
+            non_blocking_error_codes=non_blocking_error_codes,
             **self.pagination,
         )
 

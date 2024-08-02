@@ -1,5 +1,7 @@
 from src.domain.entities.repository import Repository
 
+non_blocking_error_codes = [403]
+
 
 def get_header(repository: Repository):
     return {

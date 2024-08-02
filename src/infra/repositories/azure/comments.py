@@ -21,7 +21,7 @@ class CommentsAzureRepository(CommentsRepository):
         self.logger.info(f"Getting comments for {pull_request_source_id}")
         data = await async_fetch(
             url,
-            client=self.client,  # headers=get_header(self.git_repository), timeout=None
+            client=self.client,
         )
 
         authors_to_exclude = filters.get("authors_to_exclude", [])
